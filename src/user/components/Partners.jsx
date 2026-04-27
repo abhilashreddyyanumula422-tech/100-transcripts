@@ -35,28 +35,28 @@ const Partners = () => {
   const scrollPartners = [...partners, ...partners];
 
   return (
-    <section className="w-full py-20 bg-white overflow-hidden">
+    <section className="w-full py-16 sm:py-24 bg-white overflow-hidden">
 
       {/* 🔥 HEADING */}
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-10 sm:mb-14 text-center">
+      <div className="max-w-7xl mx-auto px-6 mb-12 lg:mb-16 text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
-          <div className="flex items-center justify-center gap-4">
-            <span className="w-8 sm:w-12 h-[2px] sm:h-[3px] bg-blue-600"></span>
-            <p className="text-xs sm:text-sm font-bold uppercase text-blue-600 tracking-wider">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="w-8 sm:w-14 h-[2px] sm:h-[3px] bg-blue-600"></span>
+            <p className="text-sm font-bold uppercase text-blue-600 tracking-widest">
               Our Partners
             </p>
-            <span className="w-8 sm:w-12 h-[2px] sm:h-[3px] bg-blue-600"></span>
+            <span className="w-8 sm:w-14 h-[2px] sm:h-[3px] bg-blue-600"></span>
           </div>
 
-          <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-[#2f4a6d]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2f4a6d] leading-tight max-w-4xl mx-auto">
             Credential Associates We Serve
           </h2>
 
-          <p className="mt-3 text-gray-500 max-w-2xl mx-auto text-xs sm:text-sm">
+          <p className="mt-6 text-slate-600 max-w-2xl mx-auto text-base sm:text-lg font-medium leading-relaxed">
             We collaborate with globally recognized evaluation bodies to ensure
             fast, reliable, and trusted transcript services.
           </p>
@@ -64,17 +64,17 @@ const Partners = () => {
       </div>
 
       {/* 🔥 SCROLL SECTION */}
-      <div className="relative flex">
+      <div className="relative flex group">
 
         {/* Fade Effects */}
-        <div className="absolute left-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
-        <div className="absolute right-0 top-0 bottom-0 w-32 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
+        <div className="absolute left-0 top-0 bottom-0 w-24 sm:w-48 z-10 bg-gradient-to-r from-white to-transparent pointer-events-none" />
+        <div className="absolute right-0 top-0 bottom-0 w-24 sm:w-48 z-10 bg-gradient-to-l from-white to-transparent pointer-events-none" />
 
         <motion.div
           variants={containerVariants}
           initial="hidden"
           whileInView="visible"
-          className="flex animate-marquee whitespace-nowrap py-4"
+          className="flex animate-marquee whitespace-nowrap py-8"
         >
           {scrollPartners.map((item, index) => (
             <motion.a
@@ -83,12 +83,12 @@ const Partners = () => {
               href={item.link}
               target="_blank"
               rel="noopener noreferrer"
-              className="mx-4 flex items-center justify-center min-w-[220px] md:min-w-[280px] h-32 bg-white border border-gray-200 rounded-2xl shadow-sm hover:shadow-xl hover:border-blue-200 hover:-translate-y-2 transition-all duration-300 group animate-float"
+              className="mx-4 flex items-center justify-center min-w-[180px] sm:min-w-[280px] h-28 sm:h-36 bg-white border border-slate-100 rounded-3xl shadow-sm hover:shadow-2xl hover:shadow-blue-500/10 hover:border-blue-200 hover:-translate-y-2 transition-all duration-500 group"
             >
               <img
                 src={item.logo}
                 alt={item.name}
-                className="h-14 w-auto object-contain brightness-110 contrast-110 saturate-125 transition-all duration-500 group-hover:scale-110"
+                className="h-10 sm:h-14 w-auto object-contain brightness-105 contrast-105 saturate-110 transition-all duration-500 group-hover:scale-110"
               />
             </motion.a>
           ))}
@@ -99,100 +99,4 @@ const Partners = () => {
   );
 };
 
-const PartnersMobileStyles = `
-@media (max-width: 1024px) {
-  .partners-section {
-    padding: 3rem 1rem !important;
-  }
-  
-  .partners-title {
-    font-size: 2rem !important;
-  }
-  
-  .partners-description {
-    font-size: 1rem !important;
-  }
-  
-  .partner-card {
-    min-width: 200px !important;
-    height: 120px !important;
-  }
-  
-  .partner-logo {
-    height: 3rem !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .partners-section {
-    padding: 2rem 0.5rem !important;
-  }
-  
-  .partners-title {
-    font-size: 1.5rem !important;
-  }
-  
-  .partners-description {
-    font-size: 0.9rem !important;
-  }
-  
-  .partner-card {
-    min-width: 180px !important;
-    height: 100px !important;
-    margin: 0 1rem !important;
-  }
-  
-  .partner-logo {
-    height: 2.5rem !important;
-  }
-  
-  .fade-effect {
-    width: 2rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .partners-section {
-    padding: 1.5rem 0.25rem !important;
-  }
-  
-  .partners-title {
-    font-size: 1.25rem !important;
-  }
-  
-  .partners-description {
-    font-size: 0.85rem !important;
-  }
-  
-  .partner-card {
-    min-width: 150px !important;
-    height: 80px !important;
-    margin: 0 0.75rem !important;
-  }
-  
-  .partner-logo {
-    height: 2rem !important;
-  }
-  
-  .fade-effect {
-    width: 1rem !important;
-  }
-  
-  .header-lines {
-    width: 2rem !important;
-  }
-}
-`;
-
-// Inject mobile styles into the document
-if (typeof window !== 'undefined') {
-  const styleId = 'partners-mobile-styles';
-  if (!document.getElementById(styleId)) {
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = PartnersMobileStyles;
-    document.head.appendChild(style);
-  }
-}
-
-export default Partners;
+export default Partners;

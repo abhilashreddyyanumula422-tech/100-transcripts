@@ -13,6 +13,8 @@ import ECE from "../user/pages/ECE";
 import SpanTran from "../user/pages/SpanTran";
 import WES from "../user/pages/WES";
 import EducationEva from "../user/pages/EducationEva";
+import EP from "../user/pages/EP";
+import ProvisionalCertificate from "../user/pages/provisionalCertificate";
 import Contact from "../user/pages/Contact";
 import FileStatus from "../user/pages/FileStatus";
 import Register from "../user/pages/Register";
@@ -51,7 +53,9 @@ const AppRoutes = () => {
            <Route path="services/ece" element={<ECE />} />
            <Route path="services/spantran" element={<SpanTran />} />
           <Route path="services/wes" element={<WES />} />
-          <Route path="services/ep" element={<EducationEva />} />
+          <Route path="services/education-evaluation" element={<EducationEva />} />
+          <Route path="services/ep" element={<EP />} />
+          <Route path="services/provisional" element={<ProvisionalCertificate />} />
           <Route path="apply" element={<Apply />} />
           <Route path="contact" element={<Contact />} />
           <Route path="file-status" element={<FileStatus />} />

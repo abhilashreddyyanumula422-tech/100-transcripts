@@ -14,11 +14,11 @@ const locations = [
 
 const HeroSection = () => {
   const globeRef = useRef();
-  const [globeSize, setGlobeSize] = useState(window.innerWidth < 768 ? 400 : 800);
+  const [globeSize, setGlobeSize] = useState(window.innerWidth < 768 ? 320 : 800);
 
   useEffect(() => {
     const handleResize = () => {
-      setGlobeSize(window.innerWidth < 768 ? 400 : 800);
+      setGlobeSize(window.innerWidth < 768 ? 320 : 800);
     };
     window.addEventListener("resize", handleResize);
     return () => window.removeEventListener("resize", handleResize);
@@ -51,38 +51,38 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-24 sm:pt-28 pb-16 sm:pb-20 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-28 sm:pt-32 pb-16 sm:pb-24 overflow-hidden min-h-[90vh] flex items-center">
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-blue-100/30 rounded-full blur-[60px] sm:blur-[100px] md:blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-blue-50/50 rounded-full blur-[50px] sm:blur-[75px] md:blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
+      <div className="absolute top-0 right-0 w-[300px] md:w-[600px] h-[300px] md:h-[600px] bg-blue-100/30 rounded-full blur-[80px] md:blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-[200px] md:w-[400px] h-[200px] md:h-[400px] bg-blue-50/50 rounded-full blur-[60px] md:blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
 
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 items-center gap-8 sm:gap-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-6 grid lg:grid-cols-2 items-center gap-12 relative z-10">
 
         {/* LEFT CONTENT */}
-        <div className="space-y-6 sm:space-y-8">
+        <div className="space-y-8 text-center lg:text-left order-2 lg:order-1">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#2f4a6d] leading-[1.1] tracking-tight">
+            <h1 className="text-4xl sm:text-5xl md:text-6xl lg:text-7xl font-black text-[#2f4a6d] leading-[1.05] tracking-tight">
               India’s #1 Trusted <br />
               <span className="text-[#3b82f6]">Transcripts</span> Provider
             </h1>
           </motion.div>
 
           <motion.p 
-            className="text-[#2f4a6d] opacity-80 text-sm sm:text-base md:text-lg max-w-md font-medium leading-relaxed"
-            initial={{ opacity: 0, x: -30 }}
-            animate={{ opacity: 1, x: 0 }}
+            className="text-[#2f4a6d] opacity-80 text-base sm:text-lg md:text-xl max-w-xl mx-auto lg:mx-0 font-medium leading-relaxed"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Your Gateway to <span className="bg-[#3b82f6] text-white px-2 sm:px-3 py-1 rounded-full font-bold text-[10px] sm:text-xs uppercase tracking-wider shadow-lg shadow-blue-500/20">Global</span> Education and Career – Providing official university transcripts and evaluation support.
+            Your Gateway to <span className="bg-[#3b82f6] text-white px-3 py-1 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/20">Global</span> Education and Career – Providing official university transcripts and evaluation support.
           </motion.p>
 
           {/* SEARCH BAR */}
           <motion.div 
-            className="flex bg-white rounded-full shadow-2xl shadow-blue-500/10 overflow-hidden max-w-md border border-slate-100 p-1"
+            className="flex flex-col sm:flex-row bg-white rounded-2xl sm:rounded-full shadow-2xl shadow-blue-500/10 overflow-hidden max-w-lg mx-auto lg:mx-0 border border-slate-100 p-2 gap-2"
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.8, delay: 0.4 }}
@@ -90,38 +90,38 @@ const HeroSection = () => {
             <input
               type="text"
               placeholder="Enter Your University Name..."
-              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 outline-none text-[#2f4a6d] font-medium placeholder:text-slate-400 text-sm sm:text-base"
+              className="flex-1 px-6 py-4 outline-none text-[#2f4a6d] font-medium placeholder:text-slate-400 text-base rounded-xl sm:rounded-full bg-slate-50 sm:bg-white"
             />
-            <button className="bg-[#2f4a6d] text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-500/20 text-xs sm:text-sm min-h-[44px]">
+            <button className="bg-[#2f4a6d] text-white px-8 py-4 rounded-xl sm:rounded-full font-bold hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-500/20 text-sm whitespace-nowrap">
               Start Now
             </button>
           </motion.div>
 
           <motion.button 
-            className="flex items-center gap-2 text-[#2f4a6d] font-bold hover:gap-4 transition-all text-sm sm:text-base"
+            className="flex items-center gap-2 text-[#2f4a6d] font-bold hover:gap-4 transition-all text-base mx-auto lg:mx-0"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            Learn More <span className="text-lg sm:text-xl">→</span>
+            Learn More <span className="text-xl">→</span>
           </motion.button>
         </div>
 
         {/* RIGHT SIDE 3D GLOBE VISUAL */}
-        <div className="relative h-[500px] md:h-[650px] flex justify-center items-center">
+        <div className="relative h-[350px] sm:h-[450px] md:h-[600px] lg:h-[700px] flex justify-center items-center order-1 lg:order-2">
           
           {/* Globe Container */}
-          <div className="absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing">
+          <div className="absolute inset-0 flex items-center justify-center cursor-grab active:cursor-grabbing scale-[0.8] sm:scale-100 transition-transform">
             <Globe
               ref={globeRef}
               width={globeSize}
               height={globeSize}
               backgroundColor="rgba(0,0,0,0)"
-           globeImageUrl="//unpkg.com/three-globe/example/img/earth-day.jpg"
+              globeImageUrl="//unpkg.com/three-globe/example/img/earth-day.jpg"
               bumpImageUrl="//unpkg.com/three-globe/example/img/earth-topology.png"
               
-           atmosphereColor="#93c5fd"
-atmosphereAltitude={0.4}
+              atmosphereColor="#93c5fd"
+              atmosphereAltitude={0.4}
               
               arcsData={arcsData}
               arcColor="color"
@@ -186,102 +186,4 @@ atmosphereAltitude={0.4}
   );
 };
 
-export default HeroSection;
-
-/* Mobile Responsiveness Styles */
-const HeroMobileStyles = `
-@media (max-width: 1024px) {
-  .hero-section {
-    padding: 2rem 1rem !important;
-  }
-  
-  .hero-content {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-  
-  .hero-text {
-    text-align: center !important;
-  }
-  
-  .hero-title {
-    font-size: 2.5rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  .hero-subtitle {
-    font-size: 1rem !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .hero-section {
-    padding: 1rem 0.5rem !important;
-  }
-  
-  .hero-title {
-    font-size: 2rem !important;
-    line-height: 1.1 !important;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.9rem !important;
-  }
-  
-  .hero-description {
-    font-size: 0.85rem !important;
-  }
-  
-  .floating-icon {
-    display: none !important;
-  }
-  
-  .globe-container {
-    height: 350px !important;
-  }
-  
-  .stats-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .hero-title {
-    font-size: 1.5rem !important;
-  }
-  
-  .hero-subtitle {
-    font-size: 0.8rem !important;
-  }
-  
-  .hero-description {
-    font-size: 0.75rem !important;
-  }
-  
-  .hero-buttons {
-    flex-direction: column !important;
-    gap: 0.75rem !important;
-  }
-  
-  .globe-container {
-    height: 300px !important;
-  }
-  
-  .spotlight-effect {
-    width: 200px !important;
-    height: 400px !important;
-  }
-}
-`;
-
-// Inject mobile styles into the document
-if (typeof window !== 'undefined') {
-  const styleId = 'hero-mobile-styles';
-  if (!document.getElementById(styleId)) {
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = HeroMobileStyles;
-    document.head.appendChild(style);
-  }
-}
+export default HeroSection;

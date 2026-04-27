@@ -52,7 +52,12 @@ const Counter = ({ value }) => {
 };
 
 // ✅ ICONS (OPTIONAL SAME LOOK)
-const iconMap = [<FiCheckCircle />, <FiFileText />, <FiShield />, <FiClock />];
+const iconMap = [
+  <FiCheckCircle key="check" />, 
+  <FiFileText key="file" />, 
+  <FiShield key="shield" />, 
+  <FiClock key="clock" />
+];
 
 const CollegePage = () => {
   const { collegeId } = useParams();

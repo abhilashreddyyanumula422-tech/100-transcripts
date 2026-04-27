@@ -1,5 +1,5 @@
 import React, { useState, useEffect } from "react";
-import { Link, useNavigate, useLocation } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { FiChevronDown, FiMenu, FiX, FiChevronRight } from "react-icons/fi";
 import { motion, AnimatePresence } from "framer-motion";
 
@@ -13,18 +13,13 @@ const Navbar = () => {
 
   const user = JSON.parse(localStorage.getItem("user"));
   const isLoggedIn = !!user;
+
   const navigate = useNavigate();
-  const location = useLocation();
 
   const handleLogout = () => {
-    localStorage.removeItem("user");
-    navigate("/login");
-  };
-
-  // Close mobile menu on route change
-  useEffect(() => {
+    navigate("/logout");
     setIsMobileMenuOpen(false);
-  }, [location.pathname]);
+  };
 
   // ✅ CLOSE DROPDOWN ON OUTSIDE CLICK
   useEffect(() => {
@@ -68,27 +63,39 @@ const Navbar = () => {
   ];
 
   const partneredColleges = [
-    { name: "Bhaskar Pharmacy College", path: "/partnered-colleges/bhaskar-pharmacy-college" },
-    { name: "Joginpally B.R Pharmacy College", path: "/partnered-colleges/joginpally-br-pharmacy-college" },
-    { name: "Siddhartha Institute of Technology & Sciences", path: "/partnered-colleges/siddhartha-institute-of-technology-sciences" },
+    {
+      name: "Bhaskar Pharmacy College",
+      path: "/partnered-colleges/bhaskar-pharmacy-college",
+    },
+    {
+      name: "Joginpally B.R Pharmacy College",
+      path: "/partnered-colleges/joginpally-br-pharmacy-college",
+    },
+    {
+      name: "Siddhartha Institute of Technology & Sciences",
+      path: "/partnered-colleges/siddhartha-institute-of-technology-sciences",
+    },
   ];
 
-  const dropdownStyle = "w-80 rounded-xl border border-slate-700 bg-[#1f2f44] py-2 text-white shadow-2xl";
-  const itemStyle = "block px-6 py-4 font-semibold hover:bg-white/10 cursor-pointer transition-colors";
+  const dropdownStyle =
+    "w-80 rounded-xl border border-slate-700 bg-[#1f2f44] py-2 text-white shadow-2xl";
+  const itemStyle =
+    "block px-6 py-4 font-semibold hover:bg-white/10 cursor-pointer transition-colors";
 
   return (
-    <nav className="fixed z-[100] w-full bg-[#2f4a6d] text-white shadow-lg">
+    <nav className="fixed z-[100] w-full bg-[#3b5b82] text-white border-b border-[#e2e8f0]/10 shadow-md backdrop-blur-sm">
       <div className="flex justify-between items-center px-6 py-4 max-w-7xl mx-auto">
+
         {/* LOGO */}
         <Link to="/" className="text-2xl font-bold flex items-center gap-2">
           <span className="text-blue-400">100</span>
-          <span className="tracking-tight">Transcripts</span>
+          <span>Transcripts</span>
         </Link>
 
         {/* DESKTOP MENU */}
-        <ul className="hidden lg:flex gap-8 items-center font-semibold uppercase text-sm tracking-wider">
+        <ul className="hidden lg:flex gap-8 items-center font-semibold uppercase text-sm tracking-wide">
           <li><Link to="/" className="hover:text-blue-300 transition-colors">HOME</Link></li>
-          <li><Link to="/about" className="hover:text-blue-300 transition-colors">ABOUT US</Link></li>
+          <li><Link to="/about" className="hover:text-blue-300 transition-colors">ABOUT</Link></li>
 
           {/* ✅ SERVICES */}
           <li className="relative services-menu">
@@ -104,7 +111,7 @@ const Navbar = () => {
 
             <AnimatePresence>
               {servicesDropdown && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -112,33 +119,45 @@ const Navbar = () => {
                 >
                   <div className={dropdownStyle}>
                     {servicesLinks.map((item, index) => (
-                      <div key={item.name} className="relative group">
+                      <div key={item.name} className="relative">
                         {item.submenu ? (
                           <>
                             <div
-                              onMouseEnter={() => setActiveSubMenu(index)}
+                              onClick={() =>
+                                setActiveSubMenu(
+                                  activeSubMenu === index ? null : index
+                                )
+                              }
                               className={`${itemStyle} flex justify-between items-center`}
                             >
                               {item.name}
-                              <FiChevronRight />
+                              <FiChevronRight className={`transition-transform ${activeSubMenu === index ? 'rotate-90' : ''}`} />
                             </div>
 
-                            {activeSubMenu === index && (
-                              <motion.div 
-                                initial={{ opacity: 0, x: 10 }}
-                                animate={{ opacity: 1, x: 0 }}
-                                className="absolute left-full top-0 ml-1 w-80 bg-[#1f2f44] border border-slate-700 rounded-xl py-2 shadow-2xl"
-                              >
-                                {item.submenu.map((sub) => (
-                                  <Link key={sub.name} to={sub.path} className={itemStyle}>
-                                    {sub.name}
-                                  </Link>
-                                ))}
-                              </motion.div>
-                            )}
+                            <AnimatePresence>
+                              {activeSubMenu === index && (
+                                <motion.div
+                                  initial={{ opacity: 0, x: 10 }}
+                                  animate={{ opacity: 1, x: 0 }}
+                                  exit={{ opacity: 0, x: 10 }}
+                                  className="absolute left-full top-0 w-80 bg-[#1f2f44] border border-slate-700 rounded-xl py-2 shadow-2xl ml-2"
+                                >
+                                  {item.submenu.map((sub) => (
+                                    <Link
+                                      key={sub.name}
+                                      to={sub.path}
+                                      className={itemStyle}
+                                      onClick={() => setServicesDropdown(false)}
+                                    >
+                                      {sub.name}
+                                    </Link>
+                                  ))}
+                                </motion.div>
+                              )}
+                            </AnimatePresence>
                           </>
                         ) : (
-                          <Link to={item.path} className={itemStyle}>
+                          <Link to={item.path} className={itemStyle} onClick={() => setServicesDropdown(false)}>
                             {item.name}
                           </Link>
                         )}
@@ -155,19 +174,19 @@ const Navbar = () => {
 
           {/* COLLEGES */}
           <li className="relative colleges-menu">
-            <button 
+            <button
               onClick={() => {
                 setCollegesDropdown(!collegesDropdown);
                 setServicesDropdown(false);
               }}
-              className="hover:text-blue-300 transition-colors flex items-center gap-1"
+              className="flex items-center gap-1 hover:text-blue-300 transition-colors"
             >
               PARTNERED COLLEGES <FiChevronDown className={`transition-transform ${collegesDropdown ? 'rotate-180' : ''}`} />
             </button>
 
             <AnimatePresence>
               {collegesDropdown && (
-                <motion.div 
+                <motion.div
                   initial={{ opacity: 0, y: 10 }}
                   animate={{ opacity: 1, y: 0 }}
                   exit={{ opacity: 0, y: 10 }}
@@ -175,7 +194,7 @@ const Navbar = () => {
                 >
                   <div className={dropdownStyle}>
                     {partneredColleges.map((c) => (
-                      <Link key={c.name} to={c.path} className={itemStyle}>
+                      <Link key={c.name} to={c.path} className={itemStyle} onClick={() => setCollegesDropdown(false)}>
                         {c.name}
                       </Link>
                     ))}
@@ -184,38 +203,33 @@ const Navbar = () => {
               )}
             </AnimatePresence>
           </li>
-          
-          <li><Link to="/file-status" className="hover:text-blue-300 transition-colors">FILE STATUS</Link></li>
         </ul>
 
-        {/* LOGIN / PROFILE */}
-        <div className="hidden lg:flex items-center gap-4">
+        {/* LOGIN */}
+        <div className="hidden lg:block">
           {isLoggedIn ? (
-            <div className="flex items-center gap-3">
-              <span className="text-sm font-medium text-blue-200">{user.email}</span>
-              <button 
-                onClick={handleLogout} 
-                className="bg-red-500/20 text-red-300 border border-red-500/50 px-4 py-1.5 rounded-lg font-bold text-sm hover:bg-red-500 hover:text-white transition-all"
-              >
-                LOGOUT
-              </button>
-            </div>
+            <button
+              onClick={handleLogout}
+              className="bg-red-500 hover:bg-red-600 px-6 py-2 rounded-full font-bold transition-all active:scale-95 shadow-lg shadow-red-500/20"
+            >
+              LOGOUT
+            </button>
           ) : (
-            <Link 
-              to="/login" 
-              className="bg-blue-600 px-6 py-2 rounded-full font-bold text-sm hover:bg-blue-500 transition-all shadow-lg"
+            <Link
+              to="/login"
+              className="bg-blue-500 hover:bg-blue-600 px-6 py-2 rounded-full font-bold transition-all active:scale-95 shadow-lg shadow-blue-500/20"
             >
               LOGIN
             </Link>
           )}
         </div>
 
-        {/* MOBILE TOGGLE */}
-        <button 
-          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)} 
-          className="lg:hidden p-2 hover:bg-white/10 rounded-lg transition-colors"
+        {/* MOBILE BUTTON */}
+        <button
+          onClick={() => setIsMobileMenuOpen(!isMobileMenuOpen)}
+          className="lg:hidden p-2 rounded-lg bg-white/10 hover:bg-white/20 transition-colors"
         >
-          {isMobileMenuOpen ? <FiX size={28} /> : <FiMenu size={28} />}
+          {isMobileMenuOpen ? <FiX size={24} /> : <FiMenu size={24} />}
         </button>
       </div>
 
@@ -226,39 +240,52 @@ const Navbar = () => {
             initial={{ opacity: 0, height: 0 }}
             animate={{ opacity: 1, height: "auto" }}
             exit={{ opacity: 0, height: 0 }}
-            className="lg:hidden bg-[#1f2f44] border-t border-slate-700 overflow-hidden"
+            className="lg:hidden bg-[#2f4a6d] border-t border-white/10 overflow-hidden"
           >
-            <div className="flex flex-col p-6 gap-2">
-              <Link to="/" className="py-3 font-semibold border-b border-white/5">HOME</Link>
-              <Link to="/about" className="py-3 font-semibold border-b border-white/5">ABOUT US</Link>
-              
-              {/* SERVICES MOBILE */}
-              <div className="border-b border-white/5">
-                <button 
+            <div className="flex flex-col p-6 space-y-4 font-semibold">
+              <Link to="/" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-blue-300">HOME</Link>
+              <Link to="/about" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-blue-300">ABOUT</Link>
+
+              {/* MOBILE SERVICES */}
+              <div>
+                <button
                   onClick={() => setMobileServicesOpen(!mobileServicesOpen)}
-                  className="w-full py-3 flex justify-between items-center font-semibold"
+                  className="flex items-center justify-between w-full hover:text-blue-300"
                 >
                   SERVICES <FiChevronDown className={`transition-transform ${mobileServicesOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {mobileServicesOpen && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="pl-4 pb-4 flex flex-col gap-3"
+                      className="pl-4 mt-3 space-y-3 border-l-2 border-white/10"
                     >
-                      {servicesLinks.map(s => (
-                        <div key={s.name}>
-                          {s.submenu ? (
-                            <div className="flex flex-col gap-2">
-                              <span className="text-blue-400 text-xs font-bold uppercase tracking-widest mt-2">{s.name}</span>
-                              {s.submenu.map(sub => (
-                                <Link key={sub.name} to={sub.path} className="text-gray-300 text-sm py-1">{sub.name}</Link>
+                      {servicesLinks.map((item) => (
+                        <div key={item.name} className="space-y-2">
+                          <p className="text-xs text-blue-300 uppercase tracking-widest">{item.name}</p>
+                          {item.submenu ? (
+                            <div className="pl-2 space-y-2">
+                              {item.submenu.map((sub) => (
+                                <Link
+                                  key={sub.name}
+                                  to={sub.path}
+                                  onClick={() => setIsMobileMenuOpen(false)}
+                                  className="block text-sm hover:text-blue-200"
+                                >
+                                  {sub.name}
+                                </Link>
                               ))}
                             </div>
                           ) : (
-                            <Link to={s.path} className="text-gray-300 py-1">{s.name}</Link>
+                            <Link
+                              to={item.path}
+                              onClick={() => setIsMobileMenuOpen(false)}
+                              className="block text-sm hover:text-blue-200"
+                            >
+                              {item.name}
+                            </Link>
                           )}
                         </div>
                       ))}
@@ -267,40 +294,57 @@ const Navbar = () => {
                 </AnimatePresence>
               </div>
 
-              <Link to="/apply" className="py-3 font-semibold border-b border-white/5">APPLY</Link>
-              <Link to="/contact" className="py-3 font-semibold border-b border-white/5">CONTACT US</Link>
+              <Link to="/apply" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-blue-300">APPLY</Link>
+              <Link to="/contact" onClick={() => setIsMobileMenuOpen(false)} className="hover:text-blue-300">CONTACT</Link>
 
-              {/* COLLEGES MOBILE */}
-              <div className="border-b border-white/5">
-                <button 
+              {/* MOBILE COLLEGES */}
+              <div>
+                <button
                   onClick={() => setMobileCollegesOpen(!mobileCollegesOpen)}
-                  className="w-full py-3 flex justify-between items-center font-semibold"
+                  className="flex items-center justify-between w-full hover:text-blue-300"
                 >
                   PARTNERED COLLEGES <FiChevronDown className={`transition-transform ${mobileCollegesOpen ? 'rotate-180' : ''}`} />
                 </button>
                 <AnimatePresence>
                   {mobileCollegesOpen && (
-                    <motion.div 
+                    <motion.div
                       initial={{ opacity: 0, height: 0 }}
                       animate={{ opacity: 1, height: "auto" }}
                       exit={{ opacity: 0, height: 0 }}
-                      className="pl-4 pb-4 flex flex-col gap-2"
+                      className="pl-4 mt-3 space-y-3 border-l-2 border-white/10"
                     >
-                      {partneredColleges.map(c => (
-                        <Link key={c.name} to={c.path} className="text-gray-300 text-sm py-1">{c.name}</Link>
+                      {partneredColleges.map((c) => (
+                        <Link
+                          key={c.name}
+                          to={c.path}
+                          onClick={() => setIsMobileMenuOpen(false)}
+                          className="block text-sm hover:text-blue-200"
+                        >
+                          {c.name}
+                        </Link>
                       ))}
                     </motion.div>
                   )}
                 </AnimatePresence>
               </div>
 
-              <Link to="/file-status" className="py-3 font-semibold border-b border-white/5">FILE STATUS</Link>
-
-              <div className="pt-4">
+              {/* MOBILE LOGIN/LOGOUT */}
+              <div className="pt-4 border-t border-white/10">
                 {isLoggedIn ? (
-                  <button onClick={handleLogout} className="w-full bg-red-600 py-3 rounded-xl font-bold">LOGOUT</button>
+                  <button
+                    onClick={handleLogout}
+                    className="w-full bg-red-500 py-3 rounded-xl font-bold active:scale-95 transition-transform"
+                  >
+                    LOGOUT
+                  </button>
                 ) : (
-                  <Link to="/login" className="block text-center w-full bg-blue-600 py-3 rounded-xl font-bold">LOGIN</Link>
+                  <Link
+                    to="/login"
+                    onClick={() => setIsMobileMenuOpen(false)}
+                    className="block w-full bg-blue-500 py-3 rounded-xl font-bold text-center active:scale-95 transition-transform"
+                  >
+                    LOGIN
+                  </Link>
                 )}
               </div>
             </div>
@@ -311,4 +355,4 @@ const Navbar = () => {
   );
 };
 
-export default Navbar;
+export default Navbar;

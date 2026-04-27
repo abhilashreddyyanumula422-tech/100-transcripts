@@ -4,175 +4,83 @@ import { motion } from "framer-motion";
 
 const UniversitySearch = () => {
   return (
-    <section className="w-full py-20 bg-gradient-to-b from-white to-slate-50">
+    <section className="w-full py-16 sm:py-24 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
 
-      <div className="max-w-7xl mx-auto px-6 md:px-12 text-center">
+      <div className="max-w-7xl mx-auto px-6">
 
         {/* 🔥 SAME HEADING STYLE (LIKE WHO WE ARE) */}
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12"
+          className="mb-12 lg:mb-16 text-center"
         >
-          <div className="flex items-center justify-center gap-4">
-            <span className="w-12 h-[3px] bg-blue-600"></span>
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="w-8 sm:w-14 h-[2px] sm:h-[3px] bg-blue-600"></span>
 
-            <p className="text-sm md:text-base font-bold uppercase text-blue-600 tracking-wider">
+            <p className="text-sm font-bold uppercase text-blue-600 tracking-widest">
               Find Your University
             </p>
 
-            <span className="w-12 h-[3px] bg-blue-600"></span>
+            <span className="w-8 sm:w-14 h-[2px] sm:h-[3px] bg-blue-600"></span>
           </div>
 
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-[#2f4a6d]">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-[#2f4a6d] max-w-4xl mx-auto">
             Explore Institutions for Expert Guidance
           </h2>
 
-          <p className="mt-3 text-gray-500 max-w-2xl mx-auto">
+          <p className="mt-6 text-slate-600 max-w-2xl mx-auto text-base sm:text-lg font-medium leading-relaxed">
             Search universities, choose services, and get your transcripts processed easily.
           </p>
         </motion.div>
 
         {/* 🔍 SEARCH BOX */}
-        <div className="bg-white shadow-xl rounded-2xl p-4 sm:p-6 md:p-10">
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-end">
+        <motion.div 
+          initial={{ opacity: 0, scale: 0.95 }}
+          whileInView={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.5, delay: 0.2 }}
+          className="bg-white shadow-2xl shadow-blue-500/5 rounded-[2.5rem] p-6 sm:p-10 md:p-12 border border-slate-100"
+        >
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
 
             {/* STATE */}
-            <div className="text-left">
-              <label className="text-xs sm:text-sm text-gray-600">Select State</label>
-              <select className="w-full mt-2 px-3 sm:px-4 py-3 rounded-xl border min-h-[44px]">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select State</label>
+              <select className="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-slate-700 font-semibold min-h-[56px] appearance-none">
                 <option>Select State</option>
               </select>
             </div>
 
             {/* UNIVERSITY */}
-            <div className="text-left">
-              <label className="text-xs sm:text-sm text-gray-600">Select University</label>
-              <select className="w-full mt-2 px-3 sm:px-4 py-3 rounded-xl border min-h-[44px]">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select University</label>
+              <select className="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-slate-700 font-semibold min-h-[56px] appearance-none">
                 <option>First Select State</option>
               </select>
             </div>
 
             {/* PURPOSE */}
-            <div className="text-left">
-              <label className="text-xs sm:text-sm text-gray-600">Select Purpose</label>
-              <select className="w-full mt-2 px-3 sm:px-4 py-3 rounded-xl border min-h-[44px]">
+            <div className="space-y-2">
+              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select Purpose</label>
+              <select className="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-slate-700 font-semibold min-h-[56px] appearance-none">
                 <option>Select Purpose</option>
               </select>
             </div>
 
             {/* BUTTON */}
-            <div>
-              <button className="w-full flex items-center justify-center gap-2 px-4 sm:px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition min-h-[44px]">
-                <Search size={18} />
+            <div className="pt-2 sm:pt-0">
+              <button className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#2f4a6d] text-white font-bold hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-600/20 active:scale-95 transition-all min-h-[56px]">
+                <Search size={20} />
                 Search
               </button>
             </div>
 
           </div>
-        </div>
+        </motion.div>
 
       </div>
     </section>
   );
 };
 
-/* Mobile Responsiveness Styles */
-const UniversitySearchMobileStyles = `
-@media (max-width: 1024px) {
-  .university-search-section {
-    padding: 3rem 1rem !important;
-  }
-  
-  .university-search-grid {
-    grid-template-columns: repeat(2, 1fr) !important;
-    gap: 1rem !important;
-  }
-  
-  .search-title {
-    font-size: 2rem !important;
-  }
-  
-  .search-description {
-    font-size: 1rem !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .university-search-section {
-    padding: 2rem 0.5rem !important;
-  }
-  
-  .university-search-grid {
-    grid-template-columns: 1fr !important;
-    gap: 1rem !important;
-  }
-  
-  .search-title {
-    font-size: 1.5rem !important;
-  }
-  
-  .search-description {
-    font-size: 0.9rem !important;
-  }
-  
-  .search-box {
-    padding: 1.5rem !important;
-  }
-  
-  .search-select {
-    padding: 0.75rem !important;
-  }
-  
-  .search-button {
-    padding: 0.75rem !important;
-    font-size: 0.9rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .university-search-section {
-    padding: 1.5rem 0.25rem !important;
-  }
-  
-  .search-title {
-    font-size: 1.25rem !important;
-  }
-  
-  .search-description {
-    font-size: 0.85rem !important;
-  }
-  
-  .search-box {
-    padding: 1rem !important;
-  }
-  
-  .search-select {
-    padding: 0.5rem !important;
-    font-size: 0.85rem !important;
-  }
-  
-  .search-button {
-    padding: 0.5rem !important;
-    font-size: 0.8rem !important;
-  }
-  
-  .header-lines {
-    width: 2rem !important;
-  }
-}
-`;
-
-// Inject mobile styles into the document
-if (typeof window !== 'undefined') {
-  const styleId = 'university-search-mobile-styles';
-  if (!document.getElementById(styleId)) {
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = UniversitySearchMobileStyles;
-    document.head.appendChild(style);
-  }
-}
-
-export default UniversitySearch;
+export default UniversitySearch;

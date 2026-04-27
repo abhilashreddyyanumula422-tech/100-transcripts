@@ -1,4 +1,4 @@
-import React, { useState, useEffect, useRef } from "react"; //12
+import React, { useState, useEffect, useRef } from "react";
 import { motion, AnimatePresence } from "framer-motion";
  
 import uploadLogo from "../../assets/upload_logo.png";
@@ -42,175 +42,144 @@ const steps = [
 const HowItWorks = () => {
   const [activeStep, setActiveStep] = useState(0);
   const intervalRef = useRef(null);
-useEffect(() => {
-  startAuto();
- 
-  return () => clearInterval(intervalRef.current);
-}, []);
- 
-const startAuto = () => {
-  clearInterval(intervalRef.current); // prevent duplicates
- 
-  intervalRef.current = setInterval(() => {
-    setActiveStep((prev) => (prev + 1) % steps.length);
-  }, 4000);
-};
- 
-const stopAuto = () => {
-  clearInterval(intervalRef.current);
-};
+  
+  useEffect(() => {
+    startAuto();
+    return () => clearInterval(intervalRef.current);
+  }, []);
+  
+  const startAuto = () => {
+    clearInterval(intervalRef.current);
+    intervalRef.current = setInterval(() => {
+      setActiveStep((prev) => (prev + 1) % steps.length);
+    }, 5000);
+  };
+  
+  const stopAuto = () => {
+    clearInterval(intervalRef.current);
+  };
  
   return (
-    <section className="py-12 md:py-14 bg-gradient-to-br from-white via-blue-50 to-gray-100">
-      <div className="max-w-6xl mx-auto px-6">
+    <section className="py-16 sm:py-24 bg-gradient-to-br from-white via-blue-50 to-gray-100 overflow-hidden">
+      <div className="max-w-7xl mx-auto px-6">
  
         <motion.div
-  initial={{ opacity: 0, y: 35 }}
-  whileInView={{ opacity: 1, y: 0 }}
-  transition={{ duration: 0.6 }}
-  viewport={{ once: true }}
-  className="mb-16 text-center"
->
-  <div className="flex items-center justify-center gap-4">
-    <span className="h-[3px] w-12 bg-blue-600" />
-    <p className="text-sm font-bold uppercase tracking-wider text-blue-600">
-      How It Works
-    </p>
-    <span className="h-[3px] w-12 bg-blue-600" />
-  </div>
+          initial={{ opacity: 0, y: 35 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6 }}
+          viewport={{ once: true }}
+          className="mb-16 lg:mb-24 text-center"
+        >
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="h-[2px] w-8 sm:w-14 bg-blue-600" />
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
+              How It Works
+            </p>
+            <span className="h-[2px] w-8 sm:w-14 bg-blue-600" />
+          </div>
  
-  <h2 className="mt-3 text-3xl font-bold text-[#2f4a6d] md:text-4xl">
-    Simple Process for Document Services
-  </h2>
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2f4a6d] leading-tight max-w-4xl mx-auto">
+            Simple Process for Document Services
+          </h2>
  
-  <p className="mx-auto mt-4 max-w-3xl text-sm leading-7 text-slate-600 md:text-base">
-    Follow a smooth and guided process to complete your document requests without hassle.
-    Our team ensures quick processing, verification, and safe delivery at every step.
-  </p>
-</motion.div>
+          <p className="mx-auto mt-6 max-w-3xl text-base sm:text-lg leading-relaxed text-slate-600 font-medium">
+            Follow a smooth and guided process to complete your document requests without hassle.
+            Our team ensures quick processing, verification, and safe delivery at every step.
+          </p>
+        </motion.div>
  
-        <div className="grid lg:grid-cols-2 gap-16 items-center">
+        <div className="grid lg:grid-cols-12 gap-12 lg:gap-20 items-start">
  
-          {/* LEFT SIDE */}
-          <div className="relative flex flex-col lg:flex-row items-center justify-center lg:justify-between gap-6 lg:gap-10 ml-0 lg:-ml-10">
- 
-            <svg
-              className="hidden lg:block absolute top-1/2 left-0 w-full h-20 -translate-y-1/2"
-              viewBox="0 0 1000 100"
-              fill="none"
-            >
-              <path
-                d="M0,50 Q250,0 500,50 T1000,50"
-                stroke="#d1d5db"
-                strokeWidth="4"
-                fill="none"
-              />
-            </svg>
- 
-
+          {/* LEFT SIDE - STEPPER */}
+          <div className="lg:col-span-5 relative flex flex-col gap-6 sm:gap-8">
+            <div className="absolute left-[39px] sm:left-[47px] top-10 bottom-10 w-[2px] bg-slate-200 hidden sm:block" />
         
             {steps.map((step, index) => (
               <motion.div
                 key={index}
+                onClick={() => {
+                  stopAuto();
+                  setActiveStep(index);
+                }}
                 onMouseEnter={() => {
-  stopAuto();
-  setActiveStep(index);
-}}
-onMouseLeave={() => startAuto()}
-                whileHover={{ scale: 1.1 }}
+                  stopAuto();
+                  setActiveStep(index);
+                }}
+                onMouseLeave={() => startAuto()}
+                whileHover={{ x: 10 }}
                 animate={{
-  y: activeStep === index ? -12 : 0,
-  scale: activeStep === index ? 1.08 : 1,
-}}
-transition={{ duration: 0.5, ease: "easeInOut" }}
-                className="relative z-10 w-full max-w-[220px] lg:w-44"
+                  scale: activeStep === index ? 1.02 : 1,
+                }}
+                className={`relative z-10 flex items-center gap-6 p-6 sm:p-8 rounded-[2rem] cursor-pointer transition-all duration-500 border-2 ${
+                  activeStep === index
+                    ? "bg-white border-blue-200 shadow-2xl shadow-blue-500/10"
+                    : "bg-white/40 border-transparent hover:bg-white/60"
+                }`}
               >
                 <div
-                  className={`p-6 rounded-2xl border text-center transition-all duration-300 ${
+                  className={`w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                     activeStep === index
-                      ? "bg-blue-100 border-blue-400 shadow-xl"
-                      : "bg-white border-gray-200"
+                      ? "bg-blue-600 text-white shadow-xl shadow-blue-600/30 rotate-3"
+                      : "bg-white text-blue-600 border border-slate-100"
                   }`}
                 >
-                  <motion.div
-                    animate={{
-                      scale: activeStep === index ? 1.2 : 1,
-                    }}
-                    className="w-16 h-16 mx-auto mb-4 bg-blue-100 rounded-full flex items-center justify-center"
-                  >
-                    <img src={step.image} className="w-10 h-10" />
-                  </motion.div>
- 
-                  <div className="text-blue-600 font-bold">
-                    {index + 1}
+                  <img 
+                    src={step.image} 
+                    className={`w-10 h-10 transition-all ${activeStep === index ? "brightness-0 invert" : ""}`} 
+                    alt={step.title}
+                  />
+                </div>
+
+                <div className="flex-1">
+                  <div className={`text-xs font-black uppercase tracking-widest mb-1 ${activeStep === index ? "text-blue-600" : "text-slate-400"}`}>
+                    Step {index + 1}
                   </div>
- 
-                  <h4 className="text-sm font-semibold">
+                  <h4 className={`text-lg sm:text-xl font-black ${activeStep === index ? "text-[#2f4a6d]" : "text-slate-500"}`}>
                     {step.title}
                   </h4>
                 </div>
+                
+                {activeStep === index && (
+                  <motion.div 
+                    layoutId="activePointer"
+                    className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rotate-45 border-r-2 border-t-2 border-blue-200"
+                  />
+                )}
               </motion.div>
             ))}
           </div>
  
-          {/* RIGHT SIDE */}
-          <div className="bg-white p-8 rounded-3xl shadow-xl border">
+          {/* RIGHT SIDE - CONTENT */}
+          <div className="lg:col-span-7 sticky top-32">
+            <div className="bg-white p-8 sm:p-12 rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-slate-100 min-h-[500px] flex items-center justify-center">
+              <AnimatePresence mode="wait">
+                <motion.div
+                  key={activeStep}
+                  initial={{ opacity: 0, scale: 0.95, y: 20 }}
+                  animate={{ opacity: 1, scale: 1, y: 0 }}
+                  exit={{ opacity: 0, scale: 0.95, y: -20 }}
+                  transition={{ duration: 0.5, ease: "circOut" }}
+                  className="text-center w-full"
+                >
+                  <div className="relative mb-10 group">
+                    <div className="absolute inset-0 bg-blue-400/10 blur-[80px] rounded-full scale-0 group-hover:scale-100 transition-transform duration-1000" />
+                    <motion.img
+                      src={steps[activeStep].rightImage}
+                      className="relative w-full h-[250px] sm:h-[350px] object-contain mx-auto"
+                      alt={steps[activeStep].title}
+                    />
+                  </div>
  
-            <AnimatePresence mode="wait">
-              <motion.div
-  key={activeStep}
-  initial="hidden"
-  animate="visible"
-  exit="hidden"
-  variants={{
-    hidden: {},
-    visible: {
-      transition: {
-        staggerChildren: 0.3, // 🔥 delay between elements
-      },
-    },
-  }}
-  className="text-center"
->
+                  <h3 className="text-3xl sm:text-4xl font-black mb-6 text-[#2f4a6d] tracking-tight">
+                    {steps[activeStep].title}
+                  </h3>
  
-  {/* IMAGE FIRST */}
-  <motion.img
-    src={steps[activeStep].rightImage}
-    variants={{
-      hidden: { opacity: 0, scale: 0.8 },
-      visible: { opacity: 1, scale: 1 },
-    }}
-    transition={{ duration: 0.5 }}
-    className="w-full h-64 object-contain mb-6"
-  />
- 
-  {/* TITLE SECOND */}
-  <motion.h3
-    variants={{
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0 },
-    }}
-    transition={{ duration: 0.5 }}
-    className="text-2xl font-bold mb-3 text-gray-900"
-  >
-    {steps[activeStep].title}
-  </motion.h3>
- 
-  {/* TEXT LAST */}
-  <motion.p
-    variants={{
-      hidden: { opacity: 0, y: 20 },
-      visible: { opacity: 1, y: 0 },
-    }}
-    transition={{ duration: 0.5 }}
-    className="text-gray-600 max-w-md mx-auto"
-  >
-    {steps[activeStep].text}
-  </motion.p>
- 
-</motion.div>
-            </AnimatePresence>
- 
+                  <p className="text-slate-600 text-lg sm:text-xl max-w-xl mx-auto leading-relaxed font-medium">
+                    {steps[activeStep].text}
+                  </p>
+                </motion.div>
+              </AnimatePresence>
+            </div>
           </div>
  
         </div>
@@ -219,4 +188,4 @@ transition={{ duration: 0.5, ease: "easeInOut" }}
   );
 };
  
-export default HowItWorks;
+export default HowItWorks;

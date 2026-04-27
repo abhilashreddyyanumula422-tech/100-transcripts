@@ -9,77 +9,78 @@ const points = [
 
 const WhoWeAre = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-white via-slate-50 to-slate-100 py-12 sm:py-16">
-      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
+    <section className="w-full bg-gradient-to-b from-white via-slate-50 to-slate-100 py-16 sm:py-24">
+      <div className="mx-auto max-w-7xl px-6">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-8 sm:mb-12 text-center"
+          className="mb-12 lg:mb-20 text-center"
         >
-          <div className="flex items-center justify-center gap-4">
-            <span className="h-[2px] sm:h-[2px] w-8 sm:w-14 bg-blue-600" />
-            <p className="text-xs sm:text-sm md:text-base font-bold uppercase text-blue-600 tracking-wider">
+          <div className="flex items-center justify-center gap-4 mb-4">
+            <span className="h-[2px] w-8 sm:w-14 bg-blue-600" />
+            <p className="text-sm font-bold uppercase text-blue-600 tracking-widest">
               Who We Are
             </p>
-            <span className="h-[2px] sm:h-[2px] w-8 sm:w-14 bg-blue-600" />
+            <span className="h-[2px] w-8 sm:w-14 bg-blue-600" />
           </div>
 
-          <h2 className="mt-4 text-2xl sm:text-3xl font-bold leading-tight text-[#2f4a6d] md:text-4xl">
+          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-[1.1] text-[#2f4a6d] max-w-4xl mx-auto">
             Trusted transcript support for your education and global journey
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-xs leading-7 text-slate-600 sm:text-sm md:text-base">
+          <p className="mx-auto mt-6 max-w-2xl text-base sm:text-lg text-slate-600 leading-relaxed font-medium">
             We help students and professionals process academic documents
             quickly, securely, and without unnecessary delays.
           </p>
         </motion.div>
 
-        <div className="grid items-center gap-8 md:gap-10 grid-cols-1 md:grid-cols-2">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative order-2 lg:order-1"
           >
-            <div className="absolute -left-4 top-2 hidden h-32 w-32 rounded-full bg-blue-100/60 blur-3xl md:block" />
+            <div className="absolute -left-12 -top-12 hidden lg:block h-64 w-64 rounded-full bg-blue-100/50 blur-3xl -z-10" />
 
-            <div className="relative">
-              <p className="text-base leading-8 text-[#31496b] md:text-[1.35rem] md:leading-[2.5rem]">
-                At <span className="font-semibold">100 Transcripts LLP</span>,
+            <div className="relative space-y-8">
+              <p className="text-xl sm:text-2xl leading-relaxed text-[#31496b] font-medium italic lg:not-italic text-center lg:text-left">
+                At <span className="text-[#3b82f6] font-black not-italic">100 Transcripts LLP</span>,
                 we provide certified transcript services for students and
                 professionals across India. Trusted by{" "}
-                <span className="font-semibold">17,000+ applicants</span>, we
-                simplify documentation with a process designed to be fast,
-                reliable, and stress-free.
+                <span className="font-bold underline decoration-blue-400/30">17,000+ applicants</span>, we
+                simplify documentation with a process designed to be fast and reliable.
               </p>
 
-              <div className="mt-8 space-y-5">
+              <div className="space-y-6">
                 {points.map((item, index) => (
                   <motion.div
                     key={index}
-                    initial={{ opacity: 0, y: 16 }}
-                    whileInView={{ opacity: 1, y: 0 }}
+                    initial={{ opacity: 0, x: -20 }}
+                    whileInView={{ opacity: 1, x: 0 }}
                     transition={{ duration: 0.4, delay: index * 0.1 }}
-                    className="flex items-start gap-4"
+                    className="flex items-start gap-4 p-4 rounded-2xl bg-white/50 hover:bg-white transition-colors border border-transparent hover:border-blue-100 shadow-sm hover:shadow-md"
                   >
-                    <div className="mt-1 flex h-7 w-7 shrink-0 items-center justify-center rounded-full bg-blue-50 ring-1 ring-blue-100">
-                      <span className="text-sm font-bold text-blue-700">✓</span>
+                    <div className="mt-1 flex h-8 w-8 shrink-0 items-center justify-center rounded-full bg-blue-600 shadow-lg shadow-blue-500/20">
+                      <span className="text-sm font-bold text-white">✓</span>
                     </div>
 
-                    <p className="text-base leading-7 text-slate-700">{item}</p>
+                    <p className="text-base sm:text-lg font-semibold text-slate-700 leading-snug">{item}</p>
                   </motion.div>
                 ))}
               </div>
 
-              <motion.a
-                whileHover={{ scale: 1.04 }}
-                whileTap={{ scale: 0.98 }}
-                href="/about"
-                className="mt-6 sm:mt-8 inline-flex items-center justify-center rounded-full bg-[#2f4a6d] px-5 sm:px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:bg-[#243a57] min-h-[44px]"
-              >
-                View More
-              </motion.a>
+              <div className="text-center lg:text-left pt-4">
+                <motion.a
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  href="/about"
+                  className="inline-flex items-center justify-center rounded-full bg-[#2f4a6d] px-10 py-4 text-base font-bold text-white shadow-xl shadow-blue-900/20 transition-all hover:bg-[#243a57]"
+                >
+                  View More
+                </motion.a>
+              </div>
             </div>
           </motion.div>
 
@@ -87,43 +88,45 @@ const WhoWeAre = () => {
             initial={{ opacity: 0, x: 50 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="relative"
+            className="relative order-1 lg:order-2"
           >
-            <div className="absolute -left-6 -top-6 h-24 w-24 rounded-full bg-blue-200/40 blur-2xl" />
-            <div className="absolute -bottom-6 -right-6 h-28 w-28 rounded-full bg-cyan-200/40 blur-2xl" />
+            <div className="absolute -right-12 -bottom-12 hidden lg:block h-64 w-64 rounded-full bg-cyan-100/50 blur-3xl -z-10" />
 
-            <div className="relative overflow-hidden rounded-2xl border border-white/40 bg-white/75 shadow-xl backdrop-blur-xl">
-              <div className="bg-[#2f4a6d]/95 px-5 py-4 text-white">
-                <p className="text-xs uppercase tracking-[0.2em] text-blue-200">
-                  Visit Our Office
-                </p>
+            <div className="relative overflow-hidden rounded-[2.5rem] border border-white bg-white/80 shadow-2xl backdrop-blur-xl group hover:shadow-blue-500/10 transition-shadow duration-500">
+              <div className="bg-[#2f4a6d] px-8 py-8 text-white">
+                <div className="flex items-center gap-3 mb-2">
+                  <div className="w-2 h-2 rounded-full bg-blue-400 animate-pulse" />
+                  <p className="text-xs font-bold uppercase tracking-[0.25em] text-blue-200">
+                    Visit Our Office
+                  </p>
+                </div>
 
-                <h3 className="mt-1 text-lg font-semibold">Hyderabad Office</h3>
+                <h3 className="text-2xl font-black mb-3 tracking-tight">Hyderabad Office</h3>
 
-                <p className="mt-2 text-xs leading-5 text-blue-100">
+                <p className="text-sm leading-relaxed text-blue-100 font-medium">
                   100 Transcripts LLP, 3rd Floor, Sri Srinivasam, Plot No.
                   1133/1, Mathrusree Nagar, Hafeezpet, Hyderabad, Telangana
                   500049, India
                 </p>
               </div>
 
-              <div className="p-4">
-                <div className="overflow-hidden rounded-xl ring-1 ring-slate-200">
+              <div className="p-6 sm:p-8">
+                <div className="overflow-hidden rounded-3xl border border-slate-100 shadow-inner group-hover:border-blue-200 transition-colors">
                   <iframe
                     title="100 Transcripts LLP Location"
                     src="https://maps.google.com/maps?q=100%20Transcripts%20LLP%20Hyderabad&output=embed"
-                    className="h-[240px] w-full border-0"
+                    className="h-[300px] w-full border-0 grayscale hover:grayscale-0 transition-all duration-700"
                     loading="lazy"
                   />
                 </div>
 
                 <motion.a
-                  whileHover={{ scale: 1.04 }}
+                  whileHover={{ scale: 1.02 }}
                   whileTap={{ scale: 0.98 }}
                   href="https://www.google.com/maps/place/100+Transcripts+LLP"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-4 inline-flex items-center rounded-full border border-blue-200 bg-blue-50 px-4 py-2 text-xs font-semibold text-blue-700 transition hover:bg-blue-100"
+                  className="mt-6 flex items-center justify-center gap-2 rounded-2xl border-2 border-blue-100 bg-blue-50/50 px-6 py-4 text-sm font-black text-blue-700 transition-all hover:bg-blue-600 hover:text-white hover:border-blue-600 shadow-sm"
                 >
                   Open in Google Maps
                 </motion.a>
@@ -138,104 +141,3 @@ const WhoWeAre = () => {
 
 export default WhoWeAre;
 
-/* Mobile Responsiveness Styles */
-const WhoWeAreMobileStyles = `
-@media (max-width: 1024px) {
-  .who-we-section {
-    padding: 3rem 1rem !important;
-  }
-  
-  .who-we-grid {
-    grid-template-columns: 1fr !important;
-    gap: 2rem !important;
-  }
-  
-  .who-we-title {
-    font-size: 2rem !important;
-  }
-  
-  .who-we-description {
-    font-size: 1rem !important;
-  }
-}
-
-@media (max-width: 768px) {
-  .who-we-section {
-    padding: 2rem 0.5rem !important;
-  }
-  
-  .who-we-title {
-    font-size: 1.5rem !important;
-    line-height: 1.2 !important;
-  }
-  
-  .who-we-description {
-    font-size: 0.9rem !important;
-  }
-  
-  .who-we-text {
-    font-size: 1rem !important;
-    line-height: 1.6 !important;
-  }
-  
-  .who-we-card {
-    padding: 1rem !important;
-  }
-  
-  .office-map {
-    height: 180px !important;
-  }
-  
-  .points-list {
-    gap: 0.75rem !important;
-  }
-}
-
-@media (max-width: 480px) {
-  .who-we-section {
-    padding: 1.5rem 0.25rem !important;
-  }
-  
-  .who-we-title {
-    font-size: 1.25rem !important;
-  }
-  
-  .who-we-description {
-    font-size: 0.85rem !important;
-  }
-  
-  .who-we-text {
-    font-size: 0.9rem !important;
-    line-height: 1.5 !important;
-  }
-  
-  .office-map {
-    height: 150px !important;
-  }
-  
-  .maps-button {
-    padding: 0.5rem 1rem !important;
-    font-size: 0.75rem !important;
-  }
-  
-  .section-header {
-    flex-direction: column !important;
-    gap: 0.5rem !important;
-  }
-  
-  .header-lines {
-    width: 2rem !important;
-  }
-}
-`;
-
-// Inject mobile styles into the document
-if (typeof window !== 'undefined') {
-  const styleId = 'who-we-mobile-styles';
-  if (!document.getElementById(styleId)) {
-    const style = document.createElement('style');
-    style.id = styleId;
-    style.textContent = WhoWeAreMobileStyles;
-    document.head.appendChild(style);
-  }
-}

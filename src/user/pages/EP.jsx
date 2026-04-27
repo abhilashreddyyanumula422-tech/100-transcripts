@@ -1,29 +1,28 @@
 import React, { useState } from "react";
-import { Check, ArrowRight, FileText, Upload, UserPlus, ChevronRight, Sparkles, Award, Clock, Shield, Building2, CheckCircle2 } from "lucide-react";
+import { Check, ArrowRight, FileText, Upload, UserPlus, Building2, ChevronRight, Sparkles, Award, Clock, Shield, CheckCircle2 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import aziceLogo from "../../assets/AZICE-logo.png";
 import workflowImg from "../../assets/workflow.png";
 
-const EducationEva = () => {
+const EP = () => {
   const [activeStep, setActiveStep] = useState(null);
 
   const steps = [
     {
       id: 1,
-      title: "Evaluate Your Credentials",
-      description: "Arizona International Credential Evaluators (AZICE) provides trusted evaluation services for immigration and education.",
+      title: "Create EP Account",
+      description: "Register your account on the Educational Perspectives portal to begin your evaluation journey.",
       icon: UserPlus,
-      color: "emerald",
+      color: "blue",
       content: (
         <div className="mt-6">
           <a
-            href="https://azcredeval.com/"
+            href="https://www.edperspective.org/apply/"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl text-sm"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-600 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-700 transition-all shadow-lg hover:shadow-xl text-sm"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Visit AZ Cred Eval</span>
+            <UserPlus className="w-4 h-4" />
+            <span>Register Here</span>
             <ArrowRight className="w-4 h-4" />
           </a>
         </div>
@@ -31,51 +30,40 @@ const EducationEva = () => {
     },
     {
       id: 2,
-      title: "Prepare Documents",
-      description: "Gather all necessary academic records for your Arizona International evaluation.",
+      title: "Select Evaluation Type",
+      description: "Choose between General, Course-by-Course, or Catalog Match reports based on your needs.",
       icon: FileText,
       color: "blue",
       content: (
         <div className="space-y-4 mt-5">
           {[
-            { label: "CMM (Consolidated Marks)", link: "https://100transcripts.com/cmm/" },
-            { label: "Degree Certificate / Provisional", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
-            { label: "Internship Certificate (if required)", isText: true },
-            { label: "AZ Cred Eval Reference Number", isText: true },
+            { label: "General Report", sublabel: "(For employment/immigration)" },
+            { label: "Course-by-Course", sublabel: "(For further education)" }
           ].map((item, index) => (
             <div key={index} className="flex items-start gap-3 group">
               <div className="mt-1 bg-blue-50 rounded-full p-1 flex-shrink-0">
                 <Check className="w-3 h-3 text-blue-600" />
               </div>
-              {item.link ? (
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-blue-600 transition-colors text-sm font-medium leading-tight"
-                >
-                  {item.label}
-                </a>
-              ) : (
-                <span className="text-gray-700 text-sm font-medium">{item.label}</span>
-              )}
+              <div>
+                <span className="text-gray-700 text-sm font-medium leading-tight">{item.label}</span>
+                <span className="text-[10px] text-gray-500 block">{item.sublabel}</span>
+              </div>
             </div>
           ))}
-          <p className="text-[10px] text-gray-500 italic mt-2">*Note: Documentation may vary based on university requirements.</p>
         </div>
       )
     },
     {
       id: 3,
-      title: "Upload Documents",
-      description: "Submit your documents securely through our portal for verification and transfer.",
+      title: "Document Submission",
+      description: "Upload your verified transcripts and degree certificates through our secure portal.",
       icon: Upload,
-      color: "violet",
+      color: "blue",
       content: (
         <div className="mt-6">
           <a
             href="/apply"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-500 to-violet-600 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-violet-600 hover:to-violet-700 transition-all shadow-lg hover:shadow-xl text-sm"
+            className="inline-flex items-center gap-2 bg-gradient-to-r from-blue-500 to-blue-700 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-blue-600 hover:to-blue-800 transition-all shadow-lg hover:shadow-xl text-sm"
           >
             <Upload className="w-4 h-4" />
             Start Uploading
@@ -103,25 +91,25 @@ const EducationEva = () => {
             >
               <div className="inline-flex items-center gap-2 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-full px-4 py-1.5 shadow-sm">
                 <Building2 className="w-4 h-4 text-blue-600" />
-                <span className="text-slate-600 text-[10px] font-bold uppercase tracking-[0.2em]">Official AZICE Partnership</span>
+                <span className="text-slate-600 text-[10px] font-bold uppercase tracking-[0.2em]">Official EP Support</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 leading-tight">
-                Arizona International <span className="text-blue-600">Credential</span> Evaluators
+                Educational <span className="text-blue-600">Perspectives</span> Evaluation
               </h1>
               
               <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Trusted evaluation services for immigration, employment, and education in partnership with AZICE.
+                Streamlined and accurate credential evaluation for your international education journey.
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
                  <div className="flex items-center gap-3 bg-white/90 px-5 py-3 rounded-2xl border border-blue-100 shadow-sm">
                     <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                    <span className="text-slate-700 font-bold text-sm">Priority Processing</span>
+                    <span className="text-slate-700 font-bold text-sm">Official Support</span>
                  </div>
                  <div className="flex items-center gap-3 bg-white/90 px-5 py-3 rounded-2xl border border-blue-100 shadow-sm">
                     <Shield className="w-5 h-5 text-blue-400" />
-                    <span className="text-slate-700 font-bold text-sm">Official Verification</span>
+                    <span className="text-slate-700 font-bold text-sm">Verified Handling</span>
                  </div>
               </div>
             </motion.div>
@@ -134,9 +122,7 @@ const EducationEva = () => {
               <div className="relative group">
                 <div className="absolute inset-0 bg-blue-400/20 rounded-[3rem] blur-3xl animate-pulse" />
                 <div className="relative bg-white/40 backdrop-blur-xl p-8 rounded-[3rem] border border-white shadow-2xl overflow-hidden flex items-center justify-center">
-                  <div className="bg-white rounded-2xl p-4 shadow-inner">
-                    <img src={aziceLogo} alt="AZICE Logo" className="w-48 h-auto object-contain" />
-                  </div>
+                  <Building2 className="w-24 h-24 text-blue-600" />
                 </div>
               </div>
             </motion.div>
@@ -150,8 +136,8 @@ const EducationEva = () => {
           
           <div className="space-y-8">
             <div className="space-y-4">
-              <h2 className="text-3xl md:text-4xl font-black text-slate-800">Your AZICE Journey Made Simple</h2>
-              <p className="text-slate-500 font-medium leading-relaxed">Follow these steps to complete your evaluation process efficiently.</p>
+              <h2 className="text-3xl md:text-4xl font-black text-slate-800">The Evaluation Roadmap</h2>
+              <p className="text-slate-500 font-medium leading-relaxed">Simple steps to get your credentials evaluated by EP experts.</p>
             </div>
 
             <div className="space-y-6">
@@ -166,12 +152,12 @@ const EducationEva = () => {
                   onMouseLeave={() => setActiveStep(null)}
                 >
                   <div className="flex items-start gap-6">
-                    <div className={`w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 ${step.color === 'emerald' ? 'bg-emerald-50 text-emerald-600' : step.color === 'blue' ? 'bg-blue-50 text-blue-600' : 'bg-violet-50 text-violet-600'}`}>
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 bg-blue-50 text-blue-600">
                       <step.icon className="w-7 h-7" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-3 mb-2">
-                        <span className={`text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest ${step.color === 'emerald' ? 'bg-emerald-50 text-emerald-700' : step.color === 'blue' ? 'bg-blue-50 text-blue-700' : 'bg-violet-50 text-violet-700'}`}>
+                        <span className="text-[10px] font-black px-3 py-1 rounded-full uppercase tracking-widest bg-blue-50 text-blue-700">
                           Step {step.id}
                         </span>
                       </div>
@@ -202,20 +188,20 @@ const EducationEva = () => {
               <div className="relative z-10 space-y-8 text-center sm:text-left">
                 <div className="inline-flex items-center gap-2 bg-blue-500/20 px-4 py-2 rounded-full border border-blue-500/30">
                   <div className="w-2 h-2 bg-blue-400 rounded-full animate-pulse" />
-                  <span className="text-blue-300 text-xs font-bold uppercase tracking-widest">Workflow Guide</span>
+                  <span className="text-blue-300 text-xs font-bold uppercase tracking-widest">Official Workflow</span>
                 </div>
-                <h3 className="text-3xl font-black">Official Document Flow</h3>
+                <h3 className="text-3xl font-black">Secure Document Flow</h3>
                 <div className="bg-white/5 backdrop-blur-sm p-4 rounded-3xl border border-white/10">
                   <img src={workflowImg} alt="Workflow" className="w-full h-auto rounded-2xl" />
                 </div>
                 <div className="grid grid-cols-2 gap-4">
                   <div className="bg-white/5 p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                    <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                    <span className="text-xs font-bold">100% Secure</span>
+                    <CheckCircle2 className="w-5 h-5 text-blue-400" />
+                    <span className="text-xs font-bold">Priority Status</span>
                   </div>
                   <div className="bg-white/5 p-4 rounded-2xl border border-white/10 flex items-center gap-3">
-                    <Award className="w-5 h-5 text-amber-400" />
-                    <span className="text-xs font-bold">Verified Status</span>
+                    <Shield className="w-5 h-5 text-blue-400" />
+                    <span className="text-xs font-bold">100% Secure</span>
                   </div>
                 </div>
               </div>
@@ -223,13 +209,13 @@ const EducationEva = () => {
 
             <motion.div
               whileHover={{ y: -5 }}
-              className="bg-gradient-to-r from-blue-600 to-violet-600 p-8 sm:p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group"
+              className="bg-gradient-to-r from-blue-600 to-indigo-600 p-8 sm:p-10 rounded-[3rem] text-white shadow-2xl relative overflow-hidden group"
             >
               <div className="absolute inset-0 bg-white opacity-0 group-hover:opacity-5 transition-opacity" />
               <div className="relative z-10 space-y-6 text-center">
                 <div className="space-y-2">
-                  <h3 className="text-2xl font-black tracking-tight">Need Guidance?</h3>
-                  <p className="text-blue-100 text-sm font-medium">Our experts are here to help you with your AZICE application.</p>
+                  <h3 className="text-2xl font-black tracking-tight">Need Support?</h3>
+                  <p className="text-blue-100 text-sm font-medium">Our experts are here to help you with your EP application.</p>
                 </div>
                 <a
                   href="https://wa.me/919941991402"
@@ -263,4 +249,4 @@ const EducationEva = () => {
   );
 };
 
-export default EducationEva;
+export default EP;

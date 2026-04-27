@@ -1,432 +1,501 @@
 import React, { useState } from "react";
-import { Check, ArrowRight, FileText, Upload, UserPlus, Handshake, ChevronRight, Sparkles, Award, Clock, Shield, Building2, CheckCircle2 } from "lucide-react";
-import { motion } from "framer-motion";
+import { Link } from "react-router-dom";
+import {
+  Check, ArrowRight, FileText, Upload, UserPlus,
+  Award, Clock, Shield, ExternalLink, Info, BadgeCheck,
+  Building2, CheckCircle2
+} from "lucide-react";
+import { motion, AnimatePresence } from "framer-motion";
+import ieeLogo from "../../assets/100logo.png";
 import workflowImg from "../../assets/workflow.png";
-import ieeBanner from "../../assets/IEE_Ev.png";
 
 const IEEevaluation = () => {
   const [activeStep, setActiveStep] = useState(null);
 
   const steps = [
     {
-      id: 1,
+      id: "iee-account",
       title: "Create IEE Account",
-      description: "Download our exclusive partner guide to create your IEE account and get priority processing.",
+      description: "Choose between our exclusive partner discount or the standard registration process.",
       icon: UserPlus,
-      color: "emerald",
+      color: "blue",
       content: (
-        <div className="flex flex-col sm:flex-row gap-3 mt-6">
+        <div className="flex flex-col sm:flex-row gap-4 mt-6">
           <a
-            href="https://100transcripts.com/wp-content/uploads/2024/11/IEE-account-creation-in-partnership-with-100-Transcripts-2.pdf"
+            href="https://100transcripts.com/wp-content/uploads/2025/09/IEE-account-creation-in-partnership-with-100-Transcripts-1.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-gradient-to-r from-emerald-500 to-emerald-600 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-emerald-600 hover:to-emerald-700 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] text-sm sm:text-base"
+            className="flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm flex-1 group"
           >
-            <Sparkles className="w-4 h-4" />
-            <span>Account Creation Guide</span>
-            <ArrowRight className="w-4 h-4" />
+            <span>Discounted Price</span>
+            <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
+          </a>
+          <div className="flex items-center justify-center text-blue-600 font-black px-2 text-xs">OR</div>
+          <a
+            href="https://100transcripts.com/wp-content/uploads/2024/12/How-to-create-IEE-account-1.pdf"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="flex items-center justify-center gap-2 bg-white border-2 border-blue-100 text-blue-600 px-6 py-4 rounded-2xl font-black hover:border-blue-300 hover:bg-blue-50 transition-all text-sm flex-1 group"
+          >
+            <span>Regular Process</span>
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </a>
         </div>
       )
     },
     {
-      id: 2,
+      id: "prepare-docs",
       title: "Prepare Documents",
-      description: "Gather the following academic documents for your IEE evaluation.",
+      description: "Ensure you have all required academic records for your IEE evaluation.",
       icon: FileText,
       color: "blue",
       content: (
-        <div className="space-y-3 mt-5">
+        <div className="space-y-4 mt-6 bg-blue-50 p-6 rounded-2xl border border-blue-100">
           {[
-            { label: "CMM (Consolidated Marks) or Yearly marks sheets", link: "https://100transcripts.com/cmm/" },
-            { label: "Degree Certificate or PC (Provisional Certificate)", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
-            { label: "Internship Certificate (for Pharmacy & Medical students)", isText: true },
-            { label: "IEE order number", isText: true },
-          ].map((item, index) => (
-            <motion.div
-              key={index}
-              initial={{ opacity: 0, x: -20 }}
-              animate={{ opacity: 1, x: 0 }}
-              transition={{ delay: index * 0.1 }}
-              className="flex items-start gap-3 group"
-            >
-              <div className="mt-0.5 bg-blue-50 rounded-full p-1.5 flex-shrink-0">
-                <Check className="w-3.5 h-3.5 text-blue-600" />
+            { label: "CMM (Consolidated Marks)", link: "https://100transcripts.com/cmm/" },
+            { label: "Degree Certificate / Provisional", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
+            { label: "Internship Certificate (Medical/Pharmacy)", isText: true },
+            { label: "IEE Order Number", isText: true },
+          ].map((item) => (
+            <div key={item.label} className="flex items-start gap-3 group">
+              <div className="mt-1 bg-blue-100 rounded-full p-1 flex-shrink-0">
+                <Check className="w-3 h-3 text-blue-600" />
               </div>
               {item.link ? (
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-gray-700 hover:text-blue-600 transition-colors text-sm sm:text-base leading-relaxed group-hover:underline underline-offset-2"
+                  className="text-slate-800 hover:text-blue-600 transition-colors text-sm font-bold leading-tight flex items-center gap-2"
                 >
                   {item.label}
+                  <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
                 </a>
               ) : (
-                <span className="text-gray-700 text-sm sm:text-base leading-relaxed">{item.label}</span>
+                <span className="text-slate-800 text-sm font-bold">{item.label}</span>
               )}
-            </motion.div>
+            </div>
           ))}
-          <p className="text-xs text-gray-500 mt-4 pl-7">
-            *Documentation may vary based on your requirement
-          </p>
+          <div className="flex items-start gap-2 pt-2 border-t border-blue-200 mt-2">
+            <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+            <p className="text-[11px] text-blue-600 font-medium leading-relaxed">
+              Note: Documentation may vary based on university requirements. Consult our experts for specifics.
+            </p>
+          </div>
         </div>
       )
     },
     {
-      id: 3,
+      id: "upload-docs",
       title: "Upload Documents",
-      description: "Submit your documents securely through our portal for verification.",
+      description: "Submit your documents securely for IEE verification and evaluation.",
       icon: Upload,
-      color: "violet",
+      color: "blue",
       content: (
         <div className="mt-6">
-          <a
-            href="https://100transcripts.com/upload-documents/"
-            className="inline-flex items-center gap-2 bg-gradient-to-r from-violet-500 to-violet-600 text-white px-6 py-3.5 rounded-xl font-semibold hover:from-violet-600 hover:to-violet-700 transition-all shadow-lg hover:shadow-xl hover:scale-[1.02] text-sm sm:text-base"
+          <Link
+            to="/apply"
+            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm group"
           >
-            <Upload className="w-4 h-4" />
-            Start Uploading
-            <ArrowRight className="w-4 h-4" />
-          </a>
+            <Upload className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+            Start Application
+            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
+          </Link>
         </div>
       )
     }
   ];
 
-  const features = [
-    {
-      icon: Clock,
-      title: "Fast Processing",
-      description: "Quick turnaround time",
-      color: "emerald"
-    },
-    {
-      icon: Shield,
-      title: "Secure & Safe",
-      description: "Protected data handling",
-      color: "blue"
-    },
-    {
-      icon: Award,
-      title: "IEE Trusted",
-      description: "Global recognition",
-      color: "amber"
-    }
-  ];
-
-  const containerVariants = {
-    hidden: { opacity: 0 },
-    visible: {
-      opacity: 1,
-      transition: {
-        staggerChildren: 0.2
-      }
-    }
-  };
-
-  const itemVariants = {
-    hidden: { opacity: 0, y: 20 },
-    visible: {
-      opacity: 1,
-      y: 0,
-      transition: { duration: 0.5 }
-    }
-  };
-
   return (
-    <div className="min-h-screen bg-gradient-to-b from-gray-50 via-white to-gray-50">
-      
-      {/* PARTNERSHIP HERO SECTION */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.8 }}
-        className="bg-[#003d52] pt-24 pb-12 md:pb-16 text-white overflow-hidden"
-      >
-        <div className="max-w-7xl mx-auto px-4 flex flex-col md:flex-row items-center gap-12">
-          
-          {/* Left Content (70%) */}
-          <motion.div 
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.6, delay: 0.2 }}
-            className="md:w-[70%] space-y-6"
-          >
+    <div className="min-h-screen bg-white">
+
+      {/* HERO SECTION - CLEAN DESIGN LIKE UPLOADED IMAGE */}
+      <section className="relative pt-16 pb-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
+            {/* LEFT SIDE - CONTENT */}
             <motion.div
-              initial={{ scale: 0.9, opacity: 0 }}
-              animate={{ scale: 1, opacity: 1 }}
-              transition={{ delay: 0.4, duration: 0.5 }}
-              className="inline-flex items-center gap-2 bg-white/10 border border-white/20 rounded-full px-5 py-2"
+              initial={{ opacity: 0, x: -30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="lg:w-1/2 text-center lg:text-left space-y-4"
             >
-              <Building2 className="w-4 h-4 text-emerald-300" />
-              <span className="text-emerald-100 text-sm font-semibold uppercase tracking-wider">Official Partnership</span>
+              <motion.div
+                initial={{ opacity: 0, y: -20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.6 }}
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2"
+              >
+                <Building2 className="w-4 h-4 text-blue-600" />
+                <span className="text-blue-700 text-xs font-semibold uppercase tracking-wider">Official IEE Partnership</span>
+              </motion.div>
+
+              <motion.h1
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.2 }}
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
+              >
+                100 Transcripts is partnered with <span className="text-blue-600">IEE</span>
+              </motion.h1>
+
+              <motion.p
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.3 }}
+                className="text-gray-600 text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+              >
+                Get your international credentials evaluated quickly and securely through our official partnership. Enjoy <span className="text-blue-600 font-semibold">priority processing</span> and <span className="text-blue-600 font-semibold">expert guidance</span>.
+              </motion.p>
+
+              <motion.div
+                initial={{ opacity: 0, y: 20 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.4 }}
+                className="flex flex-wrap justify-center lg:justify-start gap-4"
+              >
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg"
+                >
+                  Get Started
+                </motion.button>
+                <motion.button
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors"
+                >
+                  Learn More
+                </motion.button>
+              </motion.div>
             </motion.div>
-            
-            <h2 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              100 Transcripts is partnered with{" "}
-              <span className="text-emerald-300">International Education Evaluations (IEE)</span>
-            </h2>
-            
-            <p className="text-blue-100 text-lg md:text-xl max-w-2xl leading-relaxed">
-              Experience the fastest and most reliable credential evaluation service through our exclusive partnership. Your bridge to global opportunities.
-            </p>
 
-            <div className="flex flex-wrap gap-4 pt-4">
-               <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg border border-white/10">
-                  <CheckCircle2 className="w-5 h-5 text-emerald-400" />
-                  <span className="text-sm font-medium">Priority Processing</span>
-               </div>
-               <div className="flex items-center gap-2 bg-white/5 px-4 py-2 rounded-lg border border-white/10">
-                  <Shield className="w-5 h-5 text-blue-400" />
-                  <span className="text-sm font-medium">Certified Verification</span>
-               </div>
-            </div>
-          </motion.div>
-
-          {/* Right Image (30%) */}
-          <motion.div 
-            initial={{ opacity: 0, x: 50, scale: 0.9 }}
-            animate={{ opacity: 1, x: 0, scale: 1 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            className="md:w-[30%] self-stretch flex items-center justify-center"
-          >
-            <div className="relative group w-full h-full">
-              {/* Background Glow */}
-              <div className="absolute inset-0 bg-emerald-400/20 rounded-full blur-3xl group-hover:bg-emerald-400/30 transition-all duration-500" />
-              
-              <img 
-                src={ieeBanner} 
-                alt="IEE Evaluation Banner" 
-                className="relative z-10 w-full h-full object-contain rounded-2xl shadow-2xl transform group-hover:scale-105 transition-transform duration-500"
-              />
-            </div>
-          </motion.div>
-
+            {/* RIGHT SIDE - IMAGE */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="lg:w-1/2 flex justify-center"
+            >
+              <div className="relative">
+                <motion.img
+                  src={ieeLogo}
+                  alt="IEE Partnership"
+                  className="max-w-xs md:max-w-sm lg:max-w-md h-auto"
+                  whileHover={{ scale: 1.02 }}
+                  transition={{ duration: 0.3 }}
+                />
+              </div>
+            </motion.div>
+          </div>
         </div>
-      </motion.div>
 
-      <div className="max-w-7xl mx-auto px-4 py-12 md:py-16">
+        {/* Subtle Wave Divider */}
+        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
+          <svg className="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,112.49,122,126.31,185.39,111.44,248.8,96.57,263.39,67.23,321.39,56.44Z" className="fill-[#f8fafc]"></path>
+          </svg>
+        </div>
+      </section>
 
-        {/* Title */}
-        <motion.h1
-          initial={{ opacity: 0, y: 30 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ duration: 0.6 }}
-          className="text-3xl md:text-4xl lg:text-5xl font-bold text-center mb-12 md:mb-16"
-        >
-          <span className="text-blue-600">IEE Evaluation</span>
-          <span className="block text-gray-800 text-xl md:text-2xl font-normal mt-2">Your Complete Step-by-Step Guide</span>
-        </motion.h1>
-
-        {/* MAIN CONTENT GRID */}
-        <div className="grid lg:grid-cols-2 gap-8 lg:gap-12 items-start">
-
-          {/* LEFT: STEPS */}
+      
+      {/* WORKFLOW SECTION - LEFT STEPS, RIGHT IMAGE */}
+      <section className="py-20 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <motion.div
-            initial={{ opacity: 0, x: -50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="space-y-6"
+            initial={{ opacity: 0, y: -30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            className="text-center mb-16"
           >
-            {steps.map((step, index) => {
-              const Icon = step.icon;
-              const isActive = activeStep === step.id;
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
+              Our Evaluation Process
+            </h2>
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
+              Simple steps to get your credentials evaluated
+            </p>
+          </motion.div>
+          
+          <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
+            {/* LEFT SIDE - STEPS/CONTENT */}
+            <div className="space-y-6">
+              {[
+                {
+                  step: 1,
+                  title: "Create IEE Account",
+                  description: "Choose between our exclusive partner discount or the standard registration process.",
+                  icon: "👤",
+                  color: "blue"
+                },
+                {
+                  step: 2,
+                  title: "Prepare Documents",
+                  description: "Gather required academic documents including CMM, Degree Certificate, and other necessary papers.",
+                  icon: "📄",
+                  color: "green"
+                },
+                {
+                  step: 3,
+                  title: "Upload & Submit",
+                  description: "Submit your documents securely through our platform for IEE verification and evaluation.",
+                  icon: "⬆️",
+                  color: "purple"
+                },
+                {
+                  step: 4,
+                  title: "Get Evaluation",
+                  description: "Receive your comprehensive credential evaluation report from IEE.",
+                  icon: "📋",
+                  color: "orange"
+                }
+              ].map((item, index) => (
+                <motion.div
+                  key={item.step}
+                  initial={{ opacity: 0, x: -50 }}
+                  animate={{ opacity: 1, x: 0 }}
+                  transition={{ duration: 0.6, delay: index * 0.15 }}
+                  whileHover={{ 
+                    scale: 1.02,
+                    x: 10,
+                    boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)"
+                  }}
+                  className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300"
+                >
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{ 
+                      duration: 3, 
+                      repeat: Infinity, 
+                      delay: index * 0.5 
+                    }}
+                    className={`w-12 h-12 rounded-full bg-${item.color}-100 flex items-center justify-center text-2xl flex-shrink-0`}
+                  >
+                    {item.icon}
+                  </motion.div>
+                  <div className="flex-1">
+                    <div className="flex items-center gap-3 mb-2">
+                      <div className={`w-8 h-8 rounded-full bg-${item.color}-600 text-white flex items-center justify-center text-sm font-bold`}>
+                        {item.step}
+                      </div>
+                      <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
+                    </div>
+                    <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
+                  </div>
+                </motion.div>
+              ))}
+            </div>
 
-              return (
+            {/* RIGHT SIDE - WORKFLOW IMAGE */}
+            <motion.div
+              initial={{ opacity: 0, x: 50 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, delay: 0.3 }}
+              className="relative"
+            >
+              <motion.div
+                animate={{ y: [0, -20, 0] }}
+                transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+                className="relative"
+              >
+                {/* Glow Background */}
+                <motion.div
+                  animate={{ 
+                    boxShadow: ["0 0 30px rgba(59, 130, 246, 0.3)", "0 0 50px rgba(139, 92, 246, 0.5)", "0 0 30px rgba(59, 130, 246, 0.3)"]
+                  }}
+                  transition={{ duration: 3, repeat: Infinity }}
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-purple-500/20 rounded-3xl blur-2xl"
+                />
+                
+                {/* Main Image Container */}
+                <div className="relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200 shadow-2xl">
+                  <motion.div
+                    animate={{ rotate: [0, 360] }}
+                    transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
+                    className="absolute top-4 right-4 w-8 h-8 bg-blue-500/20 rounded-full"
+                  />
+                  <motion.div
+                    animate={{ rotate: [360, 0] }}
+                    transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
+                    className="absolute bottom-4 left-4 w-6 h-6 bg-purple-500/20 rounded-full"
+                  />
+                  
+                  <div className="relative bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
+                    <motion.img
+                      src={workflowImg}
+                      alt="IEE Evaluation Workflow"
+                      className="w-full h-auto object-contain"
+                      whileHover={{ scale: 1.05, rotate: 1 }}
+                      transition={{ duration: 0.3 }}
+                    />
+                  </div>
+                  
+                  {/* Floating Badge */}
+                  <motion.div
+                    animate={{ 
+                      scale: [1, 1.1, 1],
+                      rotate: [0, 5, -5, 0]
+                    }}
+                    transition={{ duration: 3, repeat: Infinity }}
+                    className="absolute -top-6 -right-6 bg-gradient-to-r from-blue-600 to-purple-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl"
+                  >
+                    <span className="text-2xl">📋</span>
+                  </motion.div>
+                </div>
+              </motion.div>
+              
+              {/* Feature Pills */}
+              <motion.div
+                initial={{ opacity: 0, y: 30 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ duration: 0.8, delay: 0.6 }}
+                className="mt-8 flex flex-wrap justify-center gap-3"
+              >
+                {[
+                  { icon: "⚡", label: "Fast", color: "yellow" },
+                  { icon: "🔒", label: "Secure", color: "green" },
+                  { icon: "🌍", label: "Global", color: "blue" },
+                  { icon: "✅", label: "Verified", color: "purple" }
+                ].map((feature, index) => (
+                  <motion.div
+                    key={feature.label}
+                    initial={{ opacity: 0, scale: 0.8 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
+                    whileHover={{ 
+                      scale: 1.05, 
+                      y: -3
+                    }}
+                    className={`bg-${feature.color}-50 border border-${feature.color}-200 rounded-full px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all`}
+                  >
+                    <span className="text-lg">{feature.icon}</span>
+                    <span className="text-sm font-semibold text-gray-800">{feature.label}</span>
+                  </motion.div>
+                ))}
+              </motion.div>
+            </motion.div>
+          </div>
+        </div>
+      </section>
+
+      {/* STEPS SECTION */}
+      <section className="bg-[#f8fafc] pb-32 pt-12 px-6">
+        <div className="max-w-7xl mx-auto">
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-black mb-4">IEE Evaluation</h2>
+            <div className="flex items-center justify-center gap-4">
+              <span className="h-[2px] w-12 bg-blue-200" />
+              <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
+              <span className="h-[2px] w-12 bg-blue-200" />
+            </div>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+
+            <div className="space-y-6">
+              {steps.map((step, idx) => (
                 <motion.div
                   key={step.id}
-                  initial={{ opacity: 0, y: 30 }}
+                  initial={{ opacity: 0, y: 20 }}
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
-                  transition={{ delay: index * 0.15, duration: 0.5 }}
-                  onHoverStart={() => setActiveStep(step.id)}
-                  onHoverEnd={() => setActiveStep(null)}
-                  className={`bg-white rounded-2xl shadow-lg border-2 transition-all duration-300 overflow-hidden ${isActive
-                    ? `border-${step.color === 'emerald' ? 'emerald-400' :
-                        step.color === 'blue' ? 'blue-400' :
-                        'violet-400'
-                      } shadow-xl scale-[1.02]`
-                    : 'border-gray-200 hover:border-gray-300'
-                    }`}
+                  transition={{ delay: idx * 0.1 }}
+                  className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
+                  onMouseEnter={() => setActiveStep(step.id)}
+                  onMouseLeave={() => setActiveStep(null)}
                 >
-                  {/* Step Header */}
-                  <div className="p-6 sm:p-8">
-                    <div className="flex items-start gap-4 mb-4">
-                      <motion.div
-                        animate={{ rotate: isActive ? 360 : 0 }}
-                        transition={{ duration: 0.6 }}
-                        className={`w-14 h-14 rounded-xl flex items-center justify-center flex-shrink-0 ${step.color === 'emerald' ? 'bg-emerald-100' :
-                          step.color === 'blue' ? 'bg-blue-100' :
-                            'bg-violet-100'
-                          }`}
-                      >
-                        <Icon className={`w-7 h-7 ${step.color === 'emerald' ? 'text-emerald-600' :
-                          step.color === 'blue' ? 'text-blue-600' :
-                            'text-violet-600'
-                          }`} />
-                      </motion.div>
-
-                      <div className="flex-1">
-                        <div className="flex items-center gap-3 mb-2">
-                          <span className={`text-xs font-bold px-2.5 py-1 rounded-full ${step.color === 'emerald' ? 'bg-emerald-100 text-emerald-700' :
-                            step.color === 'blue' ? 'bg-blue-100 text-blue-700' :
-                              'bg-violet-100 text-violet-700'
-                            }`}>
-                            Step {step.id}
-                          </span>
-                        </div>
-                        <h3 className="text-xl sm:text-2xl font-bold text-gray-900 mb-2">
-                          {step.title}
-                        </h3>
-                        <p className="text-gray-600 text-sm sm:text-base leading-relaxed">
-                          {step.description}
-                        </p>
-                      </div>
+                  <div className="flex items-start gap-8">
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
+                      <step.icon className="w-7 h-7" />
                     </div>
-
-                    {/* Step Content */}
-                    <motion.div
-                      initial={false}
-                      animate={{ height: "auto" }}
-                      className="overflow-hidden"
-                    >
-                      {step.content}
-                    </motion.div>
+                    <div className="flex-1">
+                      <div className="flex items-center gap-4 mb-3">
+                        <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
+                          Step {idx + 1}
+                        </span>
+                      </div>
+                      <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
+                      <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
+                      <AnimatePresence>
+                        {activeStep === step.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="overflow-hidden"
+                          >
+                            {step.content}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
                   </div>
-
-                  {/* Progress Bar */}
-                  <motion.div
-                    initial={{ scaleX: 0 }}
-                    whileInView={{ scaleX: 1 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: index * 0.15 + 0.3, duration: 0.8 }}
-                    className={`h-1.5 origin-left ${step.color === 'emerald' ? 'bg-gradient-to-r from-emerald-400 to-emerald-600' :
-                      step.color === 'blue' ? 'bg-gradient-to-r from-blue-400 to-blue-600' :
-                        'bg-gradient-to-r from-violet-400 to-violet-600'
-                      }`}
-                  />
                 </motion.div>
-              );
-            })}
-          </motion.div>
+              ))}
+            </div>
 
-          {/* RIGHT: WORKFLOW & INFO */}
-          <motion.div
-            initial={{ opacity: 0, x: 50 }}
-            animate={{ opacity: 1, x: 0 }}
-            transition={{ duration: 0.7, delay: 0.4 }}
-            className="space-y-6 lg:sticky lg:top-24"
-          >
-            {/* Workflow Card */}
-            <div className="bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-xl border border-gray-200 p-6 sm:p-8 overflow-hidden">
-
-              {/* Badge */}
-              <div className="flex items-center justify-between mb-6">
-                <div className="inline-flex items-center gap-2 bg-emerald-50 border border-emerald-200 rounded-full px-4 py-2">
-                  <div className="w-2 h-2 bg-emerald-500 rounded-full animate-pulse" />
-                  <span className="text-emerald-700 text-xs sm:text-sm font-semibold uppercase tracking-wider">Official Preferred Partner</span>
+            <div className="lg:sticky lg:top-32 h-fit space-y-8">
+              <div className="bg-white p-10 sm:p-12 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group">
+                <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
+                <div className="relative z-10 space-y-6 text-center lg:text-left">
+                  <h3 className="text-2xl font-black text-black tracking-tight">Official IEE ECA Report</h3>
+                  <p className="text-slate-600 text-base font-medium leading-relaxed">Download a sample IEE evaluation report to understand the format and details provided to institutions.</p>
+                  <a
+                    href="https://100transcripts.com/wp-content/uploads/2026/01/IEE-ECA-Report.pdf"
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105"
+                  >
+                    View Sample Report
+                    <ExternalLink className="w-5 h-5" />
+                  </a>
                 </div>
               </div>
 
-              {/* Workflow Image */}
-              <motion.div
-                initial={{ scale: 0.9, opacity: 0 }}
-                animate={{ scale: 1, opacity: 1 }}
-                transition={{ delay: 0.6, duration: 0.6 }}
-                className="relative bg-gradient-to-br from-gray-100 to-gray-50 rounded-xl p-4 mb-6 shadow-inner"
-              >
-                <img
-                  src={workflowImg}
-                  alt="IEE - 100 Transcripts Workflow"
-                  className="w-full h-auto rounded-lg"
-                />
-              </motion.div>
-
-              {/* Feature Grid */}
-              <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white p-4 rounded-xl border border-gray-200 flex items-center gap-3 shadow-sm"
-                >
-                  <div className="bg-emerald-100 p-2.5 rounded-lg flex-shrink-0">
-                    <Check className="w-5 h-5 text-emerald-600" />
+              <div className="bg-blue-600 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-blue-500/20">
+                <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
+                <div className="relative z-10 flex items-center gap-6">
+                  <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
+                    <BadgeCheck className="w-9 h-9 text-white" />
                   </div>
                   <div>
-                    <p className="text-xs text-emerald-600 font-semibold uppercase tracking-wider">Fastest</p>
-                    <p className="font-bold text-gray-900 text-sm sm:text-base">Verified Docs</p>
+                    <h4 className="text-xl font-black text-white">100% Verified</h4>
+                    <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
                   </div>
-                </motion.div>
-
-                <motion.div
-                  whileHover={{ scale: 1.05 }}
-                  className="bg-white p-4 rounded-xl border border-gray-200 flex items-center gap-3 shadow-sm"
-                >
-                  <div className="bg-blue-100 p-2.5 rounded-lg flex-shrink-0">
-                    <Shield className="w-5 h-5 text-blue-600" />
-                  </div>
-                  <div>
-                    <p className="text-xs text-blue-600 font-semibold uppercase tracking-wider">Secure</p>
-                    <p className="font-bold text-gray-900 text-sm sm:text-base">IEE Trusted</p>
-                  </div>
-                </motion.div>
+                </div>
               </div>
             </div>
 
-            {/* CTA Box */}
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true }}
-              transition={{ delay: 0.3 }}
-              className="bg-gradient-to-r from-blue-600 to-violet-600 rounded-2xl p-6 sm:p-8 text-white shadow-xl text-center"
-            >
-              <h3 className="text-xl sm:text-2xl font-bold mb-2">Need Assistance?</h3>
-              <p className="text-blue-100 text-sm sm:text-base mb-6">Our experts are here to help you with your IEE application.</p>
-              <a
-                href="https://api.whatsapp.com/send/?phone=919941991402&text=Hi%2C+100+TRANSCRIPTS+team&type=phone_number&app_absent=0"
-                className="inline-flex items-center gap-2 bg-white text-blue-600 px-8 py-3 rounded-xl font-bold hover:bg-blue-50 transition-all shadow-lg hover:scale-105"
-              >
-                Chat with Us
-                <ArrowRight className="w-4 h-4" />
-              </a>
-            </motion.div>
-
-          </motion.div>
-
+          </div>
         </div>
+      </section>
 
-      </div>
-
-      {/* FLOATING WHATSAPP BUTTON */}
+      {/* FLOATING HELP BUTTON */}
       <motion.div
-        initial={{ scale: 0, opacity: 0 }}
-        animate={{ scale: 1, opacity: 1 }}
-        transition={{ delay: 1, duration: 0.5 }}
-        className="fixed bottom-6 right-6 z-50 flex flex-col items-end gap-3"
+        initial={{ opacity: 0, x: 20 }}
+        animate={{ opacity: 1, x: 0 }}
+        className="fixed bottom-24 right-8 z-40 bg-white px-5 py-3 rounded-full shadow-2xl border border-slate-100 flex items-center gap-3 cursor-pointer hover:shadow-blue-500/10 transition-shadow group"
       >
-        <motion.div
-          initial={{ opacity: 0, x: 20 }}
-          animate={{ opacity: 1, x: 0 }}
-          transition={{ delay: 1.2 }}
-          className="bg-white text-gray-800 px-4 py-2.5 rounded-full shadow-xl border border-gray-200 text-sm font-semibold hidden sm:flex items-center gap-2"
-        >
-          <span>Need help?</span>
-          <span className="text-lg">👋</span>
-        </motion.div>
-
-        <motion.a
-          whileHover={{ scale: 1.1 }}
-          whileTap={{ scale: 0.95 }}
-          href="https://api.whatsapp.com/send/?phone=919941991402&text=Hi%2C+100+TRANSCRIPTS+team&type=phone_number&app_absent=0"
-          className="bg-emerald-500 text-white p-4 rounded-full shadow-2xl hover:bg-emerald-600 transition-all"
-        >
-          <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-            <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-          </svg>
-        </motion.a>
+        <span className="text-black font-bold text-sm">Need help?</span>
+        <span className="text-xl group-hover:rotate-12 transition-transform">👋</span>
       </motion.div>
+
+      {/* WHATSAPP FLOATING */}
+      <a
+        href="https://wa.me/919941991402"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:scale-110 active:scale-95 group"
+        aria-label="Contact us on WhatsApp"
+      >
+        <svg className="w-8 h-8 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
+        </svg>
+      </a>
+
     </div>
   );
 };
