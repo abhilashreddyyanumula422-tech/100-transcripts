@@ -35,36 +35,36 @@ const UniversitySearch = () => {
         </motion.div>
 
         {/* 🔍 SEARCH BOX */}
-        <div className="bg-white shadow-xl rounded-2xl p-6 md:p-10">
-          <div className="grid md:grid-cols-4 gap-6 items-end">
+        <div className="bg-white shadow-xl rounded-2xl p-4 sm:p-6 md:p-10">
+          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4 sm:gap-6 items-end">
 
             {/* STATE */}
             <div className="text-left">
-              <label className="text-sm text-gray-600">Select State</label>
-              <select className="w-full mt-2 px-4 py-3 rounded-xl border">
+              <label className="text-xs sm:text-sm text-gray-600">Select State</label>
+              <select className="w-full mt-2 px-3 sm:px-4 py-3 rounded-xl border min-h-[44px]">
                 <option>Select State</option>
               </select>
             </div>
 
             {/* UNIVERSITY */}
             <div className="text-left">
-              <label className="text-sm text-gray-600">Select University</label>
-              <select className="w-full mt-2 px-4 py-3 rounded-xl border">
+              <label className="text-xs sm:text-sm text-gray-600">Select University</label>
+              <select className="w-full mt-2 px-3 sm:px-4 py-3 rounded-xl border min-h-[44px]">
                 <option>First Select State</option>
               </select>
             </div>
 
             {/* PURPOSE */}
             <div className="text-left">
-              <label className="text-sm text-gray-600">Select Purpose</label>
-              <select className="w-full mt-2 px-4 py-3 rounded-xl border">
+              <label className="text-xs sm:text-sm text-gray-600">Select Purpose</label>
+              <select className="w-full mt-2 px-3 sm:px-4 py-3 rounded-xl border min-h-[44px]">
                 <option>Select Purpose</option>
               </select>
             </div>
 
             {/* BUTTON */}
             <div>
-              <button className="w-full flex items-center justify-center gap-2 px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition">
+              <button className="w-full flex items-center justify-center gap-2 px-4 sm:px-6 py-3 rounded-xl bg-blue-600 text-white font-semibold hover:bg-blue-700 transition min-h-[44px]">
                 <Search size={18} />
                 Search
               </button>

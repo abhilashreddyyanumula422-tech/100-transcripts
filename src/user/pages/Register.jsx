@@ -95,23 +95,23 @@ const Register = () => {
   };
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen pt-32 pb-12 flex flex-col items-center px-4">
+    <div className="bg-[#f8fafc] min-h-screen pt-24 sm:pt-28 md:pt-32 pb-8 sm:pb-12 flex flex-col items-center px-4">
       <div className="max-w-md w-full">
 
         <motion.div
-          className="text-center mb-8"
+          className="text-center mb-6 sm:mb-8"
           initial={{ opacity: 0, y: -20 }}
           animate={{ opacity: 1, y: 0 }}
         >
-          <h1 className="text-3xl font-black">Create Account</h1>
+          <h1 className="text-2xl sm:text-3xl font-black">Create Account</h1>
         </motion.div>
 
         <motion.div
-          className="bg-white p-8 rounded-2xl shadow-xl"
+          className="bg-white p-6 sm:p-8 rounded-2xl shadow-xl"
           initial={{ opacity: 0, scale: 0.95 }}
           animate={{ opacity: 1, scale: 1 }}
         >
-          <form onSubmit={handleRegister} className="space-y-5">
+          <form onSubmit={handleRegister} className="space-y-4 sm:space-y-5">
 
             {/* NAME */}
             <div className="relative">
@@ -123,7 +123,7 @@ const Register = () => {
                 value={form.name}
                 onChange={handleChange}
                 required
-                className="w-full p-4 pl-10 rounded-lg bg-gray-100"
+                className="w-full p-3 sm:p-4 pl-10 rounded-lg bg-gray-100 text-sm sm:text-base"
               />
             </div>
 
@@ -137,7 +137,7 @@ const Register = () => {
                 value={form.email}
                 onChange={handleChange}
                 required
-                className="w-full p-4 pl-10 rounded-lg bg-gray-100"
+                className="w-full p-3 sm:p-4 pl-10 rounded-lg bg-gray-100 text-sm sm:text-base"
               />
             </div>
 
@@ -151,7 +151,7 @@ const Register = () => {
                 value={form.phone}
                 onChange={handleChange}
                 required
-                className="w-full p-4 pl-10 rounded-lg bg-gray-100"
+                className="w-full p-3 sm:p-4 pl-10 rounded-lg bg-gray-100 text-sm sm:text-base"
               />
             </div>
 
@@ -165,10 +165,10 @@ const Register = () => {
                 value={form.password}
                 onChange={handleChange}
                 required
-                className="w-full p-4 pl-10 pr-10 rounded-lg bg-gray-100"
+                className="w-full p-3 sm:p-4 pl-10 pr-10 rounded-lg bg-gray-100 text-sm sm:text-base"
               />
               <div
-                className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer min-h-[44px] flex items-center"
                 onClick={() => setShowPassword(!showPassword)}
               >
                 {showPassword ? <FiEye /> : <FiEyeOff />}
@@ -185,10 +185,10 @@ const Register = () => {
                 value={form.confirmPassword}
                 onChange={handleChange}
                 required
-                className="w-full p-4 pl-10 pr-10 rounded-lg bg-gray-100"
+                className="w-full p-3 sm:p-4 pl-10 pr-10 rounded-lg bg-gray-100 text-sm sm:text-base"
               />
               <div
-                className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer"
+                className="absolute right-4 top-1/2 -translate-y-1/2 cursor-pointer min-h-[44px] flex items-center"
                 onClick={() =>
                   setShowConfirmPassword(!showConfirmPassword)
                 }
@@ -197,12 +197,12 @@ const Register = () => {
               </div>
             </div>
 
-            <button className="w-full bg-[#2f4a6d] text-white py-4 rounded-lg flex justify-center items-center gap-2">
+            <button className="w-full bg-[#2f4a6d] text-white py-3 sm:py-4 rounded-lg flex justify-center items-center gap-2 font-semibold min-h-[44px] text-sm sm:text-base">
               Register <FiArrowRight />
             </button>
           </form>
 
-          <div className="mt-6 text-center">
+          <div className="mt-4 sm:mt-6 text-center text-sm sm:text-base">
             <Link to="/login">Already have an account?</Link>
           </div>
 

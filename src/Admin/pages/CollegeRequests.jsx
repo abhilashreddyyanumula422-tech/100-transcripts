@@ -177,53 +177,90 @@ const CollegeRequest = () => {
 
       {/* College List Table */}
       <div className="bg-white rounded-xl shadow-sm overflow-hidden mb-8 border border-gray-200">
-        <table className="w-full text-left">
-          <thead className="bg-gray-100 border-b">
-            <tr>
-              <th className="p-4 font-semibold text-gray-600">College Name</th>
-              <th className="p-4 font-semibold text-gray-600">Location</th>
-              <th className="p-4 font-semibold text-gray-600">Email Address</th>
-              <th className="p-4 font-semibold text-gray-600 text-center">Action</th>
-            </tr>
-          </thead>
-          <tbody>
-            {/* ✅ 2. Added filtering to the map so search actually works */}
-            {colleges
-              .filter((college) =>
-                college.name.toLowerCase().includes(search.toLowerCase())
-              )
-              .map((college) => (
-                <tr key={college.id} className="border-b hover:bg-gray-50 transition">
-                  <td className="p-4 flex items-center gap-3">
-                    <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
-                      <School size={20} />
-                    </div>
-                    <span className="font-medium text-gray-700">{college.name}</span>
-                  </td>
-                  <td className="p-4 text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <MapPin size={16} className="text-gray-400" />
-                      {college.location}
-                    </div>
-                  </td>
-                  <td className="p-4 text-gray-600">
-                    <div className="flex items-center gap-2">
-                      <Mail size={16} className="text-gray-400" />
-                      {college.email}
-                    </div>
-                  </td>
-                  <td className="p-4 text-center">
-                    <button
-                      onClick={() => handleEditClick(college)}
-                      className="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition flex items-center gap-2 mx-auto"
-                    >
-                      <Edit size={16} /> Update Details
-                    </button>
-                  </td>
-                </tr>
-              ))}
-          </tbody>
-        </table>
+        {/* Desktop Table */}
+        <div className="hidden md:block">
+          <table className="w-full text-left">
+            <thead className="bg-gray-100 border-b">
+              <tr>
+                <th className="p-4 font-semibold text-gray-600">College Name</th>
+                <th className="p-4 font-semibold text-gray-600">Location</th>
+                <th className="p-4 font-semibold text-gray-600">Email Address</th>
+                <th className="p-4 font-semibold text-gray-600 text-center">Action</th>
+              </tr>
+            </thead>
+            <tbody>
+              {/* 2. Added filtering to the map so search actually works */}
+              {colleges
+                .filter((college) =>
+                  college.name.toLowerCase().includes(search.toLowerCase())
+                )
+                .map((college) => (
+                  <tr key={college.id} className="border-b hover:bg-gray-50 transition">
+                    <td className="p-4 flex items-center gap-3">
+                      <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                        <School size={20} />
+                      </div>
+                      <span className="font-medium text-gray-700">{college.name}</span>
+                    </td>
+                    <td className="p-4 text-gray-600">
+                      <div className="flex items-center gap-2">
+                        <MapPin size={16} className="text-gray-400" />
+                        {college.location}
+                      </div>
+                    </td>
+                    <td className="p-4 text-gray-600">
+                      <div className="flex items-center gap-2">
+                        <Mail size={16} className="text-gray-400" />
+                        {college.email}
+                      </div>
+                    </td>
+                    <td className="p-4 text-center">
+                      <button
+                        onClick={() => handleEditClick(college)}
+                        className="bg-blue-50 text-blue-600 px-4 py-2 rounded-lg hover:bg-blue-600 hover:text-white transition flex items-center gap-2 mx-auto"
+                      >
+                        <Edit size={16} /> Update Details
+                      </button>
+                    </td>
+                  </tr>
+                ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Card Layout */}
+        <div className="md:hidden space-y-3 p-4">
+          {colleges
+            .filter((college) =>
+              college.name.toLowerCase().includes(search.toLowerCase())
+            )
+            .map((college) => (
+              <div key={college.id} className="bg-gray-50 rounded-xl p-4 border border-gray-200">
+                <div className="flex items-center gap-3 mb-3">
+                  <div className="p-2 bg-blue-50 rounded-lg text-blue-600">
+                    <School size={20} />
+                  </div>
+                  <span className="font-bold text-gray-800">{college.name}</span>
+                </div>
+                <div className="space-y-2 text-sm">
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <MapPin size={16} className="text-gray-400" />
+                    {college.location}
+                  </div>
+                  <div className="flex items-center gap-2 text-gray-600">
+                    <Mail size={16} className="text-gray-400" />
+                    {college.email}
+                  </div>
+                </div>
+                <button
+                  onClick={() => handleEditClick(college)}
+                  className="w-full mt-4 bg-blue-50 text-blue-600 px-4 py-3 rounded-lg hover:bg-blue-600 hover:text-white transition flex items-center justify-center gap-2 font-semibold min-h-[44px]"
+                >
+                  <Edit size={16} /> Update Details
+                </button>
+              </div>
+            ))}
+        </div>
       </div>
 
       {/* --- MODAL FOR ADDING COLLEGE --- */}

@@ -55,7 +55,7 @@ const WhyChoose = () => {
         </motion.div>
 
         {/* CARDS */}
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-6 sm:gap-8">
 
           {features.map((item, i) => (
             <motion.div
@@ -64,11 +64,11 @@ const WhyChoose = () => {
               whileInView={{ opacity: 1, y: 0 }}
               transition={{ delay: i * 0.2 }}
               whileHover={{ scale: 1.05 }}
-              className="group bg-white/80 backdrop-blur-md rounded-2xl p-8 shadow-md border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="group bg-white/80 backdrop-blur-md rounded-2xl p-6 sm:p-8 shadow-md border border-gray-100 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
             >
               {/* ICON */}
               {/* IMAGE */}
-<div className="w-full h-44 flex items-center justify-center mb-4">
+<div className="w-full h-32 sm:h-44 flex items-center justify-center mb-4">
   <img
     src={item.image}
     alt={item.title}
@@ -77,7 +77,7 @@ const WhyChoose = () => {
 </div>
 
               {/* TITLE */}
-              <h3 className="mt-2 text-lg font-semibold text-[#2f4a6d]">
+              <h3 className="mt-2 text-base sm:text-lg font-semibold text-[#2f4a6d]">
                 {item.title}
               </h3>
 

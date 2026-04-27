@@ -4,6 +4,7 @@ import {
   Send, Copy, Check, AlertCircle, MessageCircle, Phone
 } from "lucide-react";
 import React, { useState, useEffect } from "react";
+import EmptyState from "../../components/EmptyState";
 
 const StudentRequests = () => {
   const [search, setSearch] = useState("");
@@ -20,7 +21,7 @@ const StudentRequests = () => {
   const companyName = "100 Transcripts";
 
   // ✅ Dynamic API Base
-  const API_BASE = `http://${window.location.hostname}:8000`;
+  const API_BASE = `http://192.168.1.43:8000`;
 
   // ✅ FETCH API
   const fetchRequests = async () => {
@@ -203,66 +204,102 @@ Please check your email for detailed information or contact us if you have any q
 
       {/* Data Table */}
       <div className="bg-white rounded-2xl shadow-lg overflow-hidden border border-slate-200">
-        <div className="overflow-x-auto">
-          <table className="w-full text-sm text-left">
-            <thead className="bg-slate-50 text-slate-500 text-xs uppercase font-bold">
-              <tr>
-                <th className="p-4">Student</th>
-                <th className="p-4">Request ID</th>
-                <th className="p-4">Phone</th>
-                <th className="p-4">University</th>
-                <th className="p-4">Request</th>
-                <th className="p-4">Payment</th>
-                <th className="p-4">Status</th>
-                <th className="p-4 text-right pr-6">Actions</th>
-              </tr>
-            </thead>
-            <tbody>
+        {filtered.length === 0 ? (
+          <EmptyState 
+            type="noResults"
+            message="No student requests found"
+            description={search ? "Try adjusting your search criteria" : "There are no student requests to display"}
+          />
+        ) : (
+          <>
+            {/* Desktop Table */}
+            <div className="hidden md:block overflow-x-auto">
+              <table className="w-full text-sm text-left">
+                <thead className="bg-slate-50 text-slate-500 text-xs uppercase font-bold">
+                  <tr>
+                    <th className="p-4">Student</th>
+                    <th className="p-4">Request ID</th>
+                    <th className="p-4">Phone</th>
+                    <th className="p-4">University</th>
+                    <th className="p-4">Request</th>
+                    <th className="p-4">Payment</th>
+                    <th className="p-4">Status</th>
+                    <th className="p-4 text-right pr-6">Actions</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {filtered.map((req) => (
+                    <tr key={req.id} className="border-t hover:bg-slate-50 transition">
+                      <td className="p-4">
+                        <div className="font-semibold text-slate-700">{req.fullName}</div>
+                        <div className="text-xs text-blue-500 font-medium">{req.email}</div>
+                      </td>
+                      <td className="p-4 text-slate-600">{req.id}</td>
+                      <td className="p-4 text-slate-600">{req.phone}</td>
+                      <td className="p-4 text-slate-600">{req.university}</td>
+                      <td className="p-4 text-slate-600">{req.type}</td>
+                      <td className="p-4">
+                        <span className={`px-2 py-1 rounded-full text-xs font-bold ${req.payment === "Paid" ? "bg-green-100 text-green-600" : "bg-yellow-100 text-yellow-600"}`}>
+                          {req.payment}
+                        </span>
+                      </td>
+                      <td className="p-4">
+                        <span className={`px-2 py-1 rounded-full text-xs font-bold ${String(req.status || "").toLowerCase().trim() === "approved" ? "bg-green-100 text-green-600" : String(req.status || "").toLowerCase().trim() === "pending" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"}`}>
+                          {req.status || "Pending"}
+                        </span>
+                      </td>
+                      <td className="p-4 text-right pr-6 space-x-2">
+                        <button onClick={() => handleWhatsApp(req)} className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition inline-flex align-middle" title="Send WhatsApp message">
+                          <MessageCircle size={18} />
+                        </button>
+                        <button onClick={() => setReplyingTo(req)} className="px-3 py-1 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition">Reply</button>
+                        <button onClick={() => setSelectedStudent(req)} className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition inline-flex align-middle">
+                          <Eye size={18} />
+                        </button>
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            {/* Mobile Card Layout */}
+            <div className="md:hidden space-y-3 p-4">
               {filtered.map((req) => (
-                <tr key={req.id} className="border-t hover:bg-slate-50 transition">
-                  <td className="p-4">
-                    <div className="font-semibold text-slate-700">{req.fullName}</div>
-                    <div className="text-xs text-blue-500 font-medium">{req.email}</div>
-                  </td>
-                  <td className="p-4 text-slate-600">{req.id}</td>
-                  <td className="p-4 text-slate-600">{req.phone}</td>
-                  <td className="p-4 text-slate-600">{req.university}</td>
-                  <td className="p-4 text-slate-600">{req.type}</td>
-                  <td className="p-4">
-                    <span className={`px-2 py-1 rounded-full text-xs font-bold ${req.payment === "Paid" ? "bg-green-100 text-green-600" : "bg-yellow-100 text-yellow-600"}`}>
-                      {req.payment}
-                    </span>
-                  </td>
-                  <td className="p-4">
+                <div key={req.id} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
+                  <div className="flex justify-between items-start mb-3">
+                    <div>
+                      <h3 className="font-bold text-slate-800">{req.fullName}</h3>
+                      <p className="text-xs text-blue-500">{req.email}</p>
+                    </div>
                     <span className={`px-2 py-1 rounded-full text-xs font-bold ${String(req.status || "").toLowerCase().trim() === "approved" ? "bg-green-100 text-green-600" : String(req.status || "").toLowerCase().trim() === "pending" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"}`}>
                       {req.status || "Pending"}
                     </span>
-                  </td>
-                  <td className="p-4 text-right pr-6 space-x-2">
-                    {/* WhatsApp Button */}
-                    <button
-                      onClick={() => handleWhatsApp(req)}
-                      className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition inline-flex align-middle"
-                      title="Send WhatsApp message"
-                    >
-                      <MessageCircle size={18} />
+                  </div>
+                  <div className="space-y-2 text-sm">
+                    <div className="flex justify-between"><span className="text-slate-500">ID:</span><span className="text-slate-700 font-medium">{req.id}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-500">Phone:</span><span className="text-slate-700 font-medium">{req.phone}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-500">University:</span><span className="text-slate-700 font-medium">{req.university}</span></div>
+                    <div className="flex justify-between"><span className="text-slate-500">Request:</span><span className="text-slate-700 font-medium">{req.type}</span></div>
+                    <div className="flex justify-between">
+                      <span className="text-slate-500">Payment:</span>
+                      <span className={`px-2 py-1 rounded-full text-xs font-bold ${req.payment === "Paid" ? "bg-green-100 text-green-600" : "bg-yellow-100 text-yellow-600"}`}>{req.payment}</span>
+                    </div>
+                  </div>
+                  <div className="flex gap-2 mt-4">
+                    <button onClick={() => handleWhatsApp(req)} className="flex-1 flex items-center justify-center gap-2 p-2 text-green-600 bg-green-50 rounded-lg transition min-h-[44px]">
+                      <MessageCircle size={18} /> WhatsApp
                     </button>
-                    {/* UPDATED: Reply button now opens the message modal */}
-                    <button
-                      onClick={() => setReplyingTo(req)}
-                      className="px-3 py-1 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition"
-                    >
-                      Reply
+                    <button onClick={() => setReplyingTo(req)} className="flex-1 bg-blue-600 text-white rounded-lg text-xs font-bold hover:bg-blue-700 transition min-h-[44px]">Reply</button>
+                    <button onClick={() => setSelectedStudent(req)} className="flex-1 text-blue-600 bg-blue-50 rounded-lg transition min-h-[44px]">
+                      <Eye size={18} className="mx-auto" />
                     </button>
-                    <button onClick={() => setSelectedStudent(req)} className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition inline-flex align-middle">
-                      <Eye size={18} />
-                    </button>
-                  </td>
-                </tr>
+                  </div>
+                </div>
               ))}
-            </tbody>
-          </table>
-        </div>
+            </div>
+          </>
+        )}
       </div>
 
       {/* --- FILTER POPUP MODAL --- */}
@@ -278,11 +315,7 @@ Please check your email for detailed information or contact us if you have any q
                 <p className="text-xs font-bold text-slate-400 uppercase tracking-widest ml-1">Status</p>
                 <div className="grid grid-cols-2 gap-2">
                   {["All", "Pending", "Approved", "Rejected"].map((status) => (
-                    <button
-                      key={status}
-                      onClick={() => setStatusFilter(status)}
-                      className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${statusFilter === status ? "bg-blue-600 text-white shadow-md" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`}
-                    >
+                    <button key={status} onClick={() => setStatusFilter(status)} className={`px-4 py-2 rounded-xl text-sm font-semibold transition ${statusFilter === status ? "bg-blue-600 text-white shadow-md" : "bg-slate-100 text-slate-600 hover:bg-slate-200"}`}>
                       {status}
                     </button>
                   ))}

@@ -19,7 +19,7 @@ const CollegeVerification = () => {
   const [loading, setLoading] = useState(true);
 
   // ✅ Dynamic API Base
-  const API_BASE = `http://${window.location.hostname}:8000`;
+  const API_BASE = `http://192.168.1.43:8000`;
 
   const fetchVerifications = async () => {
     try {
@@ -91,99 +91,173 @@ ${companyName} Support Team` : "";
       </div>
 
       {/* 📊 TABLE */}
-      <div className="bg-white rounded-2xl border overflow-x-auto shadow-sm">
-        <table className="w-full text-sm text-left">
-          <thead className="bg-slate-50 text-xs uppercase text-slate-500">
-            <tr>
-              <th className="px-4 py-3">College</th>
-              <th className="px-4 py-3">Country</th>
-              <th className="px-4 py-3">Student</th>
-              <th className="px-4 py-3">Request ID</th>
-              <th className="px-4 py-3">Date</th>
-              <th className="px-4 py-3">Mode</th>
-              <th className="px-4 py-3">Assigned</th>
-              <th className="px-4 py-3">Status</th>
-              <th className="px-4 py-3 text-right">Actions</th>
-            </tr>
-          </thead>
-          <tbody>
-            {loading ? (
+      <div className="bg-white rounded-2xl border shadow-sm">
+        {/* Desktop Table */}
+        <div className="hidden md:block overflow-x-auto">
+          <table className="w-full text-sm text-left">
+            <thead className="bg-slate-50 text-xs uppercase text-slate-500">
               <tr>
-                <td colSpan="9" className="px-4 py-8 text-center text-slate-500">
-                  <div className="flex items-center justify-center gap-2">
-                    <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
-                    Loading verifications...
-                  </div>
-                </td>
+                <th className="px-4 py-3">College</th>
+                <th className="px-4 py-3">Country</th>
+                <th className="px-4 py-3">Student</th>
+                <th className="px-4 py-3">Request ID</th>
+                <th className="px-4 py-3">Date</th>
+                <th className="px-4 py-3">Mode</th>
+                <th className="px-4 py-3">Assigned</th>
+                <th className="px-4 py-3">Status</th>
+                <th className="px-4 py-3 text-right">Actions</th>
               </tr>
-            ) : verifications.length === 0 ? (
-              <tr>
-                <td colSpan="9" className="px-4 py-8 text-center text-slate-500">
-                  No approved applications found for verification.
-                </td>
-              </tr>
-            ) : verifications.map((item) => (
-              <tr key={item.id} className="border-t hover:bg-blue-50/30 transition-colors">
-                <td className="px-4 py-3 font-medium text-slate-700">{item.college}</td>
-                <td className="px-4 py-3 text-slate-600">{item.country}</td>
-                <td className="px-4 py-3 text-slate-600">{item.student}</td>
-                <td className="px-4 py-3 text-xs text-slate-500">{item.id}</td>
-                <td className="px-4 py-3 text-slate-600">{item.date}</td>
-                <td className="px-4 py-3 text-slate-600">{item.mode}</td>
-                <td className="px-4 py-3 text-slate-600">{item.assigned}</td>
-                <td className="px-4 py-3">
-                  <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${
-                    item.status === "Verified" ? "bg-green-100 text-green-600" : 
-                    item.status === "Pending" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"
-                  }`}>
-                    {item.status}
-                  </span>
-                </td>
-                <td className="px-4 py-3 text-right">
-                  <div className="flex justify-end gap-2">
-                    {/* 🟠 Updated Reply Button */}
-                    <button 
-                      onClick={() => setReplyingTo(item)}
-                      className="p-2 text-orange-600 hover:bg-orange-100 rounded-lg transition"
-                      title="Reply/Contact"
-                    >
-                      <MessageSquare size={18} />
-                    </button>
-                    <button 
-                      onClick={() => setSelectedVerification(item)}
-                      className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition"
-                    >
-                      <Eye size={18} />
-                    </button>
-                    <button className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition">
-                      <CheckCircle size={18} />
-                    </button>
-                  </div>
-                </td>
-              </tr>
-            ))}
-          </tbody>
-        </table>
+            </thead>
+            <tbody>
+              {loading ? (
+                <tr>
+                  <td colSpan="9" className="px-4 py-8 text-center text-slate-500">
+                    <div className="flex items-center justify-center gap-2">
+                      <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+                      Loading verifications...
+                    </div>
+                  </td>
+                </tr>
+              ) : verifications.length === 0 ? (
+                <tr>
+                  <td colSpan="9" className="px-4 py-8 text-center text-slate-500">
+                    No approved applications found for verification.
+                  </td>
+                </tr>
+              ) : verifications.map((item) => (
+                <tr key={item.id} className="border-t hover:bg-blue-50/30 transition-colors">
+                  <td className="px-4 py-3 font-medium text-slate-700">{item.college}</td>
+                  <td className="px-4 py-3 text-slate-600">{item.country}</td>
+                  <td className="px-4 py-3 text-slate-600">{item.student}</td>
+                  <td className="px-4 py-3 text-xs text-slate-500">{item.id}</td>
+                  <td className="px-4 py-3 text-slate-600">{item.date}</td>
+                  <td className="px-4 py-3 text-slate-600">{item.mode}</td>
+                  <td className="px-4 py-3 text-slate-600">{item.assigned}</td>
+                  <td className="px-4 py-3">
+                    <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${
+                      item.status === "Verified" ? "bg-green-100 text-green-600" : 
+                      item.status === "Pending" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"
+                    }`}>
+                      {item.status}
+                    </span>
+                  </td>
+                  <td className="px-4 py-3 text-right">
+                    <div className="flex justify-end gap-2">
+                      {/* 🟠 Updated Reply Button */}
+                      <button 
+                        onClick={() => setReplyingTo(item)}
+                        className="p-2 text-orange-600 hover:bg-orange-100 rounded-lg transition"
+                        title="Reply/Contact"
+                      >
+                        <MessageSquare size={18} />
+                      </button>
+                      <button 
+                        onClick={() => setSelectedVerification(item)}
+                        className="p-2 text-blue-600 hover:bg-blue-100 rounded-lg transition"
+                      >
+                        <Eye size={18} />
+                      </button>
+                      <button className="p-2 text-green-600 hover:bg-green-100 rounded-lg transition">
+                        <CheckCircle size={18} />
+                      </button>
+                    </div>
+                  </td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
+
+        {/* Mobile Card Layout */}
+        <div className="md:hidden space-y-4 p-4">
+          {loading ? (
+            <div className="flex items-center justify-center gap-2 py-8 text-slate-500">
+              <div className="w-4 h-4 border-2 border-blue-600 border-t-transparent rounded-full animate-spin"></div>
+              Loading verifications...
+            </div>
+          ) : verifications.length === 0 ? (
+            <div className="text-center py-8 text-slate-500">
+              No approved applications found for verification.
+            </div>
+          ) : verifications.map((item) => (
+            <div key={item.id} className="bg-slate-50 rounded-xl p-4 border border-slate-200">
+              <div className="flex justify-between items-start mb-3">
+                <div>
+                  <h3 className="font-bold text-slate-800">{item.college}</h3>
+                  <p className="text-sm text-slate-500">{item.country}</p>
+                </div>
+                <span className={`px-2 py-1 rounded text-[10px] font-bold uppercase ${
+                  item.status === "Verified" ? "bg-green-100 text-green-600" : 
+                  item.status === "Pending" ? "bg-yellow-100 text-yellow-600" : "bg-red-100 text-red-600"
+                }`}>
+                  {item.status}
+                </span>
+              </div>
+              <div className="space-y-2 text-sm">
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Student:</span>
+                  <span className="font-medium text-slate-700">{item.student}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Request ID:</span>
+                  <span className="font-medium text-slate-700 text-xs">{item.id}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Date:</span>
+                  <span className="font-medium text-slate-700">{item.date}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Mode:</span>
+                  <span className="font-medium text-slate-700">{item.mode}</span>
+                </div>
+                <div className="flex justify-between">
+                  <span className="text-slate-500">Assigned:</span>
+                  <span className="font-medium text-slate-700">{item.assigned}</span>
+                </div>
+              </div>
+              <div className="flex gap-2 mt-4 pt-4 border-t border-slate-200">
+                <button 
+                  onClick={() => setReplyingTo(item)}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-orange-50 text-orange-600 rounded-lg font-medium hover:bg-orange-100 transition min-h-[44px]"
+                >
+                  <MessageSquare size={18} />
+                  Reply
+                </button>
+                <button 
+                  onClick={() => setSelectedVerification(item)}
+                  className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-blue-50 text-blue-600 rounded-lg font-medium hover:bg-blue-100 transition min-h-[44px]"
+                >
+                  <Eye size={18} />
+                  View
+                </button>
+                <button className="flex-1 flex items-center justify-center gap-2 px-4 py-3 bg-green-50 text-green-600 rounded-lg font-medium hover:bg-green-100 transition min-h-[44px]">
+                  <CheckCircle size={18} />
+                  Verify
+                </button>
+              </div>
+            </div>
+          ))}
+        </div>
       </div>
 
       {/* 🟠 NEW: ISSUE NOTIFICATION MODAL */}
       {replyingTo && (
         <div className="fixed inset-0 bg-black/40 backdrop-blur-sm flex items-center justify-center z-[60] p-4 font-sans">
           <div className="bg-white rounded-3xl w-full max-w-4xl shadow-2xl overflow-hidden flex flex-col md:flex-row max-h-[90vh]">
-            <div className="flex-1 p-8 space-y-6 overflow-y-auto border-r border-slate-100">
+            <div className="flex-1 p-4 md:p-8 space-y-4 md:space-y-6 overflow-y-auto border-r border-slate-100">
               <div className="flex justify-between items-center">
-                <h2 className="text-2xl font-bold text-slate-800 flex items-center gap-2"><Send className="text-blue-600" /> Issue Generator</h2>
+                <h2 className="text-xl md:text-2xl font-bold text-slate-800 flex items-center gap-2"><Send className="text-blue-600" /> Issue Generator</h2>
                 <button onClick={() => setReplyingTo(null)} className="p-2 hover:bg-slate-100 rounded-full transition"><X size={24}/></button>
               </div>
               <div className="space-y-4">
                 <div>
                   <label className="text-xs font-bold text-slate-500 uppercase ml-1">Student</label>
-                  <div className="p-3 bg-slate-50 border rounded-xl font-bold text-slate-700 mt-1">{replyingTo.student} ({replyingTo.email})</div>
+                  <div className="p-3 bg-slate-50 border rounded-xl font-bold text-slate-700 mt-1 text-sm">{replyingTo.student} ({replyingTo.email})</div>
                 </div>
                 <div>
                   <label className="text-xs font-bold text-slate-500 uppercase ml-1">Issue Category</label>
                   <select 
-                    className="w-full border rounded-xl p-3 mt-1 outline-none focus:ring-2 focus:ring-blue-500 bg-white"
+                    className="w-full border rounded-xl p-3 mt-1 outline-none focus:ring-2 focus:ring-blue-500 bg-white text-sm"
                     value={issueType}
                     onChange={(e) => setIssueType(e.target.value)}
                   >
@@ -196,14 +270,14 @@ ${companyName} Support Team` : "";
                   <label className="text-xs font-bold text-slate-500 uppercase ml-1">Problem Description</label>
                   <textarea 
                     rows="4" 
-                    className="w-full border rounded-xl p-3 mt-1 outline-none focus:ring-2 focus:ring-blue-500"
+                    className="w-full border rounded-xl p-3 mt-1 outline-none focus:ring-2 focus:ring-blue-500 text-sm"
                     value={exactProblem}
                     onChange={(e) => setExactProblem(e.target.value)}
                   />
                 </div>
               </div>
             </div>
-            <div className="w-full md:w-[350px] bg-slate-50 p-8 flex flex-col">
+            <div className="w-full md:w-[350px] bg-slate-50 p-4 md:p-8 flex flex-col">
               <div className="flex justify-between items-center mb-4 font-bold text-slate-700">
                 <h3>Preview</h3>
                 <button 
@@ -218,7 +292,7 @@ ${companyName} Support Team` : "";
               </div>
               <button 
                 onClick={handleSendEmail} 
-                className="w-full mt-6 bg-blue-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 shadow-xl transition"
+                className="w-full mt-6 bg-blue-600 text-white py-4 rounded-2xl font-bold flex items-center justify-center gap-2 hover:bg-blue-700 shadow-xl transition min-h-[44px]"
               >
                 <Send size={18} /> Send Notification
               </button>
@@ -247,10 +321,10 @@ ${companyName} Support Team` : "";
             </div>
 
             {/* Modal Body */}
-            <div className="p-8 space-y-6 max-h-[80vh] overflow-y-auto">
+            <div className="p-4 md:p-8 space-y-4 md:space-y-6 max-h-[80vh] overflow-y-auto">
               {/* Institution Row */}
               <div className="flex items-center gap-4 bg-slate-50 p-4 rounded-2xl border border-slate-100">
-                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold">
+                <div className="w-12 h-12 bg-blue-100 text-blue-600 rounded-xl flex items-center justify-center font-bold shrink-0">
                   <Building2 size={24} />
                 </div>
                 <div>
@@ -262,7 +336,7 @@ ${companyName} Support Team` : "";
               </div>
 
               {/* Info Grid */}
-              <div className="grid grid-cols-2 gap-y-6 gap-x-4 border-b pb-6">
+              <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-4 border-b pb-4 md:pb-6">
                 <div className="space-y-1">
                   <p className="text-[10px] font-bold text-slate-400 uppercase tracking-widest">Student</p>
                   <div className="flex items-center gap-2 text-sm font-semibold text-slate-700">
@@ -303,10 +377,10 @@ ${companyName} Support Team` : "";
               </div>
 
               {/* Assignment Footer */}
-              <div className="pt-4 flex gap-3 border-t border-slate-100">
+              <div className="pt-4 flex flex-col sm:flex-row gap-3 border-t border-slate-100">
                 {/* 🟠 Updated Detail Modal Reply Button */}
                 <button 
-                  className="flex-1 bg-blue-50 text-blue-700 py-3 rounded-xl font-bold hover:bg-blue-100 transition flex items-center justify-center gap-2"
+                  className="flex-1 bg-blue-50 text-blue-700 py-3 rounded-xl font-bold hover:bg-blue-100 transition flex items-center justify-center gap-2 min-h-[44px]"
                   onClick={() => {
                     setReplyingTo(selectedVerification);
                     setSelectedVerification(null);
@@ -316,7 +390,7 @@ ${companyName} Support Team` : "";
                 </button>
                 <button 
                   onClick={() => setSelectedVerification(null)}
-                  className="flex-1 bg-[#0b2a4a] text-white py-3 rounded-xl font-bold hover:bg-blue-900 transition shadow-lg"
+                  className="flex-1 bg-[#0b2a4a] text-white py-3 rounded-xl font-bold hover:bg-blue-900 transition shadow-lg min-h-[44px]"
                 >
                   Close View
                 </button>

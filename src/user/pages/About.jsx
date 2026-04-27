@@ -34,34 +34,34 @@ export default function About() {
   const navigate = useNavigate();
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen pt-24 text-gray-800">
+    <div className="bg-[#f8fafc] min-h-screen pt-20 sm:pt-24 text-gray-800">
 
       {/* HERO */}
-      <section style={{ backgroundColor: PRIMARY }} className="text-white py-20 px-6">
-        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <section style={{ backgroundColor: PRIMARY }} className="text-white py-16 sm:py-20 px-4 sm:px-6">
+        <div className="max-w-7xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-10 items-center">
 
           {/* TEXT */}
           <motion.div initial="hidden" animate="visible" variants={fadeUp}>
-            <h1 className="text-4xl md:text-5xl font-bold mb-4">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl font-bold mb-4">
               About <span className="text-blue-200">100 Transcripts</span>
             </h1>
 
-            <div className="w-20 h-1 bg-blue-300 mb-6"></div>
+            <div className="w-16 sm:w-20 h-1 bg-blue-300 mb-4 sm:mb-6"></div>
 
-            <p className="text-gray-200 mb-4 leading-relaxed">
+            <p className="text-gray-200 mb-4 leading-relaxed text-sm sm:text-base">
               100 Transcripts LLP is a specialized ISO-certified firm founded in 2016 in Hyderabad, India. 
               We are committed to excellence and dedicated to securing educational documents and transcripts 
               from universities across India.
             </p>
 
-            <p className="text-gray-200 mb-6 leading-relaxed">
+            <p className="text-gray-200 mb-6 leading-relaxed text-sm sm:text-base">
               We provide expert assistance for credential verification and transcripts for WES Canada, ECE, 
               IQAS, CES, and more—helping students who cannot visit universities in person.
             </p>
 
             <button
               onClick={() => navigate("/apply")}
-              className="bg-white text-[#3B5575] px-6 py-3 rounded-full font-semibold hover:scale-105 transition"
+              className="bg-white text-[#3B5575] px-6 py-3 rounded-full font-semibold hover:scale-105 transition min-h-[44px]"
             >
               Apply Now →
             </button>
@@ -70,7 +70,7 @@ export default function About() {
           {/* IMAGE */}
           <motion.img
             src="https://images.unsplash.com/photo-1522202176988-66273c2fd55f"
-            className="rounded-2xl shadow-xl"
+            className="rounded-2xl shadow-xl w-full"
             initial={{ opacity: 0, x: 80 }}
             animate={{ opacity: 1, x: 0 }}
           />
@@ -78,22 +78,22 @@ export default function About() {
       </section>
 
       {/* SECOND SECTION */}
-      <section className="py-20 px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-10 items-center">
+      <section className="py-16 sm:py-20 px-4 sm:px-6 max-w-7xl mx-auto grid md:grid-cols-2 gap-8 sm:gap-10 items-center">
         
         <motion.img
           src="https://images.unsplash.com/photo-1521737604893-d14cc237f11d"
-          className="rounded-2xl shadow-lg"
+          className="rounded-2xl shadow-lg w-full"
           initial={{ opacity: 0, x: -80 }}
           whileInView={{ opacity: 1, x: 0 }}
         />
 
         <motion.div variants={fadeUp} initial="hidden" whileInView="visible">
-          <p className="mb-4 text-gray-600 leading-relaxed">
+          <p className="mb-4 text-gray-600 leading-relaxed text-sm sm:text-base">
             We simplify the process of obtaining academic certificates and transcripts, helping our clients 
             save both time and effort. Our system ensures smooth and efficient processing.
           </p>
 
-          <p className="text-gray-600 leading-relaxed">
+          <p className="text-gray-600 leading-relaxed text-sm sm:text-base">
             With a dedicated team of professionals and 28 teams across India, we are proud of our reliability, 
             adaptability, and commitment. Trusted by 18,000+ applicants, we continue to build strong partnerships 
             across regions and cultures.
@@ -103,7 +103,7 @@ export default function About() {
 
       {/* STATS */}
       <motion.section
-        className="grid md:grid-cols-3 gap-8 px-6 max-w-6xl mx-auto pb-20"
+        className="grid md:grid-cols-3 gap-6 sm:gap-8 px-4 sm:px-6 max-w-6xl mx-auto pb-16 sm:pb-20"
         variants={staggerContainer}
         initial="hidden"
         whileInView="visible"
@@ -140,12 +140,12 @@ export default function About() {
 
 
 {/* CERTIFICATIONS SECTION */}
-<section className="px-6 pb-20">
-  <h2 className="text-3xl font-bold text-center mb-10 text-[#3B5575]">
+<section className="px-4 sm:px-6 pb-16 sm:pb-20">
+  <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-10 text-[#3B5575]">
     Our Recognitions & Certifications
   </h2>
 
-  <div className="grid md:grid-cols-3 gap-8 max-w-6xl mx-auto">
+  <div className="grid md:grid-cols-3 gap-6 sm:gap-8 max-w-6xl mx-auto">
 
     {[
       { img: certificate1, title: "StartupIndia Recognition" },
@@ -158,14 +158,14 @@ export default function About() {
         initial={{ opacity: 0, y: 40 }}
         whileInView={{ opacity: 1, y: 0 }}
       >
-        <h3 className="text-center font-semibold mb-3 text-[#3B5575]">
+        <h3 className="text-center font-semibold mb-3 text-[#3B5575] text-sm sm:text-base">
           {item.title}
         </h3>
 
         <img
           src={item.img}
           alt={item.title}
-          className="w-full h-[350px] object-contain rounded-lg"
+          className="w-full h-[250px] sm:h-[350px] object-contain rounded-lg"
         />
       </motion.div>
     ))}
@@ -174,13 +174,13 @@ export default function About() {
 </section>
 
 {/* AUTO SCROLLING IMAGES (3 VISIBLE) */}
-<section className="px-6 pb-20 overflow-hidden">
-  <h2 className="text-3xl font-bold text-center mb-10 text-[#3B5575]">
+<section className="px-4 sm:px-6 pb-16 sm:pb-20 overflow-hidden">
+  <h2 className="text-2xl sm:text-3xl font-bold text-center mb-8 sm:mb-10 text-[#3B5575]">
     Our Network & Presence
   </h2>
 
   <div className="w-full overflow-hidden">
-    <div className="flex gap-6 animate-scroll">
+    <div className="flex gap-4 sm:gap-6 animate-scroll">
 
       {[
         clgImg,
@@ -200,12 +200,12 @@ export default function About() {
       ].map((img, index) => (
         <div
           key={index}
-          className="min-w-[320px] bg-white rounded-2xl shadow-lg p-4"
+          className="min-w-[280px] sm:min-w-[320px] bg-white rounded-2xl shadow-lg p-3 sm:p-4"
         >
           <img
             src={img}
             alt={`img-${index}`}
-            className="w-full h-[220px] object-contain rounded-lg"
+            className="w-full h-[180px] sm:h-[220px] object-contain rounded-lg"
           />
         </div>
       ))}
@@ -215,23 +215,23 @@ export default function About() {
 </section>
 
       {/* CTA */}
-      <section className="px-6 pb-20">
+      <section className="px-4 sm:px-6 pb-16 sm:pb-20">
         <div
           style={{ backgroundColor: PRIMARY }}
-          className="max-w-4xl mx-auto text-white rounded-3xl p-10 text-center shadow-lg"
+          className="max-w-4xl mx-auto text-white rounded-3xl p-6 sm:p-10 text-center shadow-lg"
         >
-          <h2 className="text-3xl font-bold mb-4">
+          <h2 className="text-2xl sm:text-3xl font-bold mb-4">
             Need help getting academic documents from your college or university?
           </h2>
 
-          <p className="text-gray-200 mb-6 leading-relaxed">
+          <p className="text-gray-200 mb-6 leading-relaxed text-sm sm:text-base">
             Let 100 Transcripts LLP simplify your documentation process with certified transcripts, 
             E-Transcripts, and credential evaluations—trusted by thousands across India and abroad.
           </p>
 
           <button
             onClick={() => navigate("/apply")}
-            className="bg-white text-[#3B5575] px-6 py-3 rounded-full hover:scale-105 transition"
+            className="bg-white text-[#3B5575] px-6 py-3 rounded-full hover:scale-105 transition min-h-[44px]"
           >
             Get in Touch Today →
           </button>

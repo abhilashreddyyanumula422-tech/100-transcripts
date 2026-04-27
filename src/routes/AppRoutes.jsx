@@ -1,17 +1,25 @@
 import React from "react";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
+import ScrollToTop from "../components/ScrollToTop";
 
 /* ================= USER ================= */
 import MainLayout from "../user/layout/MainLayout";
 import Home from "../user/pages/Home";
 import About from "../user/pages/About";
+
 import Services from "../user/pages/Services";
+import IEEevaluation from "../user/pages/IEEevaluation";
+import ECE from "../user/pages/ECE";
+import SpanTran from "../user/pages/SpanTran";
+import WES from "../user/pages/WES";
+import EducationEva from "../user/pages/EducationEva";
 import Contact from "../user/pages/Contact";
 import FileStatus from "../user/pages/FileStatus";
 import Register from "../user/pages/Register";
 import Login from "../user/pages/login";
 import Apply from "../user/pages/Apply";
 import Logout from "../user/pages/Logout";
+
 
 /* ✅ NEW DYNAMIC PAGE */
 import CollegePage from "../user/pages/CollegePage";
@@ -29,6 +37,7 @@ import EmailNotificationTemplate from "../Admin/pages/EmailNotificationTemplate"
 const AppRoutes = () => {
   return (
     <BrowserRouter>
+      <ScrollToTop />
       <Routes>
 
         {/* ================= USER ROUTES ================= */}
@@ -38,6 +47,11 @@ const AppRoutes = () => {
           <Route path="mission" element={<About />} />
           <Route path="values" element={<About />} />
           <Route path="services" element={<Services />} />
+           <Route path="services/iee" element={<IEEevaluation />} />
+           <Route path="services/ece" element={<ECE />} />
+           <Route path="services/spantran" element={<SpanTran />} />
+          <Route path="services/wes" element={<WES />} />
+          <Route path="services/ep" element={<EducationEva />} />
           <Route path="apply" element={<Apply />} />
           <Route path="contact" element={<Contact />} />
           <Route path="file-status" element={<FileStatus />} />

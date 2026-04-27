@@ -54,25 +54,25 @@ const Reviews = () => {
 
   return (
     <section className="w-full overflow-hidden bg-white py-20">
-      <div className="mx-auto mb-14 max-w-7xl px-6 text-center md:px-12">
+      <div className="mx-auto mb-10 sm:mb-14 max-w-7xl px-4 sm:px-6 text-center md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-center gap-4">
-            <span className="h-[3px] w-12 bg-blue-600"></span>
-            <p className="text-sm font-bold uppercase tracking-wider text-blue-600">
+            <span className="h-[2px] sm:h-[3px] w-8 sm:w-12 bg-blue-600"></span>
+            <p className="text-xs sm:text-sm font-bold uppercase tracking-wider text-blue-600">
               Reviews
             </p>
-            <span className="h-[3px] w-12 bg-blue-600"></span>
+            <span className="h-[2px] sm:h-[3px] w-8 sm:w-12 bg-blue-600"></span>
           </div>
 
-          <h2 className="mt-3 text-3xl font-bold text-[#2f4a6d] md:text-4xl">
+          <h2 className="mt-3 text-2xl sm:text-3xl font-bold text-[#2f4a6d] md:text-4xl">
             What Our Customers Say
           </h2>
 
-          <p className="mx-auto mt-3 max-w-2xl text-gray-500">
+          <p className="mx-auto mt-3 max-w-2xl text-gray-500 text-xs sm:text-sm">
             Trusted by thousands of students and professionals across India for
             fast, reliable, and stress-free transcript support.
           </p>

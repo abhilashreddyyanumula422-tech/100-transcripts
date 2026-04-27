@@ -68,29 +68,29 @@ const Login = () => {
   };
 
   return (
-    <div className="bg-[#f5f7fb] min-h-screen flex items-center justify-center px-4">
+    <div className="bg-[#f5f7fb] min-h-screen flex items-center justify-center px-4 py-8">
 
       <motion.div
-        className="w-full max-w-md bg-white p-10 rounded-[32px] shadow-xl"
+        className="w-full max-w-md bg-white p-6 sm:p-8 md:p-10 rounded-[24px] sm:rounded-[28px] md:rounded-[32px] shadow-xl"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
       >
 
         {/* TITLE */}
-        <div className="text-center mb-6">
-          <h2 className="text-4xl font-extrabold text-[#0f172a] whitespace-nowrap">
+        <div className="text-center mb-4 sm:mb-6">
+          <h2 className="text-2xl sm:text-3xl md:text-4xl font-extrabold text-[#0f172a] whitespace-nowrap">
             Welcome Back
           </h2>
-          <p className="text-gray-400 text-sm mt-2 tracking-wide">
+          <p className="text-gray-400 text-xs sm:text-sm mt-2 tracking-wide">
             SIGN IN TO TRACK YOUR FILES
           </p>
         </div>
 
-        <form onSubmit={handleLogin} className="space-y-5">
+        <form onSubmit={handleLogin} className="space-y-4 sm:space-y-5">
 
           {/* EMAIL */}
           <div className="relative">
-            <FiMail className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" />
+            <FiMail className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 text-gray-400" />
             <input
               type="email"
               name="email"
@@ -98,13 +98,13 @@ const Login = () => {
               value={form.email}
               onChange={handleChange}
               required
-              className="w-full bg-gray-100 py-4 pl-14 pr-4 rounded-full outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="w-full bg-gray-100 py-3 sm:py-4 pl-12 sm:pl-14 pr-4 rounded-full outline-none focus:ring-2 focus:ring-blue-400 transition text-sm sm:text-base"
             />
           </div>
 
           {/* PASSWORD */}
           <div className="relative">
-            <FiLock className="absolute left-5 top-1/2 -translate-y-1/2 text-gray-400" />
+            <FiLock className="absolute left-4 sm:left-5 top-1/2 -translate-y-1/2 text-gray-400" />
 
             <input
               type={showPassword ? "text" : "password"}
@@ -113,11 +113,11 @@ const Login = () => {
               value={form.password}
               onChange={handleChange}
               required
-              className="w-full bg-gray-100 py-4 pl-14 pr-12 rounded-full outline-none focus:ring-2 focus:ring-blue-400 transition"
+              className="w-full bg-gray-100 py-3 sm:py-4 pl-12 sm:pl-14 pr-10 sm:pr-12 rounded-full outline-none focus:ring-2 focus:ring-blue-400 transition text-sm sm:text-base"
             />
 
             <div
-              className="absolute right-5 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer"
+              className="absolute right-4 sm:right-5 top-1/2 -translate-y-1/2 text-gray-400 cursor-pointer min-h-[44px] flex items-center"
               onClick={() => setShowPassword(!showPassword)}
             >
               {showPassword ? <FiEye /> : <FiEyeOff />}
@@ -128,7 +128,7 @@ const Login = () => {
           <button
             type="submit"
             disabled={loading}
-            className="w-full bg-[#2f4a6d] text-white py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#1e3552] transition shadow-lg disabled:opacity-50"
+            className="w-full bg-[#2f4a6d] text-white py-3 sm:py-4 rounded-full font-semibold flex items-center justify-center gap-2 hover:bg-[#1e3552] transition shadow-lg disabled:opacity-50 min-h-[44px] text-sm sm:text-base"
           >
             {loading ? "Signing In..." : "Sign In"} <FiArrowRight />
           </button>
@@ -136,8 +136,8 @@ const Login = () => {
         </form>
 
         {/* FOOTER */}
-        <p className="text-center text-sm text-gray-500 mt-6">
-          Don’t have an account?{" "}
+        <p className="text-center text-xs sm:text-sm text-gray-500 mt-4 sm:mt-6">
+          Don't have an account?{" "}
           <Link to="/register" className="text-blue-500 font-medium hover:underline">
             Register
           </Link>

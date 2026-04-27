@@ -9,33 +9,33 @@ const points = [
 
 const WhoWeAre = () => {
   return (
-    <section className="w-full bg-gradient-to-b from-white via-slate-50 to-slate-100 py-16">
-      <div className="mx-auto max-w-7xl px-6 md:px-12">
+    <section className="w-full bg-gradient-to-b from-white via-slate-50 to-slate-100 py-12 sm:py-16">
+      <div className="mx-auto max-w-7xl px-4 sm:px-6 md:px-12">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
-          className="mb-12 text-center"
+          className="mb-8 sm:mb-12 text-center"
         >
           <div className="flex items-center justify-center gap-4">
-            <span className="h-[2px] w-14 bg-blue-600" />
-            <p className="text-sm md:text-base font-bold uppercase text-blue-600 tracking-wider">
+            <span className="h-[2px] sm:h-[2px] w-8 sm:w-14 bg-blue-600" />
+            <p className="text-xs sm:text-sm md:text-base font-bold uppercase text-blue-600 tracking-wider">
               Who We Are
             </p>
-            <span className="h-[2px] w-14 bg-blue-600" />
+            <span className="h-[2px] sm:h-[2px] w-8 sm:w-14 bg-blue-600" />
           </div>
 
-          <h2 className="mt-4 text-3xl font-bold leading-tight text-[#2f4a6d] md:text-4xl">
+          <h2 className="mt-4 text-2xl sm:text-3xl font-bold leading-tight text-[#2f4a6d] md:text-4xl">
             Trusted transcript support for your education and global journey
           </h2>
 
-          <p className="mx-auto mt-4 max-w-2xl text-sm leading-7 text-slate-600 md:text-base">
+          <p className="mx-auto mt-4 max-w-2xl text-xs leading-7 text-slate-600 sm:text-sm md:text-base">
             We help students and professionals process academic documents
             quickly, securely, and without unnecessary delays.
           </p>
         </motion.div>
 
-        <div className="grid items-center gap-10 md:grid-cols-2">
+        <div className="grid items-center gap-8 md:gap-10 grid-cols-1 md:grid-cols-2">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             whileInView={{ opacity: 1, x: 0 }}
@@ -76,7 +76,7 @@ const WhoWeAre = () => {
                 whileHover={{ scale: 1.04 }}
                 whileTap={{ scale: 0.98 }}
                 href="/about"
-                className="mt-8 inline-flex items-center rounded-full bg-[#2f4a6d] px-6 py-3 text-sm font-semibold text-white shadow-md transition hover:bg-[#243a57]"
+                className="mt-6 sm:mt-8 inline-flex items-center justify-center rounded-full bg-[#2f4a6d] px-5 sm:px-6 py-3 text-xs sm:text-sm font-semibold text-white shadow-md transition hover:bg-[#243a57] min-h-[44px]"
               >
                 View More
               </motion.a>

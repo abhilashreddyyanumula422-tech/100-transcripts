@@ -250,13 +250,13 @@ const DeliveryManagement = () => {
   // 🟢 Filter & Search Logic
   const filteredDeliveries = deliveries.filter(d => {
     const matchesSearch = d.id.toLowerCase().includes(searchQuery.toLowerCase()) || 
-                         d.student.toLowerCase().includes(searchQuery.toLowerCase());
+                          d.student.toLowerCase().includes(searchQuery.toLowerCase());
     const matchesStatus = statusFilter === "All" || d.status === statusFilter;
     return matchesSearch && matchesStatus;
   });
 
   return (
-    <div className="min-h-screen bg-slate-50 p-6 font-sans text-slate-900 relative">
+    <div className="min-h-screen bg-slate-50 p-6 font-sans text-slate-900 relative pb-24">
       
       {/* 🟢 HEADER SECTION */}
       <div className="max-w-7xl mx-auto mb-10">
@@ -293,9 +293,11 @@ const DeliveryManagement = () => {
         </div>
       </div>
 
-      {/* 🟢 SHIPMENT TABLE */}
+      {/* 🟢 SHIPMENT DATA SECTION */}
       <div className="max-w-7xl mx-auto">
-        <div className="bg-white border border-slate-200 rounded-[2.5rem] shadow-xl overflow-hidden">
+        
+        {/* --- DESKTOP VIEW (TABLE) --- */}
+        <div className="hidden md:block bg-white border border-slate-200 rounded-[2.5rem] shadow-xl overflow-hidden">
           <table className="w-full text-left">
             <thead>
               <tr className="bg-slate-50/80 border-b border-slate-100">
@@ -348,9 +350,68 @@ const DeliveryManagement = () => {
             </tbody>
           </table>
         </div>
+
+        {/* --- MOBILE VIEW (CARDS) ✅ NEW --- */}
+        <div className="block md:hidden space-y-4">
+          {filteredDeliveries.length > 0 ? (
+            filteredDeliveries.map((item) => (
+              <div key={item.id} className="bg-white border border-slate-200 rounded-3xl p-5 shadow-sm hover:shadow-md transition-all flex flex-col gap-4">
+                
+                {/* Card Header */}
+                <div className="flex justify-between items-start">
+                  <div className="flex items-center gap-3">
+                    <div className="w-10 h-10 bg-slate-100 rounded-xl flex items-center justify-center text-slate-500">
+                      <Package size={18} />
+                    </div>
+                    <div>
+                      <p className="text-sm font-black text-blue-600">{item.id}</p>
+                      <p className="text-[11px] font-bold text-slate-500 line-clamp-1">{item.item}</p>
+                    </div>
+                  </div>
+                  <span className={`px-3 py-1 rounded-full text-[10px] font-black uppercase tracking-widest border whitespace-nowrap mt-1 ${
+                    item.status === 'Delivered' ? 'bg-emerald-50 text-emerald-600 border-emerald-100' : 'bg-blue-50 text-blue-600 border-blue-100'
+                  }`}>
+                    {item.status}
+                  </span>
+                </div>
+
+                {/* Info Grid */}
+                <div className="grid grid-cols-2 gap-y-3 bg-slate-50 p-4 rounded-2xl border border-slate-100">
+                  <div>
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Student</span>
+                    <span className="text-sm font-bold text-slate-800">{item.student}</span>
+                  </div>
+                  <div>
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Courier</span>
+                    <span className="text-sm font-bold text-slate-800">{item.courierPartner}</span>
+                  </div>
+                  <div className="col-span-2 pt-1 border-t border-slate-200 mt-1">
+                    <span className="block text-[10px] font-black uppercase tracking-widest text-slate-400 mb-0.5">Last Hub</span>
+                    <span className="text-sm font-bold text-slate-600 flex items-center gap-1">
+                      <MapPin size={12} className="text-blue-500"/> {item.currentLocation}
+                    </span>
+                  </div>
+                </div>
+
+                {/* Actions */}
+                <button 
+                  onClick={() => setSelectedTracking(item)}
+                  className="w-full py-3 bg-slate-900 text-white rounded-xl text-xs font-bold hover:bg-blue-600 transition-all shadow-md active:scale-95 flex items-center justify-center gap-2"
+                >
+                  <Search size={14} /> Track Shipment
+                </button>
+              </div>
+            ))
+          ) : (
+            <div className="bg-white border border-slate-200 rounded-3xl p-10 text-center shadow-sm">
+              <Package size={32} className="mx-auto text-slate-300 mb-3" />
+              <p className="text-slate-500 font-bold">No Shipments Found</p>
+            </div>
+          )}
+        </div>
       </div>
 
-      {/* 🟢 FILTER MODAL (THE PART THAT WORKS) */}
+      {/* 🟢 FILTER MODAL */}
       {isFilterOpen && (
         <div className="fixed inset-0 z-[110] bg-slate-900/40 backdrop-blur-sm flex items-center justify-center p-4">
           <div className="bg-white rounded-3xl w-full max-w-sm shadow-2xl p-6 space-y-6 animate-in zoom-in-95 duration-200">
@@ -434,7 +495,7 @@ const DeliveryManagement = () => {
                           <MapPin size={10} className="inline mr-1 text-red-400" /> {step.location}
                         </p>
                       </div>
-                      <div className="text-right">
+                      <div className="text-left sm:text-right mt-1 sm:mt-0">
                         <p className="text-[11px] font-bold text-blue-600 bg-blue-50 px-2 py-1 rounded-md inline-block">
                           {step.time}
                         </p>
@@ -449,7 +510,7 @@ const DeliveryManagement = () => {
             <div className="p-6 bg-slate-50 border-t border-slate-100 flex justify-end">
               <button 
                 onClick={() => setSelectedTracking(null)}
-                className="px-8 py-3 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-lg"
+                className="w-full sm:w-auto px-8 py-3 bg-slate-900 text-white rounded-2xl text-[10px] font-black uppercase tracking-widest hover:bg-blue-600 transition-all shadow-lg"
               >
                 Close Tracking
               </button>

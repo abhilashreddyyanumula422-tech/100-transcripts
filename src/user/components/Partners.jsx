@@ -38,25 +38,25 @@ const Partners = () => {
     <section className="w-full py-20 bg-white overflow-hidden">
 
       {/* 🔥 HEADING */}
-      <div className="max-w-7xl mx-auto px-6 md:px-12 mb-14 text-center">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 md:px-12 mb-10 sm:mb-14 text-center">
         <motion.div
           initial={{ opacity: 0, y: 40 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.6 }}
         >
           <div className="flex items-center justify-center gap-4">
-            <span className="w-12 h-[3px] bg-blue-600"></span>
-            <p className="text-sm font-bold uppercase text-blue-600 tracking-wider">
+            <span className="w-8 sm:w-12 h-[2px] sm:h-[3px] bg-blue-600"></span>
+            <p className="text-xs sm:text-sm font-bold uppercase text-blue-600 tracking-wider">
               Our Partners
             </p>
-            <span className="w-12 h-[3px] bg-blue-600"></span>
+            <span className="w-8 sm:w-12 h-[2px] sm:h-[3px] bg-blue-600"></span>
           </div>
 
-          <h2 className="mt-3 text-3xl md:text-4xl font-bold text-[#2f4a6d]">
+          <h2 className="mt-3 text-2xl sm:text-3xl md:text-4xl font-bold text-[#2f4a6d]">
             Credential Associates We Serve
           </h2>
 
-          <p className="mt-3 text-gray-500 max-w-2xl mx-auto">
+          <p className="mt-3 text-gray-500 max-w-2xl mx-auto text-xs sm:text-sm">
             We collaborate with globally recognized evaluation bodies to ensure
             fast, reliable, and trusted transcript services.
           </p>

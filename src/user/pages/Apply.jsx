@@ -1430,7 +1430,7 @@ export default function Apply() {
   }, []);
 
   // ✅ Dynamic API Base
-  const API_BASE = `http://${window.location.hostname}:8000`;
+  const API_BASE = `http://192.168.1.43:8000`;
 
   const goStep = useCallback((n) => {
     setActiveStep(n);
@@ -1618,7 +1618,7 @@ const handleRefund = async () => {
   if (!confirmRefund) return;
 
   try {
-    const res = await fetch(`http://${window.location.hostname}:8000/api/refund/`, {
+    const res = await fetch(`http://192.168.1.43:8000/api/refund/`, {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

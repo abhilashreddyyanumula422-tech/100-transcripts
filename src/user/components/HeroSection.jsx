@@ -42,7 +42,7 @@ const HeroSection = () => {
     if (globeRef.current) {
       // Auto-rotate
       globeRef.current.controls().autoRotate = true;
-      globeRef.current.controls().autoRotateSpeed = 0.4;
+      globeRef.current.controls().autoRotateSpeed = 0.2;
       globeRef.current.controls().enableZoom = false;
       
       // Initial position to show India
@@ -51,33 +51,33 @@ const HeroSection = () => {
   }, []);
 
   return (
-    <div className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-28 pb-20 overflow-hidden">
+    <div className="relative bg-gradient-to-br from-blue-50 via-white to-blue-100 pt-24 sm:pt-28 pb-16 sm:pb-20 overflow-hidden">
       {/* Background Decorative Elements */}
-      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/30 rounded-full blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
-      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
+      <div className="absolute top-0 right-0 w-[300px] sm:w-[400px] md:w-[600px] h-[300px] sm:h-[400px] md:h-[600px] bg-blue-100/30 rounded-full blur-[60px] sm:blur-[100px] md:blur-[120px] -z-10 translate-x-1/2 -translate-y-1/2"></div>
+      <div className="absolute bottom-0 left-0 w-[200px] sm:w-[300px] md:w-[400px] h-[200px] sm:h-[300px] md:h-[400px] bg-blue-50/50 rounded-full blur-[50px] sm:blur-[75px] md:blur-[100px] -z-10 -translate-x-1/4 translate-y-1/4"></div>
 
-      <div className="max-w-7xl mx-auto px-6 grid md:grid-cols-2 items-center gap-10 relative z-10">
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 grid md:grid-cols-2 items-center gap-8 sm:gap-10 relative z-10">
 
         {/* LEFT CONTENT */}
-        <div className="space-y-8">
+        <div className="space-y-6 sm:space-y-8">
           <motion.div
             initial={{ opacity: 0, x: -50 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8 }}
           >
-            <h1 className="text-5xl md:text-6xl font-black text-[#2f4a6d] leading-[1.1] tracking-tight">
+            <h1 className="text-3xl sm:text-4xl md:text-5xl lg:text-6xl font-black text-[#2f4a6d] leading-[1.1] tracking-tight">
               India’s #1 Trusted <br />
               <span className="text-[#3b82f6]">Transcripts</span> Provider
             </h1>
           </motion.div>
 
           <motion.p 
-            className="text-[#2f4a6d] opacity-80 text-lg max-w-md font-medium leading-relaxed"
+            className="text-[#2f4a6d] opacity-80 text-sm sm:text-base md:text-lg max-w-md font-medium leading-relaxed"
             initial={{ opacity: 0, x: -30 }}
             animate={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.8, delay: 0.2 }}
           >
-            Your Gateway to <span className="bg-[#3b82f6] text-white px-3 py-1 rounded-full font-bold text-xs uppercase tracking-wider shadow-lg shadow-blue-500/20">Global</span> Education and Career – Providing official university transcripts and evaluation support.
+            Your Gateway to <span className="bg-[#3b82f6] text-white px-2 sm:px-3 py-1 rounded-full font-bold text-[10px] sm:text-xs uppercase tracking-wider shadow-lg shadow-blue-500/20">Global</span> Education and Career – Providing official university transcripts and evaluation support.
           </motion.p>
 
           {/* SEARCH BAR */}
@@ -90,20 +90,20 @@ const HeroSection = () => {
             <input
               type="text"
               placeholder="Enter Your University Name..."
-              className="flex-1 px-6 py-4 outline-none text-[#2f4a6d] font-medium placeholder:text-slate-400"
+              className="flex-1 px-4 sm:px-6 py-3 sm:py-4 outline-none text-[#2f4a6d] font-medium placeholder:text-slate-400 text-sm sm:text-base"
             />
-            <button className="bg-[#2f4a6d] text-white px-8 rounded-full font-bold hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-500/20">
+            <button className="bg-[#2f4a6d] text-white px-4 sm:px-6 md:px-8 py-3 sm:py-4 rounded-full font-bold hover:bg-blue-700 transition-all active:scale-95 shadow-lg shadow-blue-500/20 text-xs sm:text-sm min-h-[44px]">
               Start Now
             </button>
           </motion.div>
 
           <motion.button 
-            className="flex items-center gap-2 text-[#2f4a6d] font-bold hover:gap-4 transition-all"
+            className="flex items-center gap-2 text-[#2f4a6d] font-bold hover:gap-4 transition-all text-sm sm:text-base"
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 0.6 }}
           >
-            Learn More <span className="text-xl">→</span>
+            Learn More <span className="text-lg sm:text-xl">→</span>
           </motion.button>
         </div>
 
@@ -154,7 +154,7 @@ atmosphereAltitude={0.4}
 
           {/* Floating Educational Icons */}
           <motion.div 
-            className="absolute top-20 left-10 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 text-[#3b82f6]"
+            className="hidden md:block absolute top-20 left-10 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 text-[#3b82f6]"
             animate={{ y: [0, -20, 0] }}
             transition={{ repeat: Infinity, duration: 4, ease: "easeInOut" }}
           >
@@ -162,7 +162,7 @@ atmosphereAltitude={0.4}
           </motion.div>
 
           <motion.div 
-            className="absolute bottom-20 right-10 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 text-[#60a5fa]"
+            className="hidden md:block absolute bottom-20 right-10 p-4 bg-white/80 backdrop-blur-sm rounded-2xl shadow-xl border border-white/50 text-[#60a5fa]"
             animate={{ y: [0, 20, 0] }}
             transition={{ repeat: Infinity, duration: 5, ease: "easeInOut", delay: 1 }}
           >
@@ -170,7 +170,7 @@ atmosphereAltitude={0.4}
           </motion.div>
 
           <motion.div 
-            className="absolute top-1/4 right-0 p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/50 text-slate-400"
+            className="hidden md:block absolute top-1/4 right-0 p-3 bg-white/80 backdrop-blur-sm rounded-xl shadow-lg border border-white/50 text-slate-400"
             animate={{ x: [0, 15, 0] }}
             transition={{ repeat: Infinity, duration: 6, ease: "easeInOut", delay: 0.5 }}
           >

@@ -148,6 +148,7 @@
 //   );
 // };
 
+// export default Footer;
 
 
 
@@ -223,16 +224,16 @@ const Footer = () => {
 
   return (
     <footer className="bg-[#243b5a] text-white">
-      <div className="mx-auto max-w-7xl px-6 py-10 md:px-12">
-        <div className="grid gap-8 border-b border-white/10 pb-8 md:grid-cols-2 lg:grid-cols-4">
-          <div>
+      <div className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-12">
+        <div className="grid gap-6 border-b border-white/10 pb-6 md:gap-8 md:pb-8 sm:grid-cols-2 lg:grid-cols-4">
+          <div className="sm:col-span-2 lg:col-span-1">
             <Link to="/" className="inline-block">
               <h2 className="text-xl font-bold tracking-tight md:text-2xl">
                 <span className="text-blue-400">100</span>{" "}
                 <span className="text-white">Transcripts</span>
               </h2>
             </Link>
-            
+
 
             <p className="mt-3 max-w-sm text-sm leading-6 text-blue-100/85">
               Delivers fast, secure Indian university educational documents for
@@ -244,16 +245,16 @@ const Footer = () => {
                 Follow Us
               </h4>
 
-              <div className="flex flex-wrap gap-3">
+              <div className="flex flex-wrap gap-2 sm:gap-3">
                 {socialLinks.map((item) => (
                   <a
                     key={item.name}
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-4 py-2 text-sm text-blue-100/90 transition-all duration-300 hover:-translate-y-0.5 hover:text-white ${item.bg}`}
+                    className={`group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-100/90 transition-all duration-300 hover:-translate-y-0.5 hover:text-white ${item.bg} min-h-[44px]`}
                   >
-                    <span className="text-sm">{item.icon}</span>
+                    <span className="text-xs sm:text-sm">{item.icon}</span>
                     <span>{item.name}</span>
                   </a>
                 ))}
@@ -278,9 +279,9 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-blue-100/85">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
-<Link to={link.path} className="transition hover:text-white">
-  {link.name}
-</Link>
+                  <Link to={link.path} className="flex items-center py-1 transition hover:text-white min-h-[44px]">
+                    {link.name}
+                  </Link>
                 </li>
               ))}
             </ul>
@@ -294,11 +295,11 @@ const Footer = () => {
             <ul className="space-y-2 text-sm text-blue-100/85">
 {companyLinks.map((link) => (
   <li key={link.name}>
-    
+
     {link.name === "Terms & Conditions" ? (
       <button
         onClick={() => setOpenTerms(true)}
-        className="transition hover:text-white text-left"
+        className="flex items-center py-1 w-full text-left transition hover:text-white min-h-[44px]"
       >
         {link.name}
       </button>
@@ -306,7 +307,7 @@ const Footer = () => {
     ) : link.name === "Privacy Policy" ? (
       <button
         onClick={() => setOpenPolicy(true)}
-        className="transition hover:text-white text-left"
+        className="flex items-center py-1 w-full text-left transition hover:text-white min-h-[44px]"
       >
         {link.name}
       </button>
@@ -314,13 +315,13 @@ const Footer = () => {
     ) : link.name === "Refund & Cancellation" ? (
       <button
         onClick={() => setOpenRefund(true)}
-        className="transition hover:text-white text-left"
+        className="flex items-center py-1 w-full text-left transition hover:text-white min-h-[44px]"
       >
         {link.name}
       </button>
 
     ) : (
-      <Link to={link.path} className="transition hover:text-white">
+      <Link to={link.path} className="flex items-center py-1 transition hover:text-white min-h-[44px]">
         {link.name}
       </Link>
     )}
@@ -330,7 +331,7 @@ const Footer = () => {
             </ul>
           </div>
 
-          <div>
+          <div className="sm:col-span-2 lg:col-span-1">
             <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200/80">
               Contact Us
             </h4>
@@ -396,27 +397,27 @@ const Footer = () => {
         </div>
 
         <div className="flex flex-col gap-2 pt-4 text-xs text-blue-100/70 sm:flex-row sm:items-center sm:justify-between">
-          <p>© {currentYear} 100 Transcripts LLP. All rights reserved.</p>
+          <p className="text-center sm:text-left">© {currentYear} 100 Transcripts LLP. All rights reserved.</p>
 
 <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-center sm:text-right">
-  
+
   <button
   onClick={() => setOpenTerms(true)}
-  className="transition hover:text-white"
+  className="py-2 px-2 transition hover:text-white min-h-[44px] flex items-center justify-center sm:justify-end"
 >
   Terms & Conditions
 </button>
 
   <button
   onClick={() => setOpenPolicy(true)}
-  className="transition hover:text-white"
+  className="py-2 px-2 transition hover:text-white min-h-[44px] flex items-center justify-center sm:justify-end"
 >
   Privacy Policy
 </button>
 
   <button
   onClick={() => setOpenRefund(true)}
-  className="transition hover:text-white"
+  className="py-2 px-2 transition hover:text-white min-h-[44px] flex items-center justify-center sm:justify-end"
 >
   Refund & Cancellation
 </button>
@@ -443,7 +444,7 @@ const Footer = () => {
 
 
     </footer>
-    
+
   );
 };
 
