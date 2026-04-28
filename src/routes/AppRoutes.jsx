@@ -14,13 +14,19 @@ import SpanTran from "../user/pages/SpanTran";
 import WES from "../user/pages/WES";
 import EducationEva from "../user/pages/EducationEva";
 import EP from "../user/pages/EP";
-import ProvisionalCertificate from "../user/pages/provisionalCertificate";
+
 import Contact from "../user/pages/Contact";
 import FileStatus from "../user/pages/FileStatus";
 import Register from "../user/pages/Register";
 import Login from "../user/pages/login";
 import Apply from "../user/pages/Apply";
 import Logout from "../user/pages/Logout";
+
+import Transcripts from "../user/pages/Transcripts";
+import ProvisionalCertificate from "../user/pages/ProvisionalCertificate";
+import OriginalDegree from "../user/pages/OriginalDegree";
+import MOICertificate from "../user/pages/MOICertificate";
+import CMM from "../user/pages/CMM";
 
 
 /* ✅ NEW DYNAMIC PAGE */
@@ -62,6 +68,13 @@ const AppRoutes = () => {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
+
+          {/* Certificate Service Routes */}
+          <Route path="services/transcripts" element={<Transcripts />} />
+          <Route path="services/pc" element={<ProvisionalCertificate />} />
+          <Route path="services/od" element={<OriginalDegree />} />
+          <Route path="services/moi" element={<MOICertificate />} />
+          <Route path="services/cmm" element={<CMM />} />
 
           {/* ✅ DYNAMIC COLLEGE ROUTE */}
           <Route path="partnered-colleges/:collegeId" element={<CollegePage />} />

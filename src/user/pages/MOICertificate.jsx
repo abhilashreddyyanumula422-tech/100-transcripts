@@ -1,188 +1,343 @@
-import React from "react";
-import { motion } from "framer-motion";
+import React, { useState } from "react";
+import { motion, AnimatePresence } from "framer-motion";
+import { FiBookOpen, FiCheckCircle, FiClock, FiGlobe, FiArrowRight, FiUpload, FiSettings, FiTruck, FiCheck, FiFileText, FiChevronDown, FiChevronUp, FiPhone, FiMail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
-import { ArrowRight, BookOpen, CheckCircle2, ShieldCheck, Clock, FileText, Award, Globe } from "lucide-react";
+import certificateImg1 from "../../assets/ANU.png";
+import certificateImg2 from "../../assets/AU-MOI.png";
+import certificateImg3 from "../../assets/BDU.png";
+import cesLogo from "../../assets/CES.png";
+import eceLogo from "../../assets/ECE.png";
+import enicLogo from "../../assets/ENIC.png";
+import icasLogo from "../../assets/ICAS.png";
+import ieeLogo from "../../assets/IEE-1.png";
+import iqasLogo from "../../assets/IQAS.png";
+import nasabLogo from "../../assets/NASAB.png";
+import pebcLogo from "../../assets/PEBC.png";
+import spantraLogo from "../../assets/Spantra.png";
+import wesLogo from "../../assets/WES.png";
 
 const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
+  hidden: { opacity: 5, y: 40 },
   visible: { opacity: 1, y: 0 },
 };
 
 const MOICertificate = () => {
   const navigate = useNavigate();
+  const [openFaq, setOpenFaq] = useState(null);
 
-  const checklist = [
-    "Degree Certificate copy",
-    "Consolidated Mark Sheet",
-    "Passport Copy (First & Last page)",
-    "Admissions Letter (Optional)",
-    "University Roll Number"
+  const toggleFaq = (index) => {
+    setOpenFaq(openFaq === index ? null : index);
+  };
+
+  const faqs = [
+    {
+      question: "What is a Medium Certificate?",
+      answer: "Medium of instruction (MOI) is a certificate that shows whether the student studied in English Medium or Not. Examples include BDU MOI Certificate, Dr. N.T.R MOI Certificate, JNTUK MOI Certificate."
+    },
+    {
+      question: "I just came to know at the last minute that we need to upload the MOI Softcopy to UK ECCTIS portal. I don't have much time.",
+      answer: "Our Universities would take certain time, but we can help expedite the process for you."
+    },
+    {
+      question: "Are there any alternatives for MOI?",
+      answer: "Yes. A) If your Degree Certificate is showing 'Medium is English', then no need of a separate MOI. B) If your Degree Certificate is showing college name and then you are eligible to apply MOI from college as well."
+    },
+    {
+      question: "Why do they need Medium Certificate though my BTech is in English Medium everywhere?",
+      answer: "India is a non English speaking country. Hence we need to show this exclusively to foreign universities."
+    },
+    {
+      question: "Can I call you once to discuss?",
+      answer: "Sure. Please don't hesitate to give a call @ +91 9941 9914 02 to discuss alternatives."
+    },
+    {
+      question: "Should I apply Medium Certificate at the College or University?",
+      answer: "Ideally this should be applied at the University, because all your academic documents show University name on top of them, not the college name."
+    },
+    {
+      question: "How much time does our University take?",
+      answer: "Each university follows their own timelines. For example: JNTUH takes 5 working days, NTRUHS takes 10-20 working days, Andhra University takes 7-15 working days, etc."
+    },
+    {
+      question: "What are all the documents needed to apply MOI?",
+      answer: "Copy of Original Degree/ Provisional certificate + ID proof."
+    },
+    {
+      question: "Can you apply on behalf of me?",
+      answer: "Sure. Just click the WhatsApp button and our backend team will revert with step by step process."
+    },
+    {
+      question: "What are the important points to check in an MOI?",
+      answer: "Check that the certificate clearly states 'Medium of Instruction: English' and includes your name, degree, university name, and date."
+    }
   ];
 
-  const features = [
-    { 
-      icon: <Globe className="w-8 h-8" />, 
-      title: "Global Acceptance", 
-      desc: "Widely accepted by universities in UK, USA, and Europe.", 
-      color: "text-blue-600", 
-      bg: "bg-blue-50" 
+  const steps = [
+    {
+      icon: <FiUpload />,
+      title: "Uploads",
+      description: "Students upload documents to collaboration page.",
     },
-    { 
-      icon: <ShieldCheck className="w-8 h-8" />, 
-      title: "Official Format", 
-      desc: "Issued on university letterhead with official seal.", 
-      color: "text-emerald-600", 
-      bg: "bg-emerald-50" 
+    {
+      icon: <FiCheckCircle />,
+      title: "Reviews",
+      description: "Documents are reviewed and verified.",
     },
-    { 
-      icon: <Clock className="w-8 h-8" />, 
-      title: "Rapid Turnaround", 
-      desc: "Get your MOI letter within university timelines.", 
-      color: "text-indigo-600", 
-      bg: "bg-indigo-50" 
+    {
+      icon: <FiSettings />,
+      title: "Processes",
+      description: "College processes and issues the documents back.",
     },
-    { 
-      icon: <Award className="w-8 h-8" />, 
-      title: "Expert Review", 
-      desc: "Double-checked for accuracy before delivery.", 
-      color: "text-amber-600", 
-      bg: "bg-amber-50" 
+    {
+      icon: <FiTruck />,
+      title: "Delivers",
+      description: "Final documents delivered to students.",
     },
+  ];
+
+  const agencies = [
+    { name: "World Education Services (WES)", short: "WES", logo: wesLogo },
+    { name: "Educational Credential Evaluators (ECE)", short: "ECE", logo: eceLogo },
+    { name: "International Education Evaluations (IEE)", short: "IEE", logo: ieeLogo },
+    { name: "SpanTran", short: "SpanTran", logo: spantraLogo },
+    { name: "IQAS Canada", short: "IQAS", logo: iqasLogo },
+    { name: "UK ENIC / NARIC", short: "NARIC", logo: enicLogo },
+    { name: "CES", short: "CES", logo: cesLogo },
+    { name: "ICAS", short: "ICAS", logo: icasLogo },
+    { name: "NASAB", short: "NASAB", logo: nasabLogo },
+    { name: "PEBC", short: "PEBC", logo: pebcLogo },
+  ];
+
+  const documents = [
+    "Copy of Original Degree/ Provisional certificate",
+    "ID proof (Aadhaar, PAN, Passport)",
   ];
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen pt-20">
-      
-      {/* HERO SECTION */}
-      <motion.section
-        className="relative py-24 bg-gradient-to-br from-[#f1f5f9] via-[#e2e8f0] to-[#cbd5e1] overflow-hidden"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[120px] -mr-40 -mt-40" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] -ml-20 -mb-20" />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-8">
-          <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-full text-blue-600 font-black uppercase text-[10px] tracking-[0.2em]">
-            English Proficiency
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 tracking-tight leading-tight">
-            Medium of <br /><span className="text-blue-600">Instruction (MOI)</span>
+    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12 px-4 md:px-8">
+      <style>{`
+        .glass-effect {
+          backdrop-filter: blur(10px);
+          background: rgba(255, 255, 255, 0.8);
+        }
+        @keyframes scroll {
+          0% {
+            transform: translateX(0);
+          }
+          100% {
+            transform: translateX(-50%);
+          }
+        }
+        .scroll-container {
+          overflow: hidden;
+          white-space: nowrap;
+        }
+        .scroll-content {
+          display: inline-flex;
+          animation: scroll 20s linear infinite;
+        }
+        .scroll-content:hover {
+          animation-play-state: paused;
+        }
+      `}</style>
+      <div className="max-w-6xl mx-auto">
+        {/* Header */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6 }}
+          className="text-center mb-12"
+        >
+          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+            MOI Certificate
           </h1>
-          <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed font-medium">
-            Official proof that your degree was taught in English. Crucial for admissions in UK, Europe, and English-speaking countries.
+          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            Medium of Instruction certificate proving you studied in English. Essential for UK and European universities.
           </p>
-        </div>
-      </motion.section>
+        </motion.div>
 
-      <div className="max-w-7xl mx-auto px-6 py-24">
-        <div className="grid lg:grid-cols-12 gap-12 md:gap-16">
-          
-          {/* LEFT: CONTENT */}
-          <div className="lg:col-span-8 space-y-12">
-            
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="bg-white rounded-[3rem] p-8 md:p-12 shadow-xl shadow-slate-200/50 border border-slate-100 relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-50 rounded-full -mr-16 -mt-16 blur-3xl opacity-50" />
-              <h2 className="text-3xl font-black text-slate-800 mb-6 flex items-center gap-4 relative z-10">
-                <BookOpen className="text-blue-600 w-10 h-10" />
-                What is an MOI Certificate?
-              </h2>
-              <div className="space-y-4 text-slate-600 text-lg leading-relaxed font-medium relative z-10">
-                <p>
-                  A <span className="text-slate-800 font-black">Medium of Instruction (MOI)</span> certificate is a formal letter issued by your university confirming that the language used for your lectures and examinations was English.
-                </p>
-                <p>
-                  This document is often required by international universities and visa authorities as a waiver for English proficiency tests like IELTS or TOEFL, especially for students from India.
-                </p>
-              </div>
-            </motion.div>
-
-            <div className="grid sm:grid-cols-2 gap-6">
-              {features.map((feature, i) => (
-                <motion.div 
-                  key={i}
-                  initial={{ opacity: 0, y: 20 }}
-                  whileInView={{ opacity: 1, y: 0 }}
-                  viewport={{ once: true }}
-                  transition={{ delay: i * 0.1 }}
-                  className="bg-white p-8 rounded-[2.5rem] border border-slate-100 hover:shadow-xl transition-all group"
+        {/* FAQ Section */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="bg-white rounded-2xl shadow-lg p-8 mb-8"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 flex items-center gap-3">
+            <FiBookOpen className="text-blue-600" />
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-4">
+            {faqs.map((faq, index) => (
+              <motion.div
+                key={index}
+                initial="hidden"
+                animate="visible"
+                variants={fadeUp}
+                transition={{ duration: 0.4, delay: index * 0.05 }}
+                className="border border-gray-200 rounded-lg overflow-hidden"
+              >
+                <button
+                  onClick={() => toggleFaq(index)}
+                  className="w-full px-6 py-4 flex items-center justify-between bg-gray-50 hover:bg-gray-100 transition-colors"
                 >
-                  <div className={`${feature.bg} ${feature.color} w-16 h-16 rounded-2xl flex items-center justify-center mb-6 group-hover:scale-110 transition-transform shadow-sm`}>
-                    {feature.icon}
-                  </div>
-                  <h3 className="text-xl font-black text-slate-800 mb-3">{feature.title}</h3>
-                  <p className="text-slate-500 font-medium leading-relaxed">{feature.desc}</p>
-                </motion.div>
-              ))}
+                  <span className="font-semibold text-gray-900 text-left text-sm">{faq.question}</span>
+                  {openFaq === index ? <FiChevronUp className="text-blue-600" /> : <FiChevronDown className="text-blue-600" />}
+                </button>
+                <AnimatePresence>
+                  {openFaq === index && (
+                    <motion.div
+                      initial={{ height: 0, opacity: 0 }}
+                      animate={{ height: "auto", opacity: 1 }}
+                      exit={{ height: 0, opacity: 0 }}
+                      transition={{ duration: 0.3 }}
+                      className="overflow-hidden"
+                    >
+                      <div className="px-6 py-4 bg-white">
+                        <p className="text-gray-700 text-sm leading-relaxed">{faq.answer}</p>
+                      </div>
+                    </motion.div>
+                  )}
+                </AnimatePresence>
+              </motion.div>
+            ))}
+          </div>
+        </motion.div>
+
+        {/* Contact Info */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="bg-blue-50 rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <FiPhone className="text-white" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Call us for queries</p>
+              <p className="font-bold text-gray-900">+91 9941 9914 02</p>
             </div>
           </div>
-
-          {/* RIGHT: SIDEBAR */}
-          <div className="lg:col-span-4 space-y-8">
-            
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="bg-slate-800 rounded-[3rem] p-10 text-white shadow-2xl relative overflow-hidden"
-            >
-              <div className="absolute top-0 right-0 w-32 h-32 bg-blue-500/10 rounded-full -mr-16 -mt-16 blur-3xl"></div>
-              <h3 className="text-2xl font-black mb-8 relative z-10 tracking-tight">MOI Checklist</h3>
-              <ul className="space-y-5 relative z-10">
-                {checklist.map((item, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <div className="mt-1 bg-blue-500/20 p-1 rounded-full">
-                      <CheckCircle2 className="w-4 h-4 text-blue-400" />
-                    </div>
-                    <span className="text-slate-300 font-bold text-sm leading-tight">{item}</span>
-                  </li>
-                ))}
-              </ul>
-            </motion.div>
-
-            <motion.div
-              initial="hidden"
-              whileInView="visible"
-              viewport={{ once: true }}
-              variants={fadeUp}
-              className="bg-white rounded-[3rem] p-10 border border-slate-100 text-center shadow-xl shadow-slate-200/50"
-            >
-              <div className="w-20 h-20 bg-blue-50 text-blue-600 rounded-full flex items-center justify-center mx-auto mb-6">
-                <FileText className="w-10 h-10" />
-              </div>
-              <h3 className="text-2xl font-black text-slate-800 mb-4">Request MOI</h3>
-              <p className="text-slate-500 font-medium mb-8">Secure your English proficiency proof with university-verified MOI letters.</p>
-              <button
-                onClick={() => navigate("/apply")}
-                className="w-full bg-blue-600 text-white py-5 rounded-2xl font-black text-lg hover:bg-blue-700 transition-all flex items-center justify-center gap-3 shadow-xl shadow-blue-600/20 active:scale-95 group"
-              >
-                Apply Now <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-              </button>
-            </motion.div>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <FiMail className="text-white" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Email us</p>
+              <p className="font-bold text-gray-900">Support@100Transcripts.com</p>
+            </div>
           </div>
-        </div>
+        </motion.div>
+
+        {/* Sample MOI Certificate Images */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="bg-white rounded-2xl shadow-lg p-8 mb-8"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Sample MOI Certificates</h2>
+          <div className="grid md:grid-cols-3 gap-6">
+            <div className="flex flex-col items-center">
+              <img
+                src={certificateImg1}
+                alt="ANU MOI Certificate"
+                className="w-full h-auto rounded-lg shadow-md mb-3"
+              />
+              <p className="text-sm text-gray-600 font-medium">ANU University</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <img
+                src={certificateImg2}
+                alt="AU MOI Certificate"
+                className="w-full h-auto rounded-lg shadow-md mb-3"
+              />
+              <p className="text-sm text-gray-600 font-medium">Andhra University</p>
+            </div>
+            <div className="flex flex-col items-center">
+              <img
+                src={certificateImg3}
+                alt="BDU MOI Certificate"
+                className="w-full h-auto rounded-lg shadow-md mb-3"
+              />
+              <p className="text-sm text-gray-600 font-medium">BDU University</p>
+            </div>
+          </div>
+        </motion.div>
+
+
+
+        {/* CTA */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.5 }}
+          className="bg-gradient-to-r from-blue-600 to-blue-700 rounded-2xl shadow-lg p-8 text-center"
+        >
+          <h2 className="text-2xl font-bold text-white mb-4">Need an MOI Certificate?</h2>
+          <p className="text-blue-100 mb-6 max-w-xl mx-auto">
+            Get your Medium of Instruction certificate and waive English language tests for your abroad studies.
+          </p>
+          <button
+            onClick={() => navigate("/apply")}
+            className="bg-white text-blue-600 px-8 py-3 rounded-lg font-bold hover:bg-blue-50 transition inline-flex items-center gap-2"
+          >
+            Apply Now
+            <FiArrowRight />
+          </button>
+        </motion.div>
+
+        
+        {/* AGENCIES SECTION */}
+                        <motion.div
+                          initial="hidden"
+                          animate="visible"
+                          variants={fadeUp}
+                          transition={{ duration: 0.6, delay: 0.4 }}
+                          className="mb-12"
+                        >
+                          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+                            Supported Credential Evaluation Agencies
+                          </h2>
+                          <p className="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
+                            We assist applicants preparing documents for all major credential evaluation agencies worldwide.
+                          </p>
+                
+                          <div className="scroll-container py-4">
+                            <div className="scroll-content">
+                              {[...agencies, ...agencies].map((agency, index) => (
+                                <motion.div
+                                  key={`${agency.short}-${index}`}
+                                  initial="hidden"
+                                  animate="visible"
+                                  variants={fadeUp}
+                                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
+                                  style={{ width: '120px' }}
+                                >
+                                  <img
+                                    src={agency.logo}
+                                    alt={agency.short}
+                                    className="w-16 h-16 object-contain mb-2"
+                                  />
+                                  <h4 className="font-semibold text-gray-900 text-xs text-center">
+                                    {agency.short}
+                                  </h4>
+                                </motion.div>
+                              ))}
+                            </div>
+                          </div>
+                        </motion.div>
+
+        
       </div>
-
-      {/* WHATSAPP FLOATING */}
-      <a
-        href="https://wa.me/919941991402"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-50 bg-emerald-500 text-white p-4 rounded-full shadow-2xl hover:bg-emerald-600 transition-all hover:scale-110 active:scale-95"
-      >
-        <svg className="w-7 h-7" fill="currentColor" viewBox="0 0 24 24">
-          <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
-        </svg>
-      </a>
-
     </div>
   );
 };

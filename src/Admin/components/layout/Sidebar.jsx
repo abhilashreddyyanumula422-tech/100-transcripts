@@ -30,15 +30,15 @@ const menuItems = [
   { name: "College Verification", path: "/admin/college-verification", icon: <ShieldCheck size={20} /> },
   { name: "College Requests", path: "/admin/college-requests", icon: <Building2 size={20} /> },
   { name: "Delivery", path: "/admin/delivery", icon: <Truck size={20} /> },
-  { 
-    name: "Email Notification", 
-    path: "/admin/email-notification-template",
-    icon: <MailWarning size={20} /> 
-  },
+  // { 
+  //   name: "Email Notification", 
+  //   path: "/admin/email-notification-template",
+  //   icon: <MailWarning size={20} /> 
+  // },
 ];
   // 🔸 PARTNER MENU
   const partnerItems = [
-    { name: "Settings", path: "/settings", icon: <Settings size={20} /> },
+    // { name: "Settings", path: "/settings", icon: <Settings size={20} /> },
   ];
 
   return (

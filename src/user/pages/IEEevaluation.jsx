@@ -272,13 +272,13 @@ const IEEevaluation = () => {
                       repeat: Infinity, 
                       delay: index * 0.5 
                     }}
-                    className={`w-12 h-12 rounded-full bg-${item.color}-100 flex items-center justify-center text-2xl flex-shrink-0`}
+                    className={`w-12 h-12 rounded-full ${item.color === 'blue' ? 'bg-blue-100' : item.color === 'green' ? 'bg-green-100' : item.color === 'purple' ? 'bg-purple-100' : item.color === 'orange' ? 'bg-orange-100' : 'bg-gray-100'} flex items-center justify-center text-2xl flex-shrink-0`}
                   >
                     {item.icon}
                   </motion.div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-8 h-8 rounded-full bg-${item.color}-600 text-white flex items-center justify-center text-sm font-bold`}>
+                      <div className={`w-8 h-8 rounded-full ${item.color === 'blue' ? 'bg-blue-600' : item.color === 'green' ? 'bg-green-600' : item.color === 'purple' ? 'bg-purple-600' : item.color === 'orange' ? 'bg-orange-600' : 'bg-gray-600'} text-white flex items-center justify-center text-sm font-bold`}>
                         {item.step}
                       </div>
                       <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
@@ -369,7 +369,7 @@ const IEEevaluation = () => {
                       scale: 1.05, 
                       y: -3
                     }}
-                    className={`bg-${feature.color}-50 border border-${feature.color}-200 rounded-full px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all`}
+                    className={`${feature.color === 'yellow' ? 'bg-yellow-50 border-yellow-200' : feature.color === 'green' ? 'bg-green-50 border-green-200' : feature.color === 'blue' ? 'bg-blue-50 border-blue-200' : feature.color === 'purple' ? 'bg-purple-50 border-purple-200' : 'bg-gray-50 border-gray-200'} rounded-full px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all`}
                   >
                     <span className="text-lg">{feature.icon}</span>
                     <span className="text-sm font-semibold text-gray-800">{feature.label}</span>
