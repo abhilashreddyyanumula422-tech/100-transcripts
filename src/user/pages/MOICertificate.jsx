@@ -1,10 +1,13 @@
 import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { FiBookOpen, FiCheckCircle, FiClock, FiGlobe, FiArrowRight, FiUpload, FiSettings, FiTruck, FiCheck, FiFileText, FiChevronDown, FiChevronUp, FiPhone, FiMail } from "react-icons/fi";
+import { FiBookOpen, FiCheckCircle, FiClock, FiGlobe, FiArrowRight, FiUpload, FiSettings, FiTruck, FiCheck, FiFileText, FiChevronDown, FiChevronUp, FiChevronLeft, FiChevronRight, FiPhone, FiMail } from "react-icons/fi";
 import { useNavigate } from "react-router-dom";
 import certificateImg1 from "../../assets/ANU.png";
 import certificateImg2 from "../../assets/AU-MOI.png";
 import certificateImg3 from "../../assets/BDU.png";
+import certificateImg4 from "../../assets/OU.png";
+import certificateImg5 from "../../assets/Dr.N.T.R.png";
+import certificateImg6 from "../../assets/JNTUK.png";
 import cesLogo from "../../assets/CES.png";
 import eceLogo from "../../assets/ECE.png";
 import enicLogo from "../../assets/ENIC.png";
@@ -24,10 +27,20 @@ const fadeUp = {
 const MOICertificate = () => {
   const navigate = useNavigate();
   const [openFaq, setOpenFaq] = useState(null);
+  const [selectedImage, setSelectedImage] = useState(null);
 
   const toggleFaq = (index) => {
     setOpenFaq(openFaq === index ? null : index);
   };
+
+  const carouselImages = [
+    { img: certificateImg1, label: 'ANU University' },
+    { img: certificateImg2, label: 'Andhra University' },
+    { img: certificateImg3, label: 'BDU University' },
+    { img: certificateImg4, label: 'Osmania University' },
+    { img: certificateImg5, label: 'Dr. N.T.R University' },
+    { img: certificateImg6, label: 'JNTUK' },
+  ];
 
   const faqs = [
     {
@@ -139,23 +152,33 @@ const MOICertificate = () => {
         .scroll-content:hover {
           animation-play-state: paused;
         }
+        .scrollbar-hide::-webkit-scrollbar {
+          display: none;
+        }
+        .scrollbar-hide {
+          -ms-overflow-style: none;
+          scrollbar-width: none;
+        }
       `}</style>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <main className="pt-24 pb-12 px-4"> {/* pt-24 adds space for a fixed header */}
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={fadeUp}
+    transition={{ duration: 0.6 }}
+    className="text-center"
+  >
+    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             MOI Certificate
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Medium of Instruction certificate proving you studied in English. Essential for UK and European universities.
           </p>
-        </motion.div>
+  </motion.div>
+</main>
+        
 
         {/* FAQ Section */}
         <motion.div
@@ -243,33 +266,47 @@ const MOICertificate = () => {
           className="bg-white rounded-2xl shadow-lg p-8 mb-8"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Sample MOI Certificates</h2>
-          <div className="grid md:grid-cols-3 gap-6">
-            <div className="flex flex-col items-center">
-              <img
-                src={certificateImg1}
-                alt="ANU MOI Certificate"
-                className="w-full h-auto rounded-lg shadow-md mb-3"
-              />
-              <p className="text-sm text-gray-600 font-medium">ANU University</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <img
-                src={certificateImg2}
-                alt="AU MOI Certificate"
-                className="w-full h-auto rounded-lg shadow-md mb-3"
-              />
-              <p className="text-sm text-gray-600 font-medium">Andhra University</p>
-            </div>
-            <div className="flex flex-col items-center">
-              <img
-                src={certificateImg3}
-                alt="BDU MOI Certificate"
-                className="w-full h-auto rounded-lg shadow-md mb-3"
-              />
-              <p className="text-sm text-gray-600 font-medium">BDU University</p>
-            </div>
+          
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {carouselImages.map((item, index) => (
+              <div
+                key={index}
+                onClick={() => setSelectedImage(item)}
+                className="bg-gray-50 rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center cursor-pointer"
+              >
+                <img
+                  src={item.img}
+                  alt={item.label}
+                  className="w-full h-auto rounded-lg shadow-md mb-3"
+                />
+                <p className="text-sm text-gray-600 font-medium text-center">{item.label}</p>
+              </div>
+            ))}
           </div>
         </motion.div>
+
+        {/* Image Modal */}
+        {selectedImage && (
+          <div
+            className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50 p-4"
+            onClick={() => setSelectedImage(null)}
+          >
+            <div className="bg-white rounded-2xl p-6 max-w-4xl max-h-[90vh] overflow-auto">
+              <img
+                src={selectedImage.img}
+                alt={selectedImage.label}
+                className="w-full h-auto rounded-lg shadow-md"
+              />
+              <p className="text-center text-gray-700 font-medium mt-4">{selectedImage.label}</p>
+              <button
+                onClick={() => setSelectedImage(null)}
+                className="mt-4 w-full bg-blue-600 text-white py-2 rounded-lg hover:bg-blue-700 transition"
+              >
+                Close
+              </button>
+            </div>
+          </div>
+        )}
 
 
 

@@ -2,11 +2,10 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Check, ArrowRight, FileText, Upload, UserPlus,
-  Award, Clock, Shield, ExternalLink, Info, BadgeCheck,
-  Building2, CheckCircle2
+  Shield, BadgeCheck, Building2, CheckCircle2
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import workflowImg from "../../assets/workflow.png";
+import Spantra1 from "../../assets/Spr1.png";
 
 const SpanTran = () => {
   const [activeStep, setActiveStep] = useState(null);
@@ -17,7 +16,6 @@ const SpanTran = () => {
       title: "Apply for Discount",
       description: "Get your SpanTran evaluation at a special discounted rate exclusive to 100 Transcripts-India.",
       icon: UserPlus,
-      color: "blue",
       content: (
         <div className="mt-6">
           <motion.button
@@ -36,9 +34,8 @@ const SpanTran = () => {
       title: "Prepare Documents",
       description: "Ensure you have all necessary academic records ready for evaluation.",
       icon: FileText,
-      color: "blue",
       content: (
-        <div className="space-y-4 mt-6 bg-blue-50 p-6 rounded-2xl border border-blue-100">
+        <div className="space-y-4 mt-6 bg-slate-50 p-6 rounded-2xl border border-slate-100">
           {[
             { label: "CMM (Consolidated Marks)", link: "https://100transcripts.com/cmm/" },
             { label: "Degree Certificate / Provisional", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
@@ -71,7 +68,6 @@ const SpanTran = () => {
       title: "Upload Documents",
       description: "Securely submit your documents through our portal for processing.",
       icon: Upload,
-      color: "blue",
       content: (
         <div className="mt-6">
           <Link
@@ -88,20 +84,10 @@ const SpanTran = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white">
+    <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
       
-      {/* HERO SECTION - LIGHT THEME AS REQUESTED */}
-      <section className="relative pt-32 pb-32 bg-white overflow-hidden">
-        {/* Subtle Background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: `radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0)`,
-               backgroundSize: '40px 40px' 
-             }} 
-        />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] -mr-40 -mt-40" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] -ml-20 -mb-20" />
-        
+      {/* HERO SECTION - CLEAN WHITE */}
+      <section className="relative pt-32 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
             <motion.div 
@@ -110,9 +96,9 @@ const SpanTran = () => {
               transition={{ duration: 0.8 }}
               className="lg:w-1/2 text-center lg:text-left space-y-8"
             >
-              <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-full px-5 py-2 shadow-sm">
+              <div className="inline-flex items-center gap-3 bg-slate-50 border border-slate-100 rounded-full px-5 py-2">
                 <Building2 className="w-4 h-4 text-blue-600" />
-                <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.3em]">Official SpanTran Partnership</span>
+                <span className="text-slate-600 text-[10px] font-black uppercase tracking-[0.3em]">Official SpanTran Partnership</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-black leading-[1.1] tracking-tight">
@@ -124,11 +110,11 @@ const SpanTran = () => {
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
+                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-sm">
                     <CheckCircle2 className="w-5 h-5 text-blue-600" />
                     <span className="text-black font-bold text-sm">Discounted Rates</span>
                  </div>
-                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
+                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-sm">
                     <Shield className="w-5 h-5 text-blue-600" />
                     <span className="text-black font-bold text-sm">Official Verification</span>
                  </div>
@@ -139,35 +125,32 @@ const SpanTran = () => {
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:w-1/2 flex justify-center relative"
+              className="lg:w-1/2 flex justify-center"
             >
-              <div className="relative z-10 bg-blue-50/30 backdrop-blur-sm p-6 sm:p-8 rounded-[3rem] border border-blue-100 shadow-2xl overflow-hidden group">
-                <div className="relative bg-white rounded-[2rem] p-4 shadow-xl border border-white overflow-hidden min-h-[300px] flex items-center justify-center">
-                   <div className="text-8xl p-12">🎓</div>
-                </div>
+              <div className="relative bg-white p-4 flex items-center justify-center">
+                <motion.img 
+                  src={Spantra1} 
+                  alt="SpanTran Partnership" 
+                  className="w-full max-w-lg h-auto object-contain"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  transition={{ duration: 0.6 }}
+                />
               </div>
-              <div className="absolute inset-0 bg-blue-100/30 rounded-full blur-[80px] scale-110 animate-pulse" />
             </motion.div>
           </div>
         </div>
-
-        {/* Subtle Wave Divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-            <svg className="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,112.49,122,126.31,185.39,111.44,248.8,96.57,263.39,67.23,321.39,56.44Z" className="fill-[#f8fafc]"></path>
-            </svg>
-        </div>
       </section>
 
-      {/* STEPS SECTION */}
-      <section className="bg-[#f8fafc] pb-32 pt-12 px-6">
+      {/* STEPS SECTION - FORCED WHITE */}
+      <section className="bg-white pb-32 pt-12 px-6">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-black text-black mb-4">SpanTran Evaluation</h2>
                 <div className="flex items-center justify-center gap-4">
-                    <span className="h-[2px] w-12 bg-blue-200" />
+                    <span className="h-[2px] w-12 bg-slate-100" />
                     <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
-                    <span className="h-[2px] w-12 bg-blue-200" />
+                    <span className="h-[2px] w-12 bg-slate-100" />
                 </div>
             </div>
 
@@ -177,23 +160,17 @@ const SpanTran = () => {
                 {steps.map((step, idx) => (
                 <motion.div
                     key={step.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
+                    className={`group bg-white p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
                     onMouseEnter={() => setActiveStep(step.id)}
                     onMouseLeave={() => setActiveStep(null)}
                 >
-                    <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
-                        <step.icon className="w-7 h-7" />
+                    <div className="flex items-start gap-6">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
+                        <step.icon className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                        <div className="flex items-center gap-4 mb-3">
-                        <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
-                            Step {idx + 1}
-                        </span>
+                        <div className="mb-2">
+                          <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Step {idx + 1}</span>
                         </div>
                         <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
                         <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
@@ -216,33 +193,27 @@ const SpanTran = () => {
             </div>
 
             <div className="lg:sticky lg:top-32 h-fit space-y-8">
-                <div className="bg-white p-10 sm:p-12 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
-                    <div className="relative z-10 space-y-6 text-center lg:text-left">
-                        <h3 className="text-2xl font-black text-black tracking-tight">Official SpanTran Support</h3>
-                        <p className="text-slate-600 text-base font-medium leading-relaxed">Our experts are here to guide you through every step of your SpanTran evaluation process.</p>
-                        <a
-                            href="https://wa.me/919941991402"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105"
-                        >
-                            Chat with an Expert
-                            <ArrowRight className="w-5 h-5" />
-                        </a>
-                    </div>
+                <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-lg text-center lg:text-left">
+                    <h3 className="text-2xl font-black text-black tracking-tight mb-4">Official Support</h3>
+                    <p className="text-slate-600 text-base font-medium leading-relaxed mb-8">Our experts are here to guide you through every step of your SpanTran evaluation process.</p>
+                    <a
+                        href="https://wa.me/919941991402"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all"
+                    >
+                        Chat with an Expert
+                        <ArrowRight className="w-5 h-5" />
+                    </a>
                 </div>
 
-                <div className="bg-blue-600 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-blue-500/20">
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative z-10 flex items-center gap-6">
-                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
-                            <BadgeCheck className="w-9 h-9 text-white" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-black text-white">100% Verified</h4>
-                            <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
-                        </div>
+                <div className="bg-blue-600 p-8 rounded-[2.5rem] flex items-center gap-6 shadow-xl">
+                    <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
+                        <BadgeCheck className="w-8 h-8 text-white" />
+                    </div>
+                    <div>
+                        <h4 className="text-lg font-black text-white">100% Verified</h4>
+                        <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
                     </div>
                 </div>
             </div>
@@ -250,16 +221,6 @@ const SpanTran = () => {
             </div>
         </div>
       </section>
-
-      {/* FLOATING HELP BUTTON */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="fixed bottom-24 right-8 z-40 bg-white px-5 py-3 rounded-full shadow-2xl border border-slate-100 flex items-center gap-3 cursor-pointer hover:shadow-blue-500/10 transition-shadow group"
-      >
-        <span className="text-black font-bold text-sm">Need help?</span>
-        <span className="text-xl group-hover:rotate-12 transition-transform">👋</span>
-      </motion.div>
 
       {/* WHATSAPP FLOATING */}
       <a

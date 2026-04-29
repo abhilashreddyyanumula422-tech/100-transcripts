@@ -95,20 +95,23 @@ const CMM = () => {
       `}</style>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
+        <main className="pt-24 pb-12 px-4"> {/* pt-24 adds space for a fixed header */}
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={fadeUp}
+    transition={{ duration: 0.6 }}
+    className="text-center"
+  >
+    <h1 className="text-5xl md:text-6xl font-bold text-gray-900 mb-4 tracking-tight">
             Consolidated Mark Memorandum (CMM)
           </h1>
           <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
             Get your consolidated mark sheet containing all semester marks in a single document.
           </p>
-        </motion.div>
+  </motion.div>
+</main>
+        
 
         {/* What is CMM */}
         <motion.div
@@ -172,22 +175,13 @@ const CMM = () => {
         </motion.div>
 
         {/* Sample CMM Image */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.6, delay: 0.3 }}
-          className="bg-white rounded-2xl shadow-lg p-8 mb-8"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Sample Consolidated Marks Memo</h2>
-          <div className="flex justify-center">
-            <img
-              src={certificateImg}
-              alt="Sample Consolidated Marks Memo"
-              className="w-full h-auto rounded-lg shadow-md"
-            />
-          </div>
-        </motion.div>
+        <div className="flex justify-center">
+  <img
+    src={certificateImg}
+    alt="Sample Consolidated Marks Memo"
+    className="w-64 md:w-80 lg:w-96 h-auto rounded-lg shadow-md"
+  />
+</div>
 
 
 

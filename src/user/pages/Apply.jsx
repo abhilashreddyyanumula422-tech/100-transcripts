@@ -14,7 +14,7 @@ const GLOBAL_CSS = `
 
 html, body, #root {
   font-family: 'Plus Jakarta Sans', sans-serif;
-  background: #f8fafc;
+  background: #fff;
   min-height: 100vh;
 }
 
@@ -26,6 +26,7 @@ html, body, #root {
 @keyframes pop       { from{transform:scale(0) rotate(-20deg)} to{transform:scale(1) rotate(0)} }
 @keyframes slideUp   { from{opacity:0;transform:translateY(30px)} to{opacity:1;transform:translateY(0)} }
 @keyframes float     { 0%,100%{transform:translateY(0px)} 50%{transform:translateY(-9px)} }
+@keyframes drawRoad  { from{stroke-dashoffset:var(--road-len,2000)} to{stroke-dashoffset:0} }
 @keyframes nodeIn    { from{opacity:0;transform:scale(0) rotate(-20deg)} to{opacity:1;transform:scale(1) rotate(0)} }
 @keyframes shimmer   { 0%{background-position:-200% center} 100%{background-position:200% center} }
 @keyframes modalIn   { from{opacity:0;transform:scale(0.92) translateY(20px)} to{opacity:1;transform:scale(1) translateY(0)} }
@@ -35,18 +36,24 @@ html, body, #root {
 @keyframes lineGrow  { from{height:0} to{height:100%} }
 @keyframes checkPop  { 0%{transform:scale(0) rotate(-30deg);opacity:0} 70%{transform:scale(1.2) rotate(5deg);opacity:1} 100%{transform:scale(1) rotate(0deg);opacity:1} }
 @keyframes iconBounce { 0%,100%{transform:translateY(0)} 40%{transform:translateY(-4px)} 60%{transform:translateY(-1px)} }
+@keyframes dashMove  { to{stroke-dashoffset:-20} }
+
+/* Active traveler pulse */
+.active-traveler-pulse {
+  pointer-events: none;
+}
 
 /* ══ Layout ══ */
 .app-shell {
   display: flex;
   min-height: 100vh;
-  background: #f8fafc;
+  background: #fff;
 }
 
-/* ══ LEFT PANEL — Roadmap (Desktop only) ══ */
+/* ══ LEFT PANEL — White Roadmap (matches original UI) ══ */
 .image-panel {
   width: 30%;
-  min-width: 340px;
+  min-width: 320px;
   height: 100vh;
   position: sticky;
   top: 0;
@@ -58,6 +65,8 @@ html, body, #root {
   flex-shrink: 0;
 }
 
+.panel-glow-bottom { display: none; }
+
 .image-panel-inner {
   position: relative;
   z-index: 1;
@@ -65,13 +74,36 @@ html, body, #root {
   height: 100%;
   display: flex;
   flex-direction: column;
-  padding: 32px 28px;
+  padding: 28px 22px 22px;
   overflow-y: auto;
   scrollbar-width: none;
 }
 .image-panel-inner::-webkit-scrollbar { display: none; }
 
-/* ══ Roadmap (Desktop) ══ */
+/* Brand */
+.panel-brand {
+  margin-bottom: 26px;
+  padding-bottom: 20px;
+  border-bottom: 1.5px solid #f1f5f9;
+}
+.panel-brand-badge { display: none; }
+.live-dot { display: none; }
+.panel-brand h2 {
+  font-size: 19px;
+  font-weight: 900;
+  color: #0f172a;
+  letter-spacing: -0.4px;
+  line-height: 1.25;
+}
+.panel-brand p {
+  font-size: 12px;
+  color: #3b82f6;
+  margin-top: 5px;
+  font-weight: 600;
+  letter-spacing: 0.2px;
+}
+
+/* ══ Roadmap ══ */
 .roadmap {
   display: flex;
   flex-direction: column;
@@ -81,219 +113,568 @@ html, body, #root {
 
 .rm-step {
   display: flex;
-  gap: 20px;
+  gap: 18px;
   position: relative;
 }
 
+/* Left column: icon circle + connector */
 .rm-line-col {
   display: flex;
   flex-direction: column;
   align-items: center;
   flex-shrink: 0;
-  width: 48px;
+  width: 44px;
 }
 
+/* Dashed vertical connector */
 .rm-connector {
   width: 2px;
   flex: 1;
-  min-height: 80px;
+  min-height: 10vh;
   position: relative;
+  overflow: hidden;
+  /* dashed look via repeating gradient */
   background: repeating-linear-gradient(
     to bottom,
-    #e2e8f0 0px, #e2e8f0 6px,
-    transparent 6px, transparent 12px
+    #cbd5e1 0px, #cbd5e1 5px,
+    transparent 5px, transparent 10px
   );
-  margin: 4px 0;
+  border-radius: 1px;
+  margin: 2px 0;
 }
 
+/* Fill overlay that grows when step is done */
 .rm-connector-fill {
   position: absolute;
   top: 0; left: 0; right: 0;
-  background: #3b82f6;
-  transition: height 0.6s cubic-bezier(0.4, 0, 0.2, 1);
+  background: linear-gradient(to bottom, #3b82f6, #60a5fa);
+  border-radius: 1px;
 }
 
+/* ── Step icon circle (matches colored circles in screenshot) ── */
 .rm-node {
-  width: 48px;
-  height: 48px;
-  border-radius: 16px;
+  width: 44px;
+  height: 44px;
+  border-radius: 50%;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 20px;
-  background: #fff;
-  border: 2px solid #e2e8f0;
+  font-size: 18px;
+  flex-shrink: 0;
   position: relative;
-  transition: all 0.4s ease;
+  transition: all 0.4s cubic-bezier(0.34, 1.2, 0.64, 1);
+  border: 2px solid #e2e8f0;
+  background: #f8fafc;
 }
 
+/* Number badge on top-left of circle */
 .rm-node-num {
   position: absolute;
-  top: -6px; left: -6px;
-  width: 20px; height: 20px;
+  top: -4px; left: -4px;
+  width: 17px; height: 17px;
   border-radius: 50%;
-  background: #64748b;
+  background: #1e3a8a;
   color: #fff;
-  font-size: 10px;
+  font-size: 9px;
   font-weight: 900;
   display: flex;
   align-items: center;
   justify-content: center;
   border: 2px solid #fff;
-  transition: all 0.3s;
+  line-height: 1;
+  transition: background 0.3s;
 }
 
-.rm-step.is-done .rm-node { background: #f0fdf4; border-color: #86efac; }
-.rm-step.is-done .rm-node-num { background: #22c55e; }
-
-.rm-step.is-active .rm-node { border-color: #3b82f6; background: #eff6ff; box-shadow: 0 0 0 4px rgba(59,130,246,0.1); }
-.rm-step.is-active .rm-node-num { background: #3b82f6; }
-
-.rm-content { padding: 10px 0 24px; }
-.rm-step-label { font-size: 13px; font-weight: 800; color: #1e293b; text-transform: uppercase; letter-spacing: 0.5px; margin-bottom: 4px; }
-.rm-step.is-active .rm-step-label { color: #3b82f6; }
-.rm-step-hint { font-size: 11px; color: #94a3b8; line-height: 1.5; }
-
-/* ══ MOBILE ROADMAP (Horizontal Stepper) ══ */
-.mobile-roadmap {
-  display: none;
-  background: #fff;
-  padding: 16px;
-  border-bottom: 1.5px solid #eef2f6;
-  position: sticky;
-  top: 0;
-  z-index: 100;
-  overflow-x: auto;
-  scrollbar-width: none;
+/* Done state */
+.rm-step.is-done .rm-node {
+  background: #f0fdf4;
+  border-color: #86efac;
 }
-.mobile-roadmap::-webkit-scrollbar { display: none; }
+.rm-step.is-done .rm-node-num {
+  background: #16a34a;
+  animation: checkPop 0.4s cubic-bezier(.34,1.7,.64,1) both;
+}
 
-.m-rm-track {
-  display: flex;
-  justify-content: space-between;
+/* Active state */
+.rm-step.is-active .rm-node {
+  border-color: #93c5fd;
+  background: #eff6ff;
+  animation: stepPulse 2.2s ease-in-out infinite;
+}
+.rm-step.is-active .rm-node-num {
+  background: #2563eb;
+}
+.rm-step.is-active .step-emoji {
+  animation: iconBounce 2s ease-in-out infinite;
+  display: inline-block;
+}
+
+/* Upcoming state */
+.rm-step.is-upcoming .rm-node {
+  opacity: 0.5;
+}
+.rm-step.is-upcoming .rm-node-num {
+  background: #94a3b8;
+}
+
+/* Step content */
+.rm-content {
+  flex: 1;
+  padding: 8px 0 22px;
+  transition: opacity 0.4s;
+}
+.rm-step.is-upcoming .rm-content {
+  opacity: 0.45;
+}
+
+.rm-step-label {
+  font-size: 11.5px;
+  font-weight: 800;
+  color: #1e293b;
+  text-transform: uppercase;
+  letter-spacing: 0.5px;
+  line-height: 1.2;
+  margin-bottom: 3px;
+  transition: color 0.3s;
+}
+.rm-step.is-active .rm-step-label { color: #1d4ed8; }
+.rm-step.is-done   .rm-step-label { color: #15803d; }
+.rm-step.is-upcoming .rm-step-label { color: #64748b; }
+
+.rm-step-hint {
+  font-size: 10.5px;
+  color: #94a3b8;
+  line-height: 1.45;
+}
+.rm-step.is-active .rm-step-hint { color: #3b82f6; }
+.rm-step.is-done   .rm-step-hint { color: #4ade80; }
+
+/* Active pill */
+.rm-active-pill {
+  display: inline-flex;
   align-items: center;
-  min-width: 450px;
-  padding: 8px 4px;
+  gap: 5px;
+  margin-top: 5px;
+  background: #eff6ff;
+  border: 1px solid #bfdbfe;
+  border-radius: 100px;
+  padding: 2px 9px;
+  font-size: 9.5px;
+  font-weight: 700;
+  color: #2563eb;
+  animation: fadeUp 0.4s ease both;
+}
+.rm-active-pill::before {
+  content: '';
+  width: 5px; height: 5px;
+  border-radius: 50%;
+  background: #3b82f6;
+  animation: pulse 1.5s infinite;
+  flex-shrink: 0;
 }
 
-.m-rm-step {
+/* Stats */
+.panel-stats {
+  display: flex;
+  gap: 8px;
+  margin-top: 6px;
+  padding-top: 16px;
+  border-top: 1.5px solid #f1f5f9;
+  flex-shrink: 0;
+}
+.panel-stat {
+  flex: 1;
+  background: #f8fafc;
+  border: 1px solid #e2e8f0;
+  border-radius: 12px;
+  padding: 10px 6px;
+  text-align: center;
+}
+.panel-stat-num {
+  font-size: 16px;
+  font-weight: 900;
+  color: #0f172a;
+  line-height: 1;
+}
+.panel-stat-lbl {
+  font-size: 9px;
+  color: #94a3b8;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.7px;
+  margin-top: 3px;
+}
+
+/* SVG road nodes */
+.rnode { opacity: 0; animation: nodeIn .55s cubic-bezier(.34,1.56,.64,1) forwards; }
+.image-panel::before, .image-panel::after { display: none; }
+
+/* ══ RIGHT PORTAL PANEL ══ */
+.portal-panel {
+  flex: 1;
+  background: #f0f4ff;
+  min-height: 100vh;
+  overflow-y: auto;
   display: flex;
   flex-direction: column;
-  align-items: center;
-  gap: 8px;
-  position: relative;
-  z-index: 1;
-  flex: 1;
 }
 
-.m-rm-node {
-  width: 36px;
-  height: 36px;
+/* ══ Portal wrap ══ */
+.portal-wrap { max-width: 1100px; margin: 0 auto; padding: 60px 24px 72px; flex: 1; }
+
+/* ══ Hero ══ */
+.hero-header { text-align:center; padding: 8px 0 6px; animation:fadeDown .7s ease both; }
+.hero-header h1 {
+  font-size: clamp(24px,4vw,38px); font-weight:900;
+  color:#0f172a; letter-spacing:-1px; line-height:1.15;
+}
+.hero-header h1 em { font-style:normal; color:#3b82f6; }
+.hero-header p { color:#64748b; font-size:14px; margin-top:8px; }
+
+/* ══ Track bar ══ */
+.track-bar {
+  margin: 0 auto;
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  background: rgba(255, 255, 255, 0.85);
+  backdrop-filter: blur(12px);
+  padding: 8px;
+  border-radius: 50px;
+  box-shadow: 0 12px 36px rgba(15, 52, 120, 0.08);
+  border: 1px solid rgba(229, 231, 235, 0.5);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+.track-bar:focus-within {
+  transform: translateY(-2px);
+  box-shadow: 0 16px 48px rgba(59, 130, 246, 0.12);
+  border-color: rgba(59, 130, 246, 0.4);
+}
+.track-input {
+  flex: 1;
+  border: none;
+  outline: none;
+  padding: 12px 16px;
+  font-size: 13px;
+  border-radius: 50px;
+  background: #f8fafc;
+  color: #0f172a;
+  font-family: inherit;
+}
+.track-input::placeholder { color: #94a3b8; }
+.track-btn {
+  background: linear-gradient(135deg, #3b82f6, #2563eb);
+  color: white;
+  border: none;
+  padding: 11px 20px;
+  border-radius: 50px;
+  font-weight: 700;
+  font-size: 13px;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  font-family: inherit;
+  white-space: nowrap;
+}
+.track-btn:hover { transform: scale(1.04); box-shadow: 0 4px 16px rgba(59,130,246,0.4); }
+
+/* ══ Process ribbon ══ */
+.process-section { margin: 20px 0 10px; animation:fadeUp .8s .2s ease both; }
+.proc-ribbon {
+  display:flex; align-items:stretch;
+  background:#fff; border:1.5px solid #e2e8f0;
+  border-radius:20px; overflow:hidden;
+  box-shadow: 0 4px 20px rgba(15,52,120,0.06);
+}
+.proc-cell {
+  flex:1; padding:18px 8px 16px; text-align:center; position:relative;
+  border-right:1px solid #f1f5f9;
+  transition:background .4s;
+}
+.proc-cell:last-child { border-right:none; }
+.proc-cell.pc-done   { background:rgba(34,197,94,.06); }
+.proc-cell.pc-active { background:rgba(59,130,246,.07); }
+.proc-orb {
+  width:46px; height:46px; border-radius:50%; margin:0 auto 9px;
+  display:flex; align-items:center; justify-content:center; font-size:20px;
+  background:#f8fafc; border:2px solid #e2e8f0;
+  position:relative; transition:border-color .4s, background .4s;
+}
+.proc-cell.pc-done   .proc-orb { background:rgba(34,197,94,.1); border-color:#86efac; }
+.proc-cell.pc-active .proc-orb { background:rgba(59,130,246,.1); border-color:#93c5fd; animation:float 2.4s ease-in-out infinite; }
+.proc-cell.pc-done .proc-orb::after {
+  content:'✓'; position:absolute; top:-4px; right:-4px;
+  width:18px; height:18px; border-radius:50%;
+  background:#22c55e; color:#fff; font-size:10px; font-weight:800;
+  display:flex; align-items:center; justify-content:center;
+  animation:pop .35s cubic-bezier(.34,1.7,.64,1) both;
+}
+.proc-name { font-size:10px; font-weight:700; letter-spacing:.4px; text-transform:uppercase; color:#94a3b8; margin-bottom:2px; }
+.proc-cell.pc-done .proc-name, .proc-cell.pc-active .proc-name { color:#1e293b; }
+.proc-hint { font-size:9.5px; color:#cbd5e1; line-height:1.4; }
+.proc-cell.pc-active .proc-hint { color:#64748b; }
+
+.flow-track { height:4px; background:#f1f5f9; border-radius:100px; margin:0 0 14px; overflow:hidden; }
+.flow-fill   { height:100%; border-radius:100px; background:linear-gradient(90deg,#22c55e,#3b82f6,#a855f7); transition:width .65s cubic-bezier(.4,0,.2,1); }
+
+/* ══ Main card ══ */
+.main-card { background:#fff; border-radius:26px; padding:34px 30px; box-shadow:0 8px 48px rgba(15,52,120,0.10); border:1px solid #e8edf5; margin-top:20px; }
+.card-anim { animation:cardIn .5s cubic-bezier(.34,1.2,.64,1) both; }
+
+.step-header { display:flex; align-items:center; gap:16px; margin-bottom:28px; padding-bottom:20px; border-bottom:2px solid #f1f5f9; }
+.step-icon { width:52px; height:52px; border-radius:16px; display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+.icon-blue   { background:linear-gradient(135deg,#eff6ff,#dbeafe); }
+.icon-green  { background:linear-gradient(135deg,#f0fdf4,#dcfce7); }
+.icon-purple { background:linear-gradient(135deg,#faf5ff,#ede9fe); }
+.icon-amber  { background:linear-gradient(135deg,#fffbeb,#fef3c7); }
+.step-title    { font-size:21px; font-weight:800; color:#0f172a; }
+.step-subtitle { font-size:13px; color:#64748b; margin-top:3px; }
+
+/* ══ Form ══ */
+.form-grid { display:grid; grid-template-columns:1fr 1fr; gap:14px; }
+.field { display:flex; flex-direction:column; gap:6px; }
+.field label { font-size:12.5px; font-weight:700; color:#374151; }
+.field input, .field select {
+  padding:11px 13px; border:1.5px solid #e2e8f0; border-radius:10px;
+  font-size:14px; font-family:inherit; outline:none; color:#1e293b; background:#fff;
+  transition:border .2s,box-shadow .2s;
+  -webkit-appearance: none;
+}
+.field input:focus,.field select:focus { border-color:#3b82f6; box-shadow:0 0 0 3px rgba(59,130,246,.1); }
+.req { color:#ef4444; }
+
+.sec-title { font-size:15px; font-weight:800; color:#1e293b; margin:24px 0 12px; display:flex; align-items:center; gap:10px; }
+.sec-title::before { content:''; width:4px; height:18px; background:linear-gradient(180deg,#3b82f6,#2563eb); border-radius:2px; display:inline-block; }
+
+.degree-card { background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:14px; padding:16px; margin-bottom:12px; transition:border .2s; }
+.degree-card:hover { border-color:#bfdbfe; }
+.deg-header { display:flex; justify-content:space-between; align-items:center; margin-bottom:12px; }
+.deg-num { font-size:12px; font-weight:700; color:#3b82f6; background:#eff6ff; padding:3px 10px; border-radius:6px; }
+.btn-rm { background:none; border:none; color:#ef4444; cursor:pointer; font-size:12px; font-weight:700; padding:4px 8px; border-radius:6px; transition:background .2s; font-family:inherit; }
+.btn-rm:hover { background:#fef2f2; }
+
+/* ══ Upload box ══ */
+.upload-box { background:linear-gradient(135deg,#eff6ff,#f8fafc); border:2px dashed #bfdbfe; border-radius:14px; padding:18px; margin-bottom:14px; transition:border .2s; }
+.upload-box:hover { border-color:#3b82f6; }
+.upload-lbl { font-size:12.5px; font-weight:700; color:#1e40af; margin-bottom:10px; display:flex; align-items:center; gap:7px; }
+.upload-row { display:flex; gap:8px; flex-wrap:wrap; }
+.upload-row input[type=file] { flex:1; min-width:160px; padding:7px 10px; border:1.5px solid #dbeafe; border-radius:8px; font-size:12px; font-family:inherit; background:#fff; cursor:pointer; }
+.upload-row select { padding:7px 10px; border:1.5px solid #dbeafe; border-radius:8px; font-size:12px; font-family:inherit; background:#fff; color:#1e293b; cursor:pointer; }
+.prog-wrap { margin-top:9px; }
+.prog-bar  { height:5px; background:#e2e8f0; border-radius:100px; overflow:hidden; margin-bottom:3px; }
+.prog-fill { height:100%; border-radius:100px; transition:width .25s,background .4s; background:linear-gradient(90deg,#3b82f6,#60a5fa); }
+.prog-fill.pdone { background:linear-gradient(90deg,#22c55e,#4ade80); }
+.prog-text  { font-size:11px; color:#64748b; }
+.upload-actions { display:flex; gap:8px; margin-top:10px; flex-wrap:wrap; align-items:center; }
+.btn-attach { background:linear-gradient(135deg,#22c55e,#16a34a); color:#fff; border:none; border-radius:8px; padding:7px 16px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .15s; }
+.btn-attach:hover { transform:scale(1.04); }
+.btn-del { background:#fee2e2; color:#dc2626; border:none; border-radius:8px; padding:7px 14px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; transition:background .2s; }
+.btn-del:hover { background:#fecaca; }
+
+/* DigiLocker button */
+.btn-digilocker {
+  display:inline-flex; align-items:center; gap:6px;
+  background:linear-gradient(135deg,#4f46e5,#7c3aed); color:#fff; border:none;
+  border-radius:8px; padding:7px 14px; font-size:12px; font-weight:700;
+  cursor:pointer; font-family:inherit; transition:transform .15s,box-shadow .15s;
+}
+.btn-digilocker:hover { transform:scale(1.04); box-shadow:0 4px 14px rgba(79,70,229,0.4); }
+.btn-digilocker svg { width:14px; height:14px; flex-shrink:0; }
+
+.file-nm { font-size:11px; color:#64748b; margin-top:5px; }
+.file-compressed { font-size:10.5px; color:#16a34a; font-weight:600; margin-top:2px; }
+
+.check-list { display:flex; flex-direction:column; gap:10px; margin-top:18px; }
+.check-item { display:flex; align-items:flex-start; gap:10px; cursor:pointer; padding:12px 14px; background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:10px; transition:border .2s,background .2s; }
+.check-item:hover { border-color:#bfdbfe; background:#eff6ff; }
+.check-item input { margin-top:2px; accent-color:#3b82f6; width:15px; height:15px; flex-shrink:0; cursor:pointer; }
+.check-item span  { font-size:12.5px; color:#374151; line-height:1.5; }
+
+/* ══ Buttons ══ */
+.btn-primary {
+  background:linear-gradient(135deg,#3b82f6,#2563eb); color:#fff; border:none;
+  border-radius:12px; padding:13px 32px; font-size:14px; font-weight:800;
+  cursor:pointer; font-family:inherit; transition:transform .15s,box-shadow .2s;
+  display:inline-flex; align-items:center; gap:5px;
+}
+.btn-primary:hover { transform:translateY(-2px); box-shadow:0 8px 24px rgba(59,130,246,.4); }
+.btn-primary:active { transform:scale(.98); }
+.btn-primary.green { background:linear-gradient(135deg,#22c55e,#16a34a); }
+.btn-primary.green:hover { box-shadow:0 8px 24px rgba(34,197,94,.4); }
+.btn-secondary { background:#f1f5f9; color:#374151; border:none; border-radius:12px; padding:12px 24px; font-size:13px; font-weight:700; cursor:pointer; font-family:inherit; transition:background .2s; }
+.btn-secondary:hover { background:#e2e8f0; }
+.btn-add { background:linear-gradient(135deg,#6366f1,#4f46e5); color:#fff; border:none; border-radius:9px; padding:9px 20px; font-size:12px; font-weight:700; cursor:pointer; font-family:inherit; transition:transform .15s; }
+.btn-add:hover { transform:scale(1.04); }
+.btn-add-mini {
+  background: linear-gradient(135deg, #6366f1, #4f46e5);
+  color: #fff;
+  border: none;
+  border-radius: 8px;
+  padding: 6px 16px;
+  font-size: 12px;
+  font-weight: 700;
+  cursor: pointer;
+  font-family: inherit;
+  transition: transform 0.15s;
+}
+.btn-add-mini:hover { transform: scale(1.05); }
+
+.optional-deg-box {
+  background: #f8fafc;
+  border: 1.5px dashed #e2e8f0;
+  border-radius: 14px;
+  padding: 16px 20px;
+  display: flex;
+  align-items: center;
+  gap: 16px;
+  cursor: pointer;
+  transition: all 0.2s ease;
+  margin-bottom: 12px;
+}
+.optional-deg-box:hover {
+  border-color: #3b82f6;
+  background: #eff6ff;
+  transform: translateY(-2px);
+}
+.opt-icon {
+  width: 44px;
+  height: 44px;
   border-radius: 12px;
   background: #fff;
-  border: 2px solid #e2e8f0;
   display: flex;
   align-items: center;
   justify-content: center;
-  font-size: 16px;
-  transition: all 0.3s;
+  font-size: 20px;
+  box-shadow: 0 4px 12px rgba(0,0,0,0.05);
 }
+.opt-text { flex: 1; display: flex; flex-direction: column; }
+.opt-text strong { font-size: 13.5px; color: #1e293b; }
+.opt-text span { font-size: 11px; color: #64748b; margin-top: 1px; }
 
-.m-rm-step.is-active .m-rm-node { border-color: #3b82f6; background: #eff6ff; color: #3b82f6; transform: scale(1.1); }
-.m-rm-step.is-done .m-rm-node { border-color: #22c55e; background: #f0fdf4; color: #22c55e; }
+.actions { display:flex; justify-content:center; gap:10px; margin-top:28px; flex-wrap:wrap; }
 
-.m-rm-label {
-  font-size: 10px;
-  font-weight: 800;
-  color: #94a3b8;
-  text-transform: uppercase;
-  letter-spacing: 0.5px;
-  text-align: center;
-  white-space: nowrap;
+/* ══ Info panels ══ */
+.info-panel { border-radius:18px; padding:28px; text-align:center; margin:10px 0 22px; }
+.info-panel.amber  { background:linear-gradient(135deg,#fffbeb,#fef3c7); border:2px solid #fde68a; }
+.info-panel.blue   { background:linear-gradient(135deg,#eff6ff,#dbeafe); border:2px solid #bfdbfe; }
+.info-panel.indigo { background:linear-gradient(135deg,#eef2ff,#e0e7ff); border:2px solid #c7d2fe; }
+.info-panel.green  { background:linear-gradient(135deg,#f0fdf4,#dcfce7); border:2px solid #86efac; }
+.info-icon  { font-size:46px; display:block; margin-bottom:11px; }
+.info-panel h3 { font-size:19px; font-weight:800; margin-bottom:7px; color:#1e293b; }
+.info-panel p  { font-size:13px; color:#475569; line-height:1.65; }
+.amount { font-size:34px; font-weight:900; color:#1e293b; margin:10px 0 5px; }
+.info-chip { display:inline-block; margin-top:10px; background:rgba(255,255,255,.8); border-radius:10px; padding:8px 16px; font-size:12px; color:#374151; }
+
+/* ══ Timeline ══ */
+.timeline { display:flex; flex-direction:column; }
+.tl-item  { display:flex; gap:10px; padding:0 0 20px; }
+.tl-item:last-child { padding-bottom:0; }
+.tl-left  { display:flex; flex-direction:column; align-items:center; }
+.tl-dot   { width:40px; height:40px; border-radius:50%; display:flex; align-items:center; justify-content:center; font-size:17px; flex-shrink:0; }
+.tl-line  { width:2px; background:#f1f5f9; flex:1; margin-top:5px; }
+.tl-content    { flex:1; padding-top:5px; }
+.tl-content h4 { font-size:14px; font-weight:700; color:#1e293b; margin-bottom:3px; }
+.tl-content p  { font-size:12px; color:#64748b; line-height:1.5; }
+.tl-badge { display:inline-block; font-size:10.5px; font-weight:700; padding:2px 9px; border-radius:100px; margin-top:5px; }
+.bdone { background:#dcfce7; color:#166534; }
+.bprog { background:#dbeafe; color:#1e40af; }
+.bwait { background:#f1f5f9; color:#64748b; }
+
+.star-burst { font-size:64px; display:block; text-align:center; margin-bottom:10px; animation:pop .55s cubic-bezier(.34,1.7,.64,1) both; }
+.success-wrap { animation:slideUp .55s cubic-bezier(.34,1.2,.64,1) both; }
+
+/* ══ DigiLocker Modal ══ */
+.modal-overlay {
+  position: fixed; inset:0; background:rgba(0,0,0,0.55);
+  display:flex; align-items:center; justify-content:center; z-index:1000;
+  animation: overlayIn .2s ease;
+  padding: 16px;
 }
-.m-rm-step.is-active .m-rm-label { color: #3b82f6; }
-.m-rm-step.is-done .m-rm-label { color: #22c55e; }
-
-.m-rm-connector {
-  position: absolute;
-  top: 18px;
-  left: calc(50% + 18px);
-  width: calc(100% - 36px);
-  height: 2px;
-  background: #e2e8f0;
+.modal-box {
+  background:#fff; border-radius:24px; padding:36px 30px;
+  width:100%; max-width:440px;
+  box-shadow:0 24px 80px rgba(0,0,0,0.25);
+  animation: modalIn .3s cubic-bezier(.34,1.2,.64,1);
 }
-.m-rm-connector-fill {
-  position: absolute;
-  top: 0; left: 0; height: 100%;
-  background: #3b82f6;
-  width: 0;
-  transition: width 0.6s ease;
+.modal-header { display:flex; align-items:center; gap:14px; margin-bottom:24px; }
+.modal-icon { width:52px; height:52px; border-radius:16px; background:linear-gradient(135deg,#4f46e5,#7c3aed); display:flex; align-items:center; justify-content:center; font-size:24px; flex-shrink:0; }
+.modal-title { font-size:20px; font-weight:800; color:#0f172a; }
+.modal-sub   { font-size:13px; color:#64748b; margin-top:2px; }
+.modal-field { margin-bottom:14px; }
+.modal-field label { display:block; font-size:12px; font-weight:700; color:#374151; margin-bottom:5px; }
+.modal-field input {
+  width:100%; padding:11px 13px; border:1.5px solid #e2e8f0; border-radius:10px;
+  font-size:14px; font-family:inherit; outline:none; color:#1e293b;
+  transition:border .2s;
 }
-.m-rm-step.is-done .m-rm-connector-fill { width: 100%; }
-
-/* ══ PORTAL PANEL ══ */
-.portal-panel {
-  flex: 1;
-  background: #f8fafc;
-  min-height: 100vh;
-  display: flex;
-  flex-direction: column;
+.modal-field input:focus { border-color:#6366f1; box-shadow:0 0 0 3px rgba(99,102,241,0.12); }
+.modal-hint { font-size:11.5px; color:#94a3b8; margin-top:10px; line-height:1.5; }
+.modal-actions { display:flex; gap:10px; margin-top:20px; }
+.modal-actions .btn-primary { flex:1; justify-content:center; background:linear-gradient(135deg,#4f46e5,#7c3aed); }
+.modal-actions .btn-primary:hover { box-shadow:0 8px 24px rgba(99,102,241,.4); }
+.modal-actions .btn-secondary { flex:1; }
+.digilocker-docs-list { margin-top:14px; display:flex; flex-direction:column; gap:8px; }
+.dl-doc-item {
+  display:flex; align-items:center; gap:10px; padding:10px 13px;
+  background:#f8fafc; border:1.5px solid #e2e8f0; border-radius:10px;
+  cursor:pointer; transition:border .2s, background .2s;
 }
+.dl-doc-item:hover { border-color:#a5b4fc; background:#eef2ff; }
+.dl-doc-item.selected { border-color:#6366f1; background:#eef2ff; }
+.dl-doc-icon { font-size:22px; flex-shrink:0; }
+.dl-doc-name { font-size:13px; font-weight:700; color:#1e293b; }
+.dl-doc-meta { font-size:11px; color:#94a3b8; }
+.dl-doc-check { margin-left:auto; width:20px; height:20px; border-radius:50%; border:2px solid #e2e8f0; display:flex; align-items:center; justify-content:center; font-size:10px; transition:all .2s; }
+.dl-doc-item.selected .dl-doc-check { background:#6366f1; border-color:#6366f1; color:#fff; }
+.spinner { width:18px; height:18px; border:2.5px solid rgba(255,255,255,0.3); border-top-color:#fff; border-radius:50%; animation:spin .7s linear infinite; display:inline-block; }
 
-.portal-wrap { max-width: 900px; margin: 0 auto; padding: 40px 24px 80px; flex: 1; width: 100%; }
-
-/* ══ Components ══ */
-.main-card { 
-  background: #fff; 
-  border-radius: 32px; 
-  padding: 40px; 
-  box-shadow: 0 10px 40px rgba(15, 23, 42, 0.05); 
-  border: 1px solid #eef2f6;
+/* ══ Responsive ══ */
+@media (max-width: 860px) {
+  .app-shell { flex-direction: column; }
+  .image-panel {
+    width: 100%;
+    min-width: 100%;
+    height: auto;
+    position: relative;
+    padding: 24px 20px;
+    min-height: unset;
+  }
+  .image-panel-inner { flex-direction: row; flex-wrap: wrap; padding: 0; gap: 16px; }
+  .panel-brand { margin-bottom: 0; text-align: left; }
+  .roadmap { display: none; }
+  .panel-stats { margin-top: 0; }
+  .portal-wrap { padding: 32px 16px 60px; }
+  .main-card { padding: 18px 14px; border-radius: 18px; }
+  .form-grid { grid-template-columns: 1fr; }
+  .proc-ribbon { flex-direction: column; }
+  .proc-cell { border-right:none; border-bottom:1px solid #f1f5f9; }
+  .proc-cell:last-child { border-bottom:none; }
+  .track-bar { flex-direction: row; }
 }
-
-.step-header { display: flex; align-items: center; gap: 20px; margin-bottom: 32px; padding-bottom: 24px; border-bottom: 1.5px solid #f1f5f9; }
-.step-icon { width: 60px; height: 60px; border-radius: 20px; display: flex; align-items: center; justify-content: center; font-size: 28px; flex-shrink: 0; }
-.step-title { font-size: 24px; font-weight: 900; color: #0f172a; letter-spacing: -0.5px; }
-.step-subtitle { font-size: 14px; color: #64748b; margin-top: 4px; }
-
-/* Form Elements */
-.form-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 20px; }
-.field { display: flex; flex-direction: column; gap: 8px; }
-.field label { font-size: 13px; font-weight: 700; color: #334155; }
-.field input, .field select {
-  padding: 14px 16px; border: 2px solid #f1f5f9; border-radius: 12px;
-  font-size: 15px; font-family: inherit; outline: none; color: #1e293b; background: #fff;
-  transition: all 0.2s;
-}
-.field input:focus, .field select:focus { border-color: #3b82f6; background: #fff; box-shadow: 0 0 0 4px rgba(59,130,246,0.1); }
-
-/* Buttons */
-.btn-primary {
-  background: #2563eb; color: #fff; border: none;
-  border-radius: 16px; padding: 16px 32px; font-size: 15px; font-weight: 800;
-  cursor: pointer; font-family: inherit; transition: all 0.2s;
-  display: inline-flex; align-items: center; justify-content: center; gap: 8px;
-}
-.btn-primary:hover { background: #1d4ed8; transform: translateY(-2px); box-shadow: 0 10px 20px rgba(37, 99, 235, 0.2); }
-.btn-primary:active { transform: translateY(0); }
-
-/* Responsive adjustments */
-@media (max-width: 1024px) {
-  .image-panel { display: none; }
-  .mobile-roadmap { display: block; }
-  .portal-wrap { padding: 24px 16px 60px; }
-  .main-card { padding: 32px 24px; border-radius: 24px; }
-}
-
-@media (max-width: 640px) {
-  .form-grid { grid-template-columns: 1fr; gap: 16px; }
-  .step-header { flex-direction: column; text-align: center; gap: 16px; }
+@media (max-width: 480px) {
+  .track-bar { flex-direction: column; border-radius: 20px; padding: 12px; gap: 10px; }
+  .track-input, .track-btn { width: 100%; border-radius: 12px !important; }
+  .track-btn { padding: 14px; }
+  .optional-deg-box { flex-direction: column; text-align: center; gap: 12px; padding: 20px; }
+  .opt-icon { margin: 0 auto; }
+  .btn-add-mini { width: 100%; }
+  .hero-header h1 { font-size: 28px; }
+  .main-card { padding: 20px 16px; margin-top: 10px; }
+  .step-header { flex-direction: column; text-align: center; gap: 12px; }
   .step-icon { margin: 0 auto; }
-  .btn-primary { width: 100%; padding: 18px; }
-  .hero-header h1 { font-size: 24px; }
 }
-`;
 
+/* ══ Guideline Images ══ */
+.guideline-section { margin: 24px 0; padding: 22px; background: #f8fafc; border: 1.5px solid #e2e8f0; border-radius: 20px; }
+.guideline-title { font-size: 15px; font-weight: 800; color: #1e293b; margin-bottom: 16px; display: flex; align-items: center; gap: 10px; }
+.guideline-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 16px; }
+.guideline-item { text-align: center; }
+.guideline-img-wrap { position: relative; border-radius: 14px; overflow: hidden; border: 3px solid #fff; box-shadow: 0 8px 24px rgba(15,52,120,0.12); margin-bottom: 10px; aspect-ratio: 1/1; background: #e2e8f0; }
+.guideline-img-wrap img { width: 100%; height: 100%; object-fit: cover; }
+.guideline-badge { position: absolute; top: 10px; right: 10px; padding: 4px 10px; border-radius: 8px; font-size: 10px; font-weight: 900; text-transform: uppercase; letter-spacing: 0.5px; box-shadow: 0 4px 12px rgba(0,0,0,0.2); }
+.badge-ok { background: #22c55e; color: #fff; }
+.badge-no { background: #ef4444; color: #fff; }
+.guideline-label { font-size: 12px; font-weight: 700; color: #475569; line-height: 1.3; }
+`;
 
 /* ─────────────────────────────────────────
    IMAGE COMPRESSION UTILITY
@@ -480,35 +861,6 @@ const STEP_COLORS6 = [
   { bg: "#f3e5f5", color: "#6a1b9a" },
 ];
 
-function MobileRoadmap({ activeStep }) {
-  const uiStep = activeStep === 2 ? 3 : activeStep === 3 ? 4 : activeStep === 4 ? 5 : activeStep;
-
-  return (
-    <div className="mobile-roadmap">
-      <div className="m-rm-track">
-        {PROC_FULL.map((step, i) => {
-          const isDone = i < uiStep;
-          const isActive = i === uiStep;
-
-          return (
-            <div key={i} className={`m-rm-step ${isDone ? "is-done" : ""} ${isActive ? "is-active" : ""}`}>
-              <div className="m-rm-node">
-                {isDone ? "✓" : step.icon}
-              </div>
-              <div className="m-rm-label">{step.label.split(' ')[0]}</div>
-              {i < PROC_FULL.length - 1 && (
-                <div className="m-rm-connector">
-                  <div className="m-rm-connector-fill" style={{ width: isDone ? "100%" : "0%" }} />
-                </div>
-              )}
-            </div>
-          );
-        })}
-      </div>
-    </div>
-  );
-}
-
 function RoadmapPanel({ activeStep }) {
   const [loopIndex, setLoopIndex] = useState(0);
 
@@ -533,8 +885,8 @@ function RoadmapPanel({ activeStep }) {
   };
 
   return (
-    <div className="image-panel">
-      <div className="image-panel-inner">
+    <div className="image-panel" style={{ background: "#ffffff", boxShadow: "inset -1px 0 0 #f1f5f9" }}>
+      <div className="image-panel-inner" style={{ padding: "18vh 24px 40px" }}>
         <motion.div initial={{ opacity: 0 }} animate={{ opacity: 1 }} className="panel-brand">
           <h2 style={{ fontSize: 18, color: "#0f172a", marginBottom: 4 }}>Processing Roadmap</h2>
           <p style={{ fontSize: 11, color: "#3b82f6", fontWeight: 700 }}>Visual Guide • Step-by-Step</p>
@@ -573,7 +925,7 @@ function RoadmapPanel({ activeStep }) {
                   </motion.div>
 
                   {!isLast && (
-                    <div className="rm-connector">
+                    <div className="rm-connector" style={{ background: "#f1f5f9", overflow: "visible", width: 2 }}>
                       <motion.div
                         className="rm-connector-fill"
                         animate={{ height: isDone ? "100%" : "0%" }}
@@ -585,11 +937,27 @@ function RoadmapPanel({ activeStep }) {
                           top: 0
                         }}
                       />
+                      {isActive && (
+                        <motion.div
+                          animate={{ top: ["0%", "100%"] }}
+                          transition={{ duration: 2.8, repeat: Infinity, ease: "linear" }}
+                          style={{
+                            position: "absolute",
+                            left: "50%",
+                            width: 6,
+                            height: 6,
+                            borderRadius: "50%",
+                            background: col.color,
+                            boxShadow: `0 0 8px ${col.color}`,
+                            transform: "translateX(-50%)"
+                          }}
+                        />
+                      )}
                     </div>
                   )}
                 </div>
 
-                <div className="rm-content" style={{ paddingBottom: isLast ? 0 : "32px" }}>
+                <div className="rm-content" style={{ paddingBottom: isLast ? 0 : "8vh" }}>
                   <motion.div
                     animate={{
                       color: isDone ? "#15803d" : isActive ? col.color : "#94a3b8",
@@ -602,7 +970,7 @@ function RoadmapPanel({ activeStep }) {
                   </motion.div>
                   <motion.div
                     animate={{ opacity: isActive ? 1 : 0.4 }}
-                    style={{ fontSize: 11, color: "#64748b", lineHeight: 1.4 }}
+                    style={{ fontSize: 10, color: "#64748b", lineHeight: 1.4 }}
                   >
                     {step.hint}
                   </motion.div>
@@ -615,7 +983,6 @@ function RoadmapPanel({ activeStep }) {
     </div>
   );
 }
-
 
 /* ─────────────────────────────────────────
    SMALL HELPERS
@@ -976,16 +1343,16 @@ const Step3 = ({ reset, handleRefund }) => (
     <div className="actions">
       <button className="btn-primary" onClick={reset}>+ Start New Request</button>
       <button
-    className="btn-secondary"
-    style={{
-      marginLeft: "10px",
-      backgroundColor: "#ef4444",
-      color: "#fff"
-    }}
-    onClick={handleRefund}
-  >
-    💸 Refund Payment
-  </button>
+        className="btn-secondary"
+        style={{
+          marginLeft: "10px",
+          backgroundColor: "#ef4444",
+          color: "#fff"
+        }}
+        onClick={handleRefund}
+      >
+        💸 Refund Payment
+      </button>
     </div>
   </div>
 );
@@ -1063,7 +1430,7 @@ export default function Apply() {
   }, []);
 
   // ✅ Dynamic API Base
-  const API_BASE = `http://192.168.1.43:8000`;
+  const API_BASE = `http://${window.location.hostname}:8000`;
 
   const goStep = useCallback((n) => {
     setActiveStep(n);
@@ -1129,9 +1496,9 @@ export default function Apply() {
             setAppStatus(data.status);
             setAdminMessage(data.admin_message || "");
             if (data.status === "approved") {
-               // keep step 1, but Step2 will show proceed to payment
+              // keep step 1, but Step2 will show proceed to payment
             } else if (data.status === "delivered") {
-               goStep(4);
+              goStep(4);
             }
           }
         } catch (err) {
@@ -1246,140 +1613,140 @@ export default function Apply() {
     }
   };
 
-const handleRefund = async () => {
-  const confirmRefund = window.confirm("Are you sure you want to refund?");
-  if (!confirmRefund) return;
+  const handleRefund = async () => {
+    const confirmRefund = window.confirm("Are you sure you want to refund?");
+    if (!confirmRefund) return;
 
-  try {
-    const res = await fetch(`http://192.168.1.43:8000/api/refund/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        application_id: applicationId
-      }),
-    });
-
-    const data = await res.json();
-
-    if (res.ok) {
-      alert(`Refund Successful ✅\nRefund ID: ${data.refund_id}`);
-    } else {
-      alert(data.error || "Refund Failed ❌");
-    }
-
-  } catch (err) {
-    console.error("Refund Error:", err);
-    alert("Refund error ❌");
-  }
-};
-
- const handlePayment = async () => {
-  try {
-    const res = await fetch(`${API_BASE}/api/create-order/`, {
-      method: "POST",
-      headers: {
-        "Content-Type": "application/json",
-      },
-      body: JSON.stringify({
-        amount: 20, // ₹1
-        application_id: applicationId,
-      }),
-    });
-
-    if (!res.ok) {
-      const errData = await res.json();
-      alert(errData.error || "Failed to create order");
-      return;
-    }
-
-    const data = await res.json();
-
-    const options = {
-      key: "rzp_test_Sg6qpBoNrt75cC",
-      amount: data.amount,
-      currency: "INR",
-      order_id: data.order_id,
-
-      name: "100 Transcripts",
-      description: "Document Verification Fee",
-
-      handler: async function (response) {
-        try {
-          const verifyRes = await fetch(`${API_BASE}/api/verifys/`, {
-            method: "POST",
-            headers: {
-              "Content-Type": "application/json",
-            },
-            body: JSON.stringify({
-              razorpay_order_id: response.razorpay_order_id,
-              razorpay_payment_id: response.razorpay_payment_id,
-              razorpay_signature: response.razorpay_signature,
-              application_id: applicationId,
-            }),
-          });
-
-          const verifyData = await verifyRes.json();
-
-          if (verifyRes.ok && verifyData.status === "success") {
-            alert("Payment Successful ✅");
-            goStep(3);
-          } else {
-            alert("Payment Failed ❌");
-          }
-        } catch (err) {
-          alert("Verification error ❌");
-        }
-      },
-
-      prefill: {
-        name: form.fullName,
-        email: form.email,
-        contact: form.phone,
-      },
-
-      theme: {
-        color: "#2563eb",
-      },
-
-      // ✅ FORCE UPI ONLY (Scanner works perfectly)
-      method: {
-        upi: true,
-        card: true,
-        netbanking: false,
-        wallet: false,
-      },
-
-      // ✅ Opens QR / UPI apps directly
-      modal: {
-        ondismiss: function () {
-          console.log("Payment popup closed");
+    try {
+      const res = await fetch(`http://${window.location.hostname}:8000/api/refund/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
         },
-      },
-    };
+        body: JSON.stringify({
+          application_id: applicationId
+        }),
+      });
 
-    const rzp = new window.Razorpay(options);
-    rzp.open();
+      const data = await res.json();
 
-  } catch (err) {
-    console.error("Payment Error:", err);
-    alert("Payment error ❌");
-  }
-};
+      if (res.ok) {
+        alert(`Refund Successful ✅\nRefund ID: ${data.refund_id}`);
+      } else {
+        alert(data.error || "Refund Failed ❌");
+      }
+
+    } catch (err) {
+      console.error("Refund Error:", err);
+      alert("Refund error ❌");
+    }
+  };
+
+  const handlePayment = async () => {
+    try {
+      const res = await fetch(`${API_BASE}/api/create-order/`, {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+        },
+        body: JSON.stringify({
+          amount: 20, // ₹1
+          application_id: applicationId,
+        }),
+      });
+
+      if (!res.ok) {
+        const errData = await res.json();
+        alert(errData.error || "Failed to create order");
+        return;
+      }
+
+      const data = await res.json();
+
+      const options = {
+        key: "rzp_test_Sg6qpBoNrt75cC",
+        amount: data.amount,
+        currency: "INR",
+        order_id: data.order_id,
+
+        name: "100 Transcripts",
+        description: "Document Verification Fee",
+
+        handler: async function (response) {
+          try {
+            const verifyRes = await fetch(`${API_BASE}/api/verifys/`, {
+              method: "POST",
+              headers: {
+                "Content-Type": "application/json",
+              },
+              body: JSON.stringify({
+                razorpay_order_id: response.razorpay_order_id,
+                razorpay_payment_id: response.razorpay_payment_id,
+                razorpay_signature: response.razorpay_signature,
+                application_id: applicationId,
+              }),
+            });
+
+            const verifyData = await verifyRes.json();
+
+            if (verifyRes.ok && verifyData.status === "success") {
+              alert("Payment Successful ✅");
+              goStep(3);
+            } else {
+              alert("Payment Failed ❌");
+            }
+          } catch (err) {
+            alert("Verification error ❌");
+          }
+        },
+
+        prefill: {
+          name: form.fullName,
+          email: form.email,
+          contact: form.phone,
+        },
+
+        theme: {
+          color: "#2563eb",
+        },
+
+        // ✅ FORCE UPI ONLY (Scanner works perfectly)
+        method: {
+          upi: true,
+          card: true,
+          netbanking: false,
+          wallet: false,
+        },
+
+        // ✅ Opens QR / UPI apps directly
+        modal: {
+          ondismiss: function () {
+            console.log("Payment popup closed");
+          },
+        },
+      };
+
+      const rzp = new window.Razorpay(options);
+      rzp.open();
+
+    } catch (err) {
+      console.error("Payment Error:", err);
+      alert("Payment error ❌");
+    }
+  };
 
   const reset = () => {
     const user = JSON.parse(localStorage.getItem("user"));
     const userData = user?.data || {};
-    setForm({ 
-      fullName: userData.name || "", 
-      altPhone: "", 
-      email: userData.email || "", 
-      phone: "", 
-      requirement: "", 
-      referenceNumber: "", 
-      termsAccepted: false, 
-      specialCondition: false 
+    setForm({
+      fullName: userData.name || "",
+      altPhone: "",
+      email: userData.email || "",
+      phone: "",
+      requirement: "",
+      referenceNumber: "",
+      termsAccepted: false,
+      specialCondition: false
     });
     setDegrees([]);
     setUpProg({ cmm: 0, degree: 0, internship: 0 });
@@ -1406,10 +1773,35 @@ const handleRefund = async () => {
 
       <div className="app-shell">
         <RoadmapPanel activeStep={activeStep} />
-        <MobileRoadmap activeStep={activeStep} />
 
         <div className="portal-panel">
           <div className="portal-wrap">
+            <div className="process-section">
+              <div className="flow-track">
+                <div className="flow-fill" style={{ width: `${Math.min(fillPct, 100)}%` }} />
+              </div>
+              <div className="proc-ribbon">
+                {PROC.map((p, i) => {
+                  const stepMap = [0, 1, 1, 3, 4]; // activeStep 0->0, 1->1, 2->1, 3->3, 4->4
+                  const mappedStep = stepMap[activeStep];
+                  const isDone = i < mappedStep || (activeStep === 2 && i <= 1);
+                  const isActive = i === mappedStep || (activeStep === 2 && i === 3);
+                  // Correction for UI flow
+                  const uiStep = activeStep === 2 ? 3 : activeStep === 3 ? 4 : activeStep === 4 ? 5 : activeStep;
+                  const iDone = i < uiStep;
+                  const iActive = i === uiStep;
+
+                  return (
+                    <div key={i} className={`proc-cell ${iDone ? "pc-done" : ""} ${iActive ? "pc-active" : ""}`}>
+                      <div className="proc-orb">{p.icon}</div>
+                      <div className="proc-name">{p.label}</div>
+                      <div className="proc-hint">{p.hint}</div>
+                    </div>
+                  );
+                })}
+              </div>
+            </div>
+
             <div className="main-card card-anim" key={animKey}>
               {activeStep === 0 && (
                 <Step0
@@ -1441,12 +1833,12 @@ const handleRefund = async () => {
               {activeStep === 4 && <Step4 form={form} reset={reset} />}
             </div>
 
-            <div className="hero-header" style={{ animationDelay: '0.4s', marginTop: 48, marginBottom: 16 }}>
-              <h2 className="text-2xl sm:text-3xl font-black text-[#0f172a]">Already Applied? <em className="text-blue-600 not-italic">Check Status</em></h2>
-              <p className="text-slate-500 mt-2">Enter your unique tracking ID to see your processing progress</p>
+            <div className="hero-header" style={{ animationDelay: '0.4s', marginTop: 40, marginBottom: 12 }}>
+              <h2 style={{ fontSize: 24, fontWeight: 900, color: '#0f172a' }}>Already Applied? <em>Check Status</em></h2>
+              <p>Enter your unique tracking ID to see your processing progress</p>
             </div>
 
-            <form className="track-bar" onSubmit={handleTrack} style={{ marginTop: 24 }}>
+            <form className="track-bar" onSubmit={handleTrack} style={{ marginTop: 20 }}>
               <input
                 type="text"
                 className="track-input"

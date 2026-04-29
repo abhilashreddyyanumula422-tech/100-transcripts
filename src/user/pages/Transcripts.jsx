@@ -62,20 +62,23 @@ const Transcripts = () => {
       `}</style>
       <div className="max-w-6xl mx-auto">
         {/* Header */}
-        <motion.div
-          initial="hidden"
-          animate="visible"
-          variants={fadeUp}
-          transition={{ duration: 0.6 }}
-          className="text-center mb-12"
-        >
-          <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+        <main className="pt-24 pb-12 px-4"> {/* pt-24 adds space for a fixed header */}
+  <motion.div
+    initial="hidden"
+    animate="visible"
+    variants={fadeUp}
+    transition={{ duration: 0.6 }}
+    className="text-center"
+  >
+    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
             Transcripts / E-Transcripts
           </h1>
           <p className="text-lg text-gray-600 max-w-2xl mx-auto">
             Get your official academic transcripts from 289+ Indian universities for education or migration abroad.
           </p>
-        </motion.div>
+  </motion.div>
+</main>
+        
 
         {/* What is Transcripts */}
         <motion.div

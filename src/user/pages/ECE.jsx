@@ -2,11 +2,13 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Check, ArrowRight, FileText, Upload, GraduationCap,
-  Award, Clock, Shield, ExternalLink, Info, BadgeCheck,
-  Building2, CheckCircle2, Download
+  Shield, ExternalLink, BadgeCheck, Building2, 
+  CheckCircle2, Download
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import eceLogo from "../../assets/ECE_Logo_Color.png";
+
+// Assets
+import ecePartnership from "../../assets/ECE-Partnership1.png";
 import eceFlow from "../../assets/eceflow.png";
 
 const ECE = () => {
@@ -18,7 +20,6 @@ const ECE = () => {
       title: "Create ECE Account",
       description: "Download the complete account creation guide to set up your ECE portal correctly.",
       icon: GraduationCap,
-      color: "blue",
       content: (
         <div className="mt-6">
           <a
@@ -39,7 +40,6 @@ const ECE = () => {
       title: "Prepare Documents",
       description: "Gather all necessary academic records for your ECE evaluation.",
       icon: FileText,
-      color: "blue",
       content: (
         <div className="space-y-4 mt-6 bg-blue-50 p-6 rounded-2xl border border-blue-100">
           {[
@@ -76,7 +76,6 @@ const ECE = () => {
       title: "Upload Documents",
       description: "Submit your verified documents securely to start the evaluation process.",
       icon: Upload,
-      color: "blue",
       content: (
         <div className="mt-6">
           <Link
@@ -95,17 +94,14 @@ const ECE = () => {
   return (
     <div className="min-h-screen bg-white">
       
-      {/* HERO SECTION - LIGHT THEME AS REQUESTED */}
-      <section className="relative pt-32 pb-32 bg-white overflow-hidden">
-        {/* Subtle Background pattern */}
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-20 bg-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" 
              style={{ 
                backgroundImage: `radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0)`,
                backgroundSize: '40px 40px' 
              }} 
         />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] -mr-40 -mt-40" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] -ml-20 -mb-20" />
         
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
@@ -125,7 +121,7 @@ const ECE = () => {
               </h1>
               
               <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Get your international credentials evaluated quickly and securely through our official partnership. Enjoy <span className="text-blue-600 font-bold">priority processing</span> and <span className="text-blue-600 font-bold">expert guidance</span>.
+                Get your international credentials evaluated quickly and securely. Enjoy <span className="text-blue-600 font-bold">priority processing</span> and <span className="text-blue-600 font-bold">official verification</span>.
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
@@ -141,38 +137,32 @@ const ECE = () => {
             </motion.div>
 
             <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:w-1/2 flex justify-center relative"
+              initial={{ opacity: 0, x: 30 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              className="lg:w-1/2 flex justify-center"
             >
-              <div className="relative z-10 bg-blue-50/30 backdrop-blur-sm p-6 sm:p-8 rounded-[3rem] border border-blue-100 shadow-2xl overflow-hidden group">
-                <div className="relative bg-white rounded-[2rem] p-4 shadow-xl border border-white overflow-hidden">
-                  <img 
-                    src={eceFlow} 
-                    alt="ECE Workflow" 
-                    className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-700" 
-                  />
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-blue-100/30 rounded-full blur-[80px] scale-110 animate-pulse" />
+                <img
+                    src={ecePartnership}
+                    alt="ECE Partnership Flow Chart"
+                    className="w-full max-w-xl h-auto rounded-2xl mix-blend-multiply"
+                />
             </motion.div>
           </div>
         </div>
 
-        {/* Subtle Wave Divider */}
         <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-            <svg className="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
+            <svg className="relative block w-full h-[600px] -mb-[500px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
                 <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,112.49,122,126.31,185.39,111.44,248.8,96.57,263.39,67.23,321.39,56.44Z" className="fill-[#f8fafc]"></path>
             </svg>
         </div>
       </section>
 
-      {/* STEPS SECTION */}
+      {/* STEPS & INFO SECTION */}
       <section className="bg-[#f8fafc] pb-32 pt-12 px-6">
         <div className="max-w-7xl mx-auto">
             <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-black text-black mb-4">ECE Evaluation</h2>
+                <h2 className="text-4xl md:text-5xl font-black text-black mb-4">ECE Evaluation Process</h2>
                 <div className="flex items-center justify-center gap-4">
                     <span className="h-[2px] w-12 bg-blue-200" />
                     <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
@@ -181,63 +171,78 @@ const ECE = () => {
             </div>
 
             <div className="grid lg:grid-cols-2 gap-16 items-start">
-            
-            <div className="space-y-6">
-                {steps.map((step, idx) => (
-                <motion.div
-                    key={step.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
-                    onMouseEnter={() => setActiveStep(step.id)}
-                    onMouseLeave={() => setActiveStep(null)}
-                >
-                    <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
-                        <step.icon className="w-7 h-7" />
-                    </div>
-                    <div className="flex-1">
-                        <div className="flex items-center gap-4 mb-3">
-                        <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
-                            Step {idx + 1}
-                        </span>
+              
+              {/* Left Column - Steps AND Sample Report Card */}
+              <div className="space-y-6">
+                  {steps.map((step, idx) => (
+                  <motion.div
+                      key={step.id}
+                      initial={{ opacity: 0, y: 20 }}
+                      whileInView={{ opacity: 1, y: 0 }}
+                      viewport={{ once: true }}
+                      transition={{ delay: idx * 0.1 }}
+                      className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
+                      onMouseEnter={() => setActiveStep(step.id)}
+                      onMouseLeave={() => setActiveStep(null)}
+                  >
+                      <div className="flex items-start gap-8">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
+                            <step.icon className="w-7 h-7" />
                         </div>
-                        <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
-                        <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
-                        <AnimatePresence>
-                        {activeStep === step.id && (
-                            <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="overflow-hidden"
-                            >
-                            {step.content}
-                            </motion.div>
-                        )}
-                        </AnimatePresence>
-                    </div>
-                    </div>
-                </motion.div>
-                ))}
-            </div>
+                        <div className="flex-1">
+                            <div className="flex items-center gap-4 mb-3">
+                              <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
+                                  Step {idx + 1}
+                              </span>
+                            </div>
+                            <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
+                            <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
+                            <AnimatePresence>
+                            {activeStep === step.id && (
+                                <motion.div
+                                  initial={{ opacity: 0, height: 0 }}
+                                  animate={{ opacity: 1, height: 'auto' }}
+                                  exit={{ opacity: 0, height: 0 }}
+                                  className="overflow-hidden"
+                                >
+                                  {step.content}
+                                </motion.div>
+                            )}
+                            </AnimatePresence>
+                        </div>
+                      </div>
+                  </motion.div>
+                  ))}
 
-            <div className="lg:sticky lg:top-32 h-fit space-y-8">
-                <div className="bg-white p-10 sm:p-12 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
-                    <div className="relative z-10 space-y-6 text-center lg:text-left">
-                        <h3 className="text-2xl font-black text-black tracking-tight">Official ECE ECA Report</h3>
-                        <p className="text-slate-600 text-base font-medium leading-relaxed">Download a sample ECE evaluation report to understand the format and details provided to institutions.</p>
-                        <button
-                            className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105"
-                        >
-                            View Sample Report
-                            <ExternalLink className="w-5 h-5" />
-                        </button>
-                    </div>
-                </div>
+                  {/* REPORT CARD - Now positioned on the LEFT below steps */}
+                  <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group mt-12">
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
+                      <div className="relative z-10 space-y-6 text-center lg:text-left">
+                          <h3 className="text-2xl font-black text-black tracking-tight">Official ECE ECA Report</h3>
+                          <p className="text-slate-600 text-base font-medium leading-relaxed">Download a sample ECE evaluation report to understand the format provided to institutions.</p>
+                          <button className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105">
+                              View Sample Report
+                              <ExternalLink className="w-5 h-5" />
+                          </button>
+                      </div>
+                  </div>
+              </div>
+
+              {/* Right Column - Workflow Image and Verified Badge */}
+              <div className="lg:sticky lg:top-32 space-y-8">
+                <motion.div 
+                  initial={{ opacity: 0, scale: 0.95 }}
+                  whileInView={{ opacity: 1, scale: 1 }}
+                  className="bg-blue-50/30 backdrop-blur-sm p-6 sm:p-8 rounded-[3rem] border border-blue-100 shadow-2xl overflow-hidden group"
+                >
+                  <div className="relative bg-white rounded-[2rem] p-4 shadow-xl border border-white overflow-hidden">
+                    <img 
+                      src={eceFlow} 
+                      alt="ECE Workflow" 
+                      className="w-full h-auto object-contain transform group-hover:scale-105 transition-transform duration-700" 
+                    />
+                  </div>
+                </motion.div>
 
                 <div className="bg-blue-600 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-blue-500/20">
                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -251,13 +256,11 @@ const ECE = () => {
                         </div>
                     </div>
                 </div>
-            </div>
-
+              </div>
             </div>
         </div>
       </section>
 
-      {/* FLOATING HELP BUTTON */}
       <motion.div 
         initial={{ opacity: 0, x: 20 }}
         animate={{ opacity: 1, x: 0 }}
@@ -267,7 +270,6 @@ const ECE = () => {
         <span className="text-xl group-hover:rotate-12 transition-transform">👋</span>
       </motion.div>
 
-      {/* WHATSAPP FLOATING */}
       <a
         href="https://wa.me/919941991402"
         target="_blank"

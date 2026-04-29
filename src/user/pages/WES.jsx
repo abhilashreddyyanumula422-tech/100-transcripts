@@ -2,12 +2,12 @@ import React, { useState } from "react";
 import { Link } from "react-router-dom";
 import {
   Check, ArrowRight, FileText, Upload, UserPlus,
-  Award, Clock, Shield, ExternalLink, Info, BadgeCheck,
+  Shield, ExternalLink, BadgeCheck,
   Building2, CheckCircle2, Sparkles
 } from "lucide-react";
 import { motion, AnimatePresence } from "framer-motion";
-import wesLogo from "../../assets/WES_logo.png";
-import workflowImg from "../../assets/workflow.png";
+import logo100 from "../../assets/100logo.png";
+import wes1 from "../../assets/WES1.png";
 
 const WES = () => {
   const [activeStep, setActiveStep] = useState(null);
@@ -18,14 +18,13 @@ const WES = () => {
       title: "Create WES Account",
       description: "Follow our comprehensive guides to register your WES account correctly for Canada PR or other purposes.",
       icon: UserPlus,
-      color: "blue",
       content: (
-        <div className="flex flex-col sm:flex-row gap-3 mt-6">
+        <div className="flex flex-col gap-3 mt-4">
           <a
             href="https://100transcripts.com/wp-content/uploads/2025/02/How-to-create-WES-Account-for-%E2%80%98Canada-PR.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3.5 rounded-xl font-bold hover:bg-blue-700 transition-all shadow-lg text-sm flex-1 group"
+            className="flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-3 rounded-xl font-bold hover:bg-blue-700 transition-all text-sm group"
           >
             <Sparkles className="w-4 h-4" />
             <span>Canada PR Guide</span>
@@ -35,7 +34,7 @@ const WES = () => {
             href="https://100transcripts.com/wp-content/uploads/2026/01/WES-REGISTRATION-GUIDE-Version-1.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-white border-2 border-slate-200 text-slate-700 px-6 py-3.5 rounded-xl font-bold hover:border-blue-200 hover:bg-slate-50 transition-all text-sm flex-1 group"
+            className="flex items-center justify-center gap-2 bg-white border-2 border-slate-200 text-slate-700 px-6 py-3 rounded-xl font-bold hover:border-blue-200 transition-all text-sm group"
           >
             <span>Registration Guide</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -46,27 +45,19 @@ const WES = () => {
     {
       id: "prepare-docs",
       title: "Prepare Documents",
-      description: "Ensure you have all required documents and correctly filled forms for WES evaluation.",
+      description: "Ensure you have all required documents and correctly filled forms.",
       icon: FileText,
-      color: "blue",
       content: (
-        <div className="space-y-4 mt-6 bg-blue-50 p-6 rounded-2xl border border-blue-100">
+        <div className="space-y-3 mt-4 bg-slate-50 p-5 rounded-2xl border border-slate-100">
           {[
             { label: "CMM or Yearly marks sheets", link: "https://100transcripts.com/cmm/" },
             { label: "Degree Certificate or PC", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
             { label: "WES Reference Number", isText: true },
           ].map((item, index) => (
-            <div key={index} className="flex items-start gap-3 group">
-              <div className="mt-1 bg-blue-100 rounded-full p-1 flex-shrink-0">
-                <Check className="w-3 h-3 text-blue-600" />
-              </div>
+            <div key={index} className="flex items-start gap-2">
+              <Check className="w-4 h-4 text-blue-600 mt-1" />
               {item.link ? (
-                <a
-                  href={item.link}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="text-slate-800 hover:text-blue-600 transition-colors text-sm font-bold leading-tight"
-                >
+                <a href={item.link} target="_blank" rel="noopener noreferrer" className="text-slate-800 hover:text-blue-600 text-sm font-bold">
                   {item.label}
                 </a>
               ) : (
@@ -74,35 +65,22 @@ const WES = () => {
               )}
             </div>
           ))}
-          
-          <div className="bg-white p-4 rounded-xl border border-blue-100 mt-4 shadow-sm">
-            <h4 className="text-[10px] font-black text-blue-900 mb-3 flex items-center gap-2 uppercase tracking-widest">
-              <FileText className="w-3.5 h-3.5 text-blue-600" />
-              WES Official Forms
-            </h4>
-            <div className="space-y-2">
-              <a href="https://100transcripts.com/wp-content/uploads/2025/02/WES-Academic-Records-Request-Form.pdf" target="_blank" rel="noopener noreferrer" className="block text-xs text-blue-600 hover:underline font-bold">• Academic Records Request Form</a>
-              <a href="https://100transcripts.com/wp-content/uploads/2025/02/How-to-Fill-the-WES-Academic-Records-Request-Form.pdf" target="_blank" rel="noopener noreferrer" className="block text-xs text-blue-600 hover:underline font-bold">• How to Fill the Form (Guide)</a>
-            </div>
-          </div>
         </div>
       )
     },
     {
       id: "upload-docs",
       title: "Upload Documents",
-      description: "Submit your documents securely for WES verification and evaluation.",
+      description: "Submit your documents securely through our official portal.",
       icon: Upload,
-      color: "blue",
       content: (
-        <div className="mt-6">
+        <div className="mt-4">
           <Link
             to="/apply"
-            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm group"
+            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-3 rounded-xl font-black hover:bg-blue-700 transition-all text-sm shadow-lg"
           >
-            <Upload className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
+            <Upload className="w-4 h-4" />
             Start Application
-            <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
           </Link>
         </div>
       )
@@ -112,190 +90,134 @@ const WES = () => {
   return (
     <div className="min-h-screen bg-white">
       
-      {/* HERO SECTION - LIGHT THEME AS REQUESTED */}
-      <section className="relative pt-32 pb-32 bg-white overflow-hidden">
-        {/* Subtle Background pattern */}
-        <div className="absolute inset-0 opacity-[0.03]" 
-             style={{ 
-               backgroundImage: `radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0)`,
-               backgroundSize: '40px 40px' 
-             }} 
-        />
-        <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-50 rounded-full blur-[120px] -mr-40 -mt-40" />
-        <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-50/50 rounded-full blur-[100px] -ml-20 -mb-20" />
-        
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+      {/* HERO SECTION */}
+      <section className="relative pt-32 pb-20 bg-white">
+        <div className="max-w-7xl mx-auto px-6">
+          <div className="flex flex-col lg:flex-row items-center gap-12">
             <motion.div 
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
-              transition={{ duration: 0.8 }}
-              className="lg:w-1/2 text-center lg:text-left space-y-8"
+              className="lg:w-1/2 text-center lg:text-left space-y-6"
             >
-              <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-full px-5 py-2 shadow-sm">
+              <div className="inline-flex items-center gap-3 bg-slate-50 border border-slate-100 rounded-full px-5 py-2">
                 <Building2 className="w-4 h-4 text-blue-600" />
-                <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.3em]">Official WES Partnership</span>
+                <span className="text-slate-600 text-[10px] font-black uppercase tracking-widest">Official WES Partnership</span>
               </div>
-              
-              <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-black leading-[1.1] tracking-tight">
-                100 Transcripts is partnered with <span className="text-blue-600">WES</span>
+              <h1 className="text-5xl lg:text-7xl font-black text-black leading-tight">
+                100 Transcripts & <span className="text-blue-600">WES</span>
               </h1>
-              
-              <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Fast-track your WES evaluation with our official partnership. Enjoy <span className="text-blue-600 font-bold">priority processing</span> and <span className="text-blue-600 font-bold">official verification</span>.
+              <p className="text-slate-600 text-lg md:text-xl font-medium">
+                Fast-track your evaluation with priority processing and official verification.
               </p>
-
-              <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
+              <div className="flex flex-wrap justify-center lg:justify-start gap-4">
+                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
                     <CheckCircle2 className="w-5 h-5 text-blue-600" />
                     <span className="text-black font-bold text-sm">Priority Processing</span>
                  </div>
-                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
+                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
                     <Shield className="w-5 h-5 text-blue-600" />
                     <span className="text-black font-bold text-sm">Official Verification</span>
                  </div>
               </div>
             </motion.div>
 
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.95 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="lg:w-1/2 flex justify-center relative"
-            >
-              <div className="relative z-10 bg-blue-50/30 backdrop-blur-sm p-6 sm:p-8 rounded-[3rem] border border-blue-100 shadow-2xl overflow-hidden group">
-                <div className="relative bg-white rounded-[2rem] p-8 shadow-xl border border-white overflow-hidden flex items-center justify-center min-h-[300px]">
-                  <img 
-                    src={wesLogo} 
-                    alt="WES Logo" 
-                    className="w-48 h-auto object-contain transform group-hover:scale-105 transition-transform duration-700" 
-                  />
-                </div>
-              </div>
-              <div className="absolute inset-0 bg-blue-100/30 rounded-full blur-[80px] scale-110 animate-pulse" />
+            <motion.div className="lg:w-1/2 flex justify-center">
+              {/* INCREASED LOGO SIZE HERE */}
+              <img 
+                src={logo100} 
+                alt="100 Transcripts Logo" 
+                className="w-100 md:w-[600px] h-auto object-contain" 
+              />
             </motion.div>
           </div>
         </div>
-
-        {/* Subtle Wave Divider */}
-        <div className="absolute bottom-0 left-0 w-full overflow-hidden leading-[0]">
-            <svg className="relative block w-full h-[100px]" data-name="Layer 1" xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 120" preserveAspectRatio="none">
-                <path d="M321.39,56.44c58-10.79,114.16-30.13,172-41.86,82.39-16.72,168.19-17.73,250.45-.39C823.78,31,906.67,72,985.66,92.83c70.05,18.48,146.53,26.09,214.34,3V120H0V95.8C58.47,112.49,122,126.31,185.39,111.44,248.8,96.57,263.39,67.23,321.39,56.44Z" className="fill-[#f8fafc]"></path>
-            </svg>
-        </div>
       </section>
 
-      {/* STEPS SECTION */}
-      <section className="bg-[#f8fafc] pb-32 pt-12 px-6">
+      {/* STEPS & WORKFLOW SECTION - STEPS LEFT, WORKFLOW RIGHT */}
+      <section className="bg-white pb-32 pt-12 px-6">
         <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-black text-black mb-4">WES Evaluation</h2>
-                <div className="flex items-center justify-center gap-4">
-                    <span className="h-[2px] w-12 bg-blue-200" />
-                    <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
-                    <span className="h-[2px] w-12 bg-blue-200" />
-                </div>
+            <div className="text-center mb-20">
+                <h2 className="text-4xl font-black text-black mb-2">WES Evaluation</h2>
+                <p className="text-blue-600 font-bold uppercase tracking-widest text-xs">Seamless Step-by-Step Process</p>
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-            
-            <div className="space-y-6">
+            <div className="grid lg:grid-cols-2 gap-20 items-start">
+              
+              {/* LEFT SIDE: STEPS */}
+              <div className="space-y-6">
                 {steps.map((step, idx) => (
-                <motion.div
+                  <motion.div
                     key={step.id}
-                    initial={{ opacity: 0, y: 20 }}
-                    whileInView={{ opacity: 1, y: 0 }}
-                    viewport={{ once: true }}
-                    transition={{ delay: idx * 0.1 }}
-                    className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
+                    className={`bg-white p-8 rounded-[2rem] border transition-all duration-300 ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
                     onMouseEnter={() => setActiveStep(step.id)}
                     onMouseLeave={() => setActiveStep(null)}
-                >
-                    <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
-                        <step.icon className="w-7 h-7" />
-                    </div>
-                    <div className="flex-1">
-                        <div className="flex items-center gap-4 mb-3">
-                        <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
-                            Step {idx + 1}
-                        </span>
-                        </div>
+                  >
+                    <div className="flex items-start gap-6">
+                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
+                        <step.icon className="w-6 h-6" />
+                      </div>
+                      <div className="flex-1">
+                        <span className="text-[10px] font-black text-blue-600 uppercase">Step {idx + 1}</span>
                         <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
-                        <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
+                        <p className="text-slate-600 text-sm font-medium">{step.description}</p>
                         <AnimatePresence>
-                        {activeStep === step.id && (
-                            <motion.div
-                            initial={{ opacity: 0, height: 0 }}
-                            animate={{ opacity: 1, height: 'auto' }}
-                            exit={{ opacity: 0, height: 0 }}
-                            className="overflow-hidden"
-                            >
-                            {step.content}
+                          {activeStep === step.id && (
+                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
+                              {step.content}
                             </motion.div>
-                        )}
+                          )}
                         </AnimatePresence>
+                      </div>
                     </div>
-                    </div>
-                </motion.div>
+                  </motion.div>
                 ))}
-            </div>
+              </div>
 
-            <div className="lg:sticky lg:top-32 h-fit space-y-8">
-                <div className="bg-white p-10 sm:p-12 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group">
-                    <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
-                    <div className="relative z-10 space-y-6 text-center lg:text-left">
-                        <h3 className="text-2xl font-black text-black tracking-tight">Official WES ECA Report</h3>
-                        <p className="text-slate-600 text-base font-medium leading-relaxed">Download a sample WES evaluation report to understand the format and details provided to institutions.</p>
-                        <a
-                            href="https://100transcripts.com/wes-final-eca-report/"
-                            target="_blank"
-                            rel="noopener noreferrer"
-                            className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105"
-                        >
-                            View Sample Report
-                            <ExternalLink className="w-5 h-5" />
-                        </a>
-                    </div>
+              {/* RIGHT SIDE: WORKFLOW IMAGE & INFO */}
+              <div className="lg:sticky lg:top-32 space-y-8">
+                <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-lg">
+                    {/* WES Workflow Image */}
+                    <img
+                        src={wes1}
+                        alt="WES Partnership Workflow"
+                        className="w-100 md:w-[600px] h-auto object-contain" />
                 </div>
 
-                <div className="bg-blue-600 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-blue-500/20">
-                    <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
-                    <div className="relative z-10 flex items-center gap-6">
-                        <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
-                            <BadgeCheck className="w-9 h-9 text-white" />
-                        </div>
-                        <div>
-                            <h4 className="text-xl font-black text-white">100% Reliable</h4>
-                            <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
-                        </div>
+                <div className="bg-[#033074] p-10 rounded-[2.5rem] text-center lg:text-left text-white">
+                    <h3 className="text-2xl font-black tracking-tight mb-4 text-white">WES ECA Report</h3>
+                    <p className="text-slate-400 text-sm mb-8 leading-relaxed">Download a sample WES evaluation report to understand the format provided to global institutions.</p>
+                    <a
+                        href="https://100transcripts.com/wes-final-eca-report/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="inline-flex items-center gap-4 bg-blue-600 text-white px-8 py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all w-full justify-center"
+                    >
+                        View Sample Report
+                        <ExternalLink className="w-4 h-4" />
+                    </a>
+                </div>
+
+                <div className="bg-blue-600 p-6 rounded-3xl flex items-center gap-4 shadow-xl">
+                    <BadgeCheck className="w-10 h-10 text-white" />
+                    <div>
+                        <h4 className="text-lg font-black text-white leading-none">100% Verified</h4>
+                        <p className="text-blue-100 text-xs font-medium">Official partnership for secure results.</p>
                     </div>
                 </div>
-            </div>
+              </div>
 
             </div>
         </div>
       </section>
-
-      {/* FLOATING HELP BUTTON */}
-      <motion.div 
-        initial={{ opacity: 0, x: 20 }}
-        animate={{ opacity: 1, x: 0 }}
-        className="fixed bottom-24 right-8 z-40 bg-white px-5 py-3 rounded-full shadow-2xl border border-slate-100 flex items-center gap-3 cursor-pointer hover:shadow-blue-500/10 transition-shadow group"
-      >
-        <span className="text-black font-bold text-sm">Need help?</span>
-        <span className="text-xl group-hover:rotate-12 transition-transform">👋</span>
-      </motion.div>
 
       {/* WHATSAPP FLOATING */}
       <a
         href="https://wa.me/919941991402"
         target="_blank"
         rel="noopener noreferrer"
-        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:scale-110 active:scale-95 group"
-        aria-label="Contact us on WhatsApp"
+        className="fixed bottom-8 right-8 z-50 bg-[#25D366] text-white p-5 rounded-full shadow-2xl hover:bg-[#128C7E] transition-all hover:scale-110"
       >
-        <svg className="w-8 h-8 group-hover:rotate-12 transition-transform" fill="currentColor" viewBox="0 0 24 24">
+        <svg className="w-8 h-8" fill="currentColor" viewBox="0 0 24 24">
           <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z" />
         </svg>
       </a>
