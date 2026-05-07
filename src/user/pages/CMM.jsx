@@ -4,7 +4,7 @@ import { FiFileText, FiCheckCircle, FiClock, FiAward, FiArrowRight, FiUpload, Fi
 import { useNavigate } from "react-router-dom";
 import certificateImg from "../../assets/CMM.png";
 import cesLogo from "../../assets/CES.png";
-import eceLogo from "../../assets/ECE.png";
+import eceLogo from "../../assets/ece.png";
 import enicLogo from "../../assets/ENIC.png";
 import icasLogo from "../../assets/ICAS.png";
 import ieeLogo from "../../assets/IEE-1.png";

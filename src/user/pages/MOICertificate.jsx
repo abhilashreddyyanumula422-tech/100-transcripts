@@ -9,7 +9,7 @@ import certificateImg4 from "../../assets/OU.png";
 import certificateImg5 from "../../assets/Dr.N.T.R.png";
 import certificateImg6 from "../../assets/JNTUK.png";
 import cesLogo from "../../assets/CES.png";
-import eceLogo from "../../assets/ECE.png";
+import eceLogo from "../../assets/ece.png";
 import enicLogo from "../../assets/ENIC.png";
 import icasLogo from "../../assets/ICAS.png";
 import ieeLogo from "../../assets/IEE-1.png";
