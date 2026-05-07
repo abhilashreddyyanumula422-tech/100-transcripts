@@ -44,7 +44,7 @@ import DeliveryManagement from "../Admin/pages/DeliveryManagement";
 import Settings from "../Admin/pages/Settings";
 import CollegeRequests from "../Admin/pages/CollegeRequests";
 import EmailNotificationTemplate from "../Admin/pages/EmailNotificationTemplate";
-import AdminUniversities from "../Admin/pages/AdminUniversities";
+;
 
 const AppRoutes = () => {
   return (
@@ -95,7 +95,7 @@ const AppRoutes = () => {
           <Route path="student-requests" element={<StudentRequests />} />
           <Route path="college-verification" element={<CollegeVerification />} />
           <Route path="college-requests" element={<CollegeRequests />} />
-          <Route path="universities" element={<AdminUniversities />} />
+        
           <Route path="delivery" element={<DeliveryManagement />} />
           <Route path="email-notification-template" element={<EmailNotificationTemplate />} />
           <Route path="settings" element={<Settings />} />
