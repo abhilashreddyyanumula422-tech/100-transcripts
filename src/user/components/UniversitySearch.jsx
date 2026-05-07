@@ -1,86 +1,254 @@
-import React from "react";
-import { Search } from "lucide-react";
+import React, { useState } from "react";
+import { Search, MapPin, GraduationCap, Target, ArrowRight, CheckCircle2 } from "lucide-react";
 import { motion } from "framer-motion";
 
+const universities = [
+  "JNTU Hyderabad", "Osmania University", "University of Hyderabad", "JNTU Kakinada", "JNTU Anantapur",
+  "Andhra University", "Sri Venkateswara University", "Kakatiya University", "SV University", "Acharya Nagarjuna University",
+  "University of Mumbai", "University of Pune", "Savitribai Phule Pune University", "University of Delhi", "Jawaharlal Nehru University",
+  "Banaras Hindu University", "Aligarh Muslim University", "University of Calcutta", "University of Madras", "Anna University",
+  "IIT Bombay", "IIT Delhi", "IIT Madras", "IIT Kanpur", "IIT Kharagpur",
+  "NIT Trichy", "NIT Warangal", "NIT Surathkal", "NIT Rourkela", "BITS Pilani",
+  "VIT Vellore", "SRM University", "Manipal University", "Amrita University", "Christ University",
+  "Jain University", "Bangalore University", "Mysore University", "Karnataka University", "Gulbarga University",
+  "Kuvempu University", "Mangalore University", "Rajiv Gandhi University", "Tezpur University", "Dibrugarh University",
+  "Gauhati University", "Assam University", "North Eastern Hill University", "Punjab University", "Panjab University Chandigarh",
+  "Guru Nanak Dev University", "Punjabi University", "Thapar University", "Lovely Professional University", "Chandigarh University",
+  "University of Rajasthan", "Rajasthan Technical University", "Maharshi Dayanand University", "Kurukshetra University", "Guru Jambheshwar University",
+  "Chaudhary Charan Singh University", "Dr. B.R. Ambedkar University", "University of Lucknow", "Banasthali University", "Amity University",
+  "Sharda University", "Galgotias University", "Jamia Millia Islamia", "Jamia Hamdard", "Bundelkhand University",
+  "Chhatrapati Shahu Ji Maharaj University", "Dr. A.P.J. Abdul Kalam Technical University", "Madan Mohan Malaviya University", "University of Allahabad",
+  "Sam Higginbottom University", "English and Foreign Languages University", "NALSAR University of Law", "Jadavpur University", "Presidency University",
+  "St. Xavier's College", "University of Burdwan", "Kalyani University", "Vidyasagar University", "North Bengal University",
+  "Bharath University", "SASTRA University", "PSG College of Technology", "Loyola College", "Madras Christian College",
+  "Hindustan University", "Sathyabama University", "Vel Tech University", "Vels University", "Saveetha University",
+  "Sri Ramachandra University", "Cochin University of Science and Technology", "Mahatma Gandhi University", "Calicut University", "Kannur University",
+  "Indian Institute of Technology Palakkad", "Indian Institute of Technology Tirupati", "Indian Institute of Technology Dharwad", "Indian Institute of Technology Bhilai",
+  "Indian Institute of Technology Goa", "Indian Institute of Technology Jammu", "Indian Institute of Technology Bhubaneswar", "Indian Institute of Technology Guwahati",
+  "Indian Institute of Technology Ropar", "Indian Institute of Technology Mandi", "Indian Institute of Technology Indore", "Indian Institute of Technology Jodhpur",
+  "Indian Institute of Technology Hyderabad", "Indian Institute of Technology Patna", "Indian Institute of Technology Gandhinagar", "Indian Institute of Technology Roorkee",
+  "Indian Institute of Technology Varanasi", "Indian Institute of Technology Chennai", "National Institute of Technology Delhi", "National Institute of Technology Srinagar",
+  "National Institute of Technology Hamirpur", "National Institute of Technology Jalandhar", "National Institute of Technology Kurukshetra", "National Institute of Technology Allahabad",
+  "National Institute of Technology Patna", "National Institute of Technology Jamshedpur", "National Institute of Technology Durgapur", "National Institute of Technology Silchar",
+  "National Institute of Technology Agartala", "National Institute of Technology Nagpur", "National Institute of Technology Raipur", "National Institute of Technology Puducherry",
+  "National Institute of Technology Goa", "National Institute of Technology Andhra Pradesh", "National Institute of Technology Uttarakhand", "National Institute of Technology Sikkim",
+  "National Institute of Technology Manipur", "National Institute of Technology Meghalaya", "National Institute of Technology Mizoram", "National Institute of Technology Nagaland",
+  "National Institute of Technology Arunachal Pradesh", "Birla Institute of Technology Mesra", "Birla Institute of Technology Pilani", "Birla Institute of Technology Goa",
+  "Birla Institute of Technology Hyderabad", "Birla Institute of Technology Jaipur", "Birla Institute of Technology Dubai", "VIT Bhopal", "VIT Chennai",
+  "VIT Amaravati", "VIT Bangalore", "SRM Institute of Science and Technology", "SRM University Delhi NCR", "SRM University Sonepat",
+  "SRM University Haryana", "Amrita School of Engineering", "Amrita School of Business", "Amrita School of Medicine", "Amrita School of Arts and Sciences",
+  "Manipal Academy of Higher Education", "Manipal Institute of Technology", "Manipal College of Pharmaceutical Sciences", "Manipal College of Dental Sciences", "Kasturba Medical College",
+  "Jawaharlal Institute of Postgraduate Medical Education", "Christian Medical College", "Armed Forces Medical College", "St. John's Medical College", "Lady Hardinge Medical College",
+  "Maulana Azad Medical College", "All India Institute of Medical Sciences", "Post Graduate Institute of Medical Education", "Christian Medical College Vellore", "JIPMER Puducherry",
+  "National Institute of Mental Health", "Tata Memorial Hospital", "Kidwai Memorial Institute", "Chittaranjan National Cancer Institute", "Sri Ramachandra Medical College",
+  "Saveetha Medical College", "Sri Venkateswara Medical College", "Osmania Medical College", "Gandhi Medical College", "Kakatiya Medical College",
+  "Andhra Medical College", "Guntur Medical College", "Kurnool Medical College", "Rajiv Gandhi University of Health Sciences", "Bangalore Medical College",
+  "Mysore Medical College", "Kasturba Medical College Manipal", "Kasturba Medical College Mangalore", "Father Muller Medical College", "St. John's Medical College Bangalore",
+  "M.S. Ramaiah Medical College", "Kempegowda Institute of Medical Sciences", "Vydehi Institute of Medical Sciences", "Apollo Hospitals Educational", "Yenepoya University",
+  "Nitte University", "JSS University", "M.S. Ramaiah University", "Dayananda Sagar University", "Alliance University",
+  "Azim Premji University", "PES University", "BMS College of Engineering", "R.V. College of Engineering", "M.S. Ramaiah Institute of Technology",
+  "Bangalore Institute of Technology", "University Visvesvaraya College", "Central College Bangalore", "National College Bangalore", "Mount Carmel College",
+  "St. Joseph's College", "Jyoti Nivas College", "Bishop Cotton College", "Sophia College", "Elphinstone College",
+  "St. Xavier's College Mumbai", "Hindu College", "St. Stephen's College", "Miranda House", "Lady Shri Ram College",
+  "Hansraj College", "Kirori Mal College", "Ramjas College", "Shri Ram College", "Lady Irwin College",
+  "Indraprastha College", "Jesus and Mary College", "Maitreyi College", "Gargi College", "Kamla Nehru College",
+  "Acharya Narendra Dev College", "Deen Dayal Upadhyaya College", "Shaheed Sukhdev College", "Netaji Subhas University", "Bhagat Singh College",
+  "Sri Venkateswara College", "Zakir Husain College"
+];
+
+const states = [
+  "Andhra Pradesh", "Telangana", "Karnataka", "Tamil Nadu", "Kerala",
+  "Maharashtra", "Delhi", "Uttar Pradesh", "Punjab", "Haryana",
+  "Rajasthan", "Gujarat", "Madhya Pradesh", "Bihar", "West Bengal",
+  "Odisha", "Assam", "Jharkhand", "Chhattisgarh", "Uttarakhand",
+  "Himachal Pradesh", "Jammu & Kashmir", "Goa", "Puducherry", "Chandigarh"
+];
+
+const purposes = [
+  "Higher Education", "Employment", "Immigration", "Professional License",
+  "Research", "Scholarship", "Visa Application", "Other"
+];
+
 const UniversitySearch = () => {
+  const [searchTerm, setSearchTerm] = useState("");
+  const [filteredUniversities, setFilteredUniversities] = useState([]);
+  const [showResults, setShowResults] = useState(false);
+  const [selectedState, setSelectedState] = useState("");
+  const [selectedPurpose, setSelectedPurpose] = useState("");
+
+  const handleSearch = (e) => {
+    const value = e.target.value;
+    setSearchTerm(value);
+    
+    if (value.length > 0) {
+      const filtered = universities.filter(uni => 
+        uni.toLowerCase().includes(value.toLowerCase())
+      );
+      setFilteredUniversities(filtered);
+      setShowResults(true);
+    } else {
+      setFilteredUniversities([]);
+      setShowResults(false);
+    }
+  };
+
+  const selectUniversity = (uni) => {
+    setSearchTerm(uni);
+    setShowResults(false);
+  };
+
   return (
-    <section className="w-full py-16 sm:py-24 bg-gradient-to-b from-white to-slate-50 overflow-hidden">
+    <section className="w-full py-20 lg:py-32 bg-[#F8FAFC] relative overflow-hidden">
+      {/* Background Decorative Gradients */}
+      <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[140px] -translate-y-1/2 translate-x-1/3" />
+      <div className="absolute bottom-0 left-0 w-[600px] h-[600px] bg-blue-100/40 rounded-full blur-[140px] translate-y-1/2 -translate-x-1/3" />
 
-      <div className="max-w-7xl mx-auto px-6">
-
-        {/* 🔥 SAME HEADING STYLE (LIKE WHO WE ARE) */}
-        <motion.div
-          initial={{ opacity: 0, y: 40 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          transition={{ duration: 0.6 }}
-          className="mb-12 lg:mb-16 text-center"
-        >
-          <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="w-8 sm:w-14 h-[2px] sm:h-[3px] bg-blue-600"></span>
-
-            <p className="text-sm font-bold uppercase text-blue-600 tracking-widest">
+      <div className="max-w-7xl mx-auto px-6 relative z-10">
+        <div className="grid lg:grid-cols-2 gap-12 lg:gap-20 items-center">
+          
+          {/* LEFT SIDE: CONTENT */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="mb-14"
+          >
+            <p className="text-sm font-bold uppercase tracking-widest text-blue-600 mb-6">
               Find Your University
             </p>
 
-            <span className="w-8 sm:w-14 h-[2px] sm:h-[3px] bg-blue-600"></span>
-          </div>
+            <h2 className="text-4xl md:text-5xl lg:text-6xl font-black leading-[1.1] text-[#2f4a6d] mb-8">
+              Explore Institutions for  
+             
+              <span className="text-transparent bg-clip-text bg-gradient-to-r from-blue-600 to-cyan-600">
+                Expert Guidance
+              </span>
+            </h2>
 
-          <h2 className="text-3xl sm:text-4xl md:text-5xl font-black leading-tight text-[#2f4a6d] max-w-4xl mx-auto">
-            Explore Institutions for Expert Guidance
-          </h2>
+            <p className="text-lg text-slate-600 mb-10 leading-relaxed max-w-xl">
+              Search universities, choose services, and get your transcripts processed easily. 
+              Join <span className="font-bold text-blue-600">17,000+ students</span> who trusted our secure workflow.
+            </p>
+            
+            {/* Trust Badges */}
+            <div className="grid grid-cols-2 gap-4">
+              {["500+ Universities", "99% Success Rate", "ISO Certified", "24/7 Support"].map((item, i) => (
+                <div key={i} className="flex items-center gap-2 text-slate-700 font-bold text-sm">
+                  <CheckCircle2 className="text-green-500" size={18} />
+                  {item}
+                </div>
+              ))}
+            </div>
+          </motion.div>
 
-          <p className="mt-6 text-slate-600 max-w-2xl mx-auto text-base sm:text-lg font-medium leading-relaxed">
-            Search universities, choose services, and get your transcripts processed easily.
-          </p>
-        </motion.div>
+          {/* RIGHT SIDE: SEARCH CARD */}
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="relative"
+          >
+            <div className="bg-white rounded-[3rem] p-8 md:p-12 shadow-[0_50px_100px_-20px_rgba(0,0,0,0.08)] border border-white relative z-10">
+              <div className="space-y-6">
+                
+                {/* SEARCH INPUT */}
+                <div className="relative">
+                  <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">
+                    <Search size={16} className="text-blue-500" />
+                    Search University
+                  </label>
+                  <div className="relative">
+                    <input
+                      type="text"
+                      value={searchTerm}
+                      onChange={handleSearch}
+                      placeholder="Type university name..."
+                      className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white rounded-2xl px-6 py-5 text-lg font-bold text-slate-800 transition-all outline-none"
+                    />
+                  </div>
 
-        {/* 🔍 SEARCH BOX */}
-        <motion.div 
-          initial={{ opacity: 0, scale: 0.95 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.5, delay: 0.2 }}
-          className="bg-white shadow-2xl shadow-blue-500/5 rounded-[2.5rem] p-6 sm:p-10 md:p-12 border border-slate-100"
-        >
-          <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6 items-end">
+                  {/* SEARCH RESULTS */}
+                  {showResults && filteredUniversities.length > 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 max-h-80 overflow-y-auto z-50">
+                      {filteredUniversities.slice(0, 50).map((uni, index) => (
+                        <div
+                          key={index}
+                          onClick={() => selectUniversity(uni)}
+                          className="px-6 py-4 cursor-pointer hover:bg-blue-50 transition-colors border-b border-gray-100 last:border-b-0"
+                        >
+                          <p className="text-sm font-semibold text-slate-700">{uni}</p>
+                        </div>
+                      ))}
+                    </div>
+                  )}
 
-            {/* STATE */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select State</label>
-              <select className="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-slate-700 font-semibold min-h-[56px] appearance-none">
-                <option>Select State</option>
-              </select>
+                  {showResults && filteredUniversities.length === 0 && (
+                    <div className="absolute top-full left-0 right-0 mt-2 bg-white rounded-2xl shadow-2xl border border-gray-100 p-6 z-50">
+                      <p className="text-slate-500 text-center">No universities found</p>
+                    </div>
+                  )}
+                </div>
+
+                {/* STATE DROPDOWN */}
+                <div className="relative">
+                  <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">
+                    <MapPin size={16} className="text-blue-500" />
+                    Select State
+                  </label>
+                  <select
+                    value={selectedState}
+                    onChange={(e) => setSelectedState(e.target.value)}
+                    className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white rounded-2xl px-6 py-5 text-lg font-bold text-slate-800 transition-all outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Select State</option>
+                    {states.map((state) => (
+                      <option key={state} value={state}>
+                        {state}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* PURPOSE DROPDOWN */}
+                <div className="relative">
+                  <label className="flex items-center gap-2 text-xs font-black text-slate-400 uppercase tracking-[0.2em] mb-3 ml-1">
+                    <Target size={16} className="text-blue-500" />
+                    Select Purpose
+                  </label>
+                  <select
+                    value={selectedPurpose}
+                    onChange={(e) => setSelectedPurpose(e.target.value)}
+                    className="w-full bg-slate-50 border-2 border-transparent focus:border-blue-500 focus:bg-white rounded-2xl px-6 py-5 text-lg font-bold text-slate-800 transition-all outline-none appearance-none cursor-pointer"
+                  >
+                    <option value="">Select Purpose</option>
+                    {purposes.map((purpose) => (
+                      <option key={purpose} value={purpose}>
+                        {purpose}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+
+                {/* SEARCH BUTTON */}
+                <motion.button
+                  whileHover={{ y: -4, shadow: "0 25px 50px -12px rgba(59, 130, 246, 0.3)" }}
+                  whileTap={{ scale: 0.98 }}
+                  className="inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all"
+                >
+                  <Search size={24} strokeWidth={3} />
+                  Search University
+                </motion.button>
+              </div>
             </div>
 
-            {/* UNIVERSITY */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select University</label>
-              <select className="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-slate-700 font-semibold min-h-[56px] appearance-none">
-                <option>First Select State</option>
-              </select>
-            </div>
+            {/* Subtle Floating Ornament */}
+            <div className="absolute -bottom-6 -right-6 w-32 h-32 bg-gradient-to-br from-blue-600 to-cyan-600 rounded-[2rem] -z-10 rotate-12 opacity-20 blur-2xl" />
+          </motion.div>
 
-            {/* PURPOSE */}
-            <div className="space-y-2">
-              <label className="text-xs font-bold uppercase tracking-widest text-slate-400 ml-1">Select Purpose</label>
-              <select className="w-full px-5 py-4 rounded-2xl border-2 border-slate-50 bg-slate-50 focus:bg-white focus:border-blue-400 focus:ring-4 focus:ring-blue-500/10 transition-all outline-none text-slate-700 font-semibold min-h-[56px] appearance-none">
-                <option>Select Purpose</option>
-              </select>
-            </div>
-
-            {/* BUTTON */}
-            <div className="pt-2 sm:pt-0">
-              <button className="w-full flex items-center justify-center gap-3 px-8 py-4 rounded-2xl bg-[#2f4a6d] text-white font-bold hover:bg-blue-600 hover:shadow-xl hover:shadow-blue-600/20 active:scale-95 transition-all min-h-[56px]">
-                <Search size={20} />
-                Search
-              </button>
-            </div>
-
-          </div>
-        </motion.div>
-
+        </div>
       </div>
     </section>
   );
 };
 
-export default UniversitySearch;
+export default UniversitySearch;

@@ -16,13 +16,13 @@
 //   const currentYear = new Date().getFullYear();
 
 //   return (
-//     <footer className="bg-[#243b5a] text-white">
+//     <footer className="bg-black text-white">
 //       <div className="mx-auto max-w-7xl px-6 py-8 md:px-12">
 //         <div className="grid gap-6 border-b border-white/10 pb-6 lg:grid-cols-[1fr_0.8fr_0.9fr_1.1fr]">
 //           <div>
 //             <Link to="/" className="inline-block">
 //               <h2 className="text-xl font-bold tracking-tight md:text-2xl">
-//                 <span className="text-blue-400">100</span>{" "}
+//                 <span className="text-purple-400">100</span>{" "}
 //                 <span className="text-white">Transcripts</span>
 //               </h2>
 //             </Link>
@@ -98,7 +98,7 @@
 //                     <p className="text-sm font-semibold text-white">
 //                       Hyderabad Office
 //                     </p>
-//                     <p className="mt-1 text-xs leading-5 text-blue-100/80">
+//                     <p className="mt-1 text-xs leading-5 text-purple-100/80">
 //                       Plot No: 801, Mathrusree Nagar,
 //                       <br />
 //                       Hyderabad, Telangana 500038
@@ -121,7 +121,7 @@
 //                   href="https://www.google.com/maps/search/?api=1&query=Mathrusree+Nagar+Hyderabad"
 //                   target="_blank"
 //                   rel="noopener noreferrer"
-//                   className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-blue-200 transition hover:text-white"
+//                   className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-purple-200 transition hover:text-white"
 //                 >
 //                   Open in Google Maps
 //                   <FiArrowUpRight />
@@ -194,7 +194,7 @@ const socialLinks = [
     name: "Facebook",
     href: "https://www.facebook.com/100Transcripts/",
     icon: <FaFacebookF />,
-    bg: "hover:bg-blue-600",
+    bg: "hover:bg-purple-600",
   },
   {
     name: "Youtube",
@@ -212,7 +212,7 @@ const socialLinks = [
     name: "Linkedin",
     href: "https://www.linkedin.com/company/100-transcripts-llp/",
     icon: <FaLinkedinIn />,
-    bg: "hover:bg-sky-600",
+    bg: "hover:bg-purple-600",
   },
 ];
 
@@ -223,25 +223,25 @@ const Footer = () => {
   const [openTerms, setOpenTerms] = useState(false);
 
   return (
-    <footer className="bg-[#243b5a] text-white">
+    <footer className="bg-black text-white">
       <div className="mx-auto max-w-7xl px-4 py-8 md:px-6 md:py-10 lg:px-12">
         <div className="grid gap-6 border-b border-white/10 pb-6 md:gap-8 md:pb-8 sm:grid-cols-2 lg:grid-cols-4">
           <div className="sm:col-span-2 lg:col-span-1">
             <Link to="/" className="inline-block">
               <h2 className="text-xl font-bold tracking-tight md:text-2xl">
-                <span className="text-blue-400">100</span>{" "}
+                <span className="text-purple-400">100</span>{" "}
                 <span className="text-white">Transcripts</span>
               </h2>
             </Link>
 
 
-            <p className="mt-3 max-w-sm text-sm leading-6 text-blue-100/85">
+            <p className="mt-3 max-w-sm text-sm leading-6 text-purple-100/85">
               Delivers fast, secure Indian university educational documents for
               global evaluations.
             </p>
 
             <div className="mt-5">
-              <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200/80">
+              <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-200/80">
                 Follow Us
               </h4>
 
@@ -252,7 +252,7 @@ const Footer = () => {
                     href={item.href}
                     target="_blank"
                     rel="noopener noreferrer"
-                    className={`group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 sm:px-4 py-2 text-xs sm:text-sm text-blue-100/90 transition-all duration-300 hover:-translate-y-0.5 hover:text-white ${item.bg} min-h-[44px]`}
+                    className={`group inline-flex items-center gap-2 rounded-full border border-white/10 bg-white/5 px-3 sm:px-4 py-2 text-xs sm:text-sm text-purple-100/90 transition-all duration-300 hover:-translate-y-0.5 hover:text-white ${item.bg} min-h-[44px]`}
                   >
                     <span className="text-xs sm:text-sm">{item.icon}</span>
                     <span>{item.name}</span>
@@ -264,7 +264,7 @@ const Footer = () => {
   <h4 className="text-lg font-semibold text-white">
     Visitors
   </h4>
-  <p className="mt-1 text-lg text-blue-100">
+  <p className="mt-1 text-lg text-purple-100">
     423,218 Visitors
   </p>
 </div>
@@ -272,11 +272,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200/80">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-200/80">
               Services
             </h4>
 
-            <ul className="space-y-2 text-sm text-blue-100/85">
+            <ul className="space-y-2 text-sm text-purple-100/85">
               {serviceLinks.map((link) => (
                 <li key={link.name}>
                   <Link to={link.path} className="flex items-center py-1 transition hover:text-white min-h-[44px]">
@@ -288,11 +288,11 @@ const Footer = () => {
           </div>
 
           <div>
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200/80">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-200/80">
               Company
             </h4>
 
-            <ul className="space-y-2 text-sm text-blue-100/85">
+            <ul className="space-y-2 text-sm text-purple-100/85">
 {companyLinks.map((link) => (
   <li key={link.name}>
 
@@ -332,33 +332,33 @@ const Footer = () => {
           </div>
 
           <div className="sm:col-span-2 lg:col-span-1">
-            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-blue-200/80">
+            <h4 className="mb-3 text-xs font-semibold uppercase tracking-[0.2em] text-purple-200/80">
               Contact Us
             </h4>
 
             <div className="overflow-hidden rounded-xl border border-white/10 bg-white/5">
               <div className="border-b border-white/10 p-3">
                 <div className="flex items-start gap-2.5">
-                  <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-blue-400/10">
-                    <FiMapPin className="text-sm text-blue-300" />
+                  <div className="mt-0.5 flex h-7 w-7 items-center justify-center rounded-full bg-purple-400/10">
+                    <FiMapPin className="text-sm text-purple-300" />
                   </div>
 
                   <div>
                     <p className="text-sm font-semibold text-white">
                       100 Transcripts LLP
                     </p>
-                    <p className="mt-1 text-xs leading-5 text-blue-100/80">
+                    <p className="mt-1 text-xs leading-5 text-purple-100/80">
                       Plot No: 801, Mathrusree Nagar, Hyderabad, 500049
                     </p>
                   </div>
                 </div>
 
-                <div className="mt-3 space-y-2 text-xs text-blue-100/85">
+                <div className="mt-3 space-y-2 text-xs text-purple-100/85">
                   <a
                     href="tel:+919941991402"
                     className="flex items-center gap-2 transition hover:text-white"
                   >
-                    <FiPhone className="text-blue-300" />
+                    <FiPhone className="text-purple-300" />
                     <span>+91 994 199 1402</span>
                   </a>
 
@@ -366,7 +366,7 @@ const Footer = () => {
                     href="mailto:support@100Transcripts.com"
                     className="flex items-center gap-2 transition hover:text-white"
                   >
-                    <FiMail className="text-blue-300" />
+                    <FiMail className="text-purple-300" />
                     <span>support@100Transcripts.com</span>
                   </a>
                 </div>
@@ -386,7 +386,7 @@ const Footer = () => {
                   href="https://www.google.com/maps/search/?api=1&query=100+Transcripts+LLP+Plot+No+801+Mathrusree+Nagar+Hyderabad+500049"
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-blue-200 transition hover:text-white"
+                  className="mt-2 inline-flex items-center gap-1.5 text-xs font-medium text-purple-200 transition hover:text-white"
                 >
                   Open in Google Maps
                   <FiArrowUpRight />
@@ -396,7 +396,7 @@ const Footer = () => {
           </div>
         </div>
 
-        <div className="flex flex-col gap-2 pt-4 text-xs text-blue-100/70 sm:flex-row sm:items-center sm:justify-between">
+        <div className="flex flex-col gap-2 pt-4 text-xs text-purple-100/70 sm:flex-row sm:items-center sm:justify-between">
           <p className="text-center sm:text-left">© {currentYear} 100 Transcripts LLP. All rights reserved.</p>
 
 <div className="flex flex-col sm:flex-row gap-2 sm:gap-4 text-center sm:text-right">

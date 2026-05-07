@@ -16,8 +16,33 @@ import {
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
 
-import heroImage from "../../assets/partnerclg.png";
+// Import college images
+import abhi from "../../assets/abhi.png";
+import abhi1 from "../../assets/abhi1.png";
+import abhi2 from "../../assets/abhi2.png";
+import OU from "../../assets/OU.png";
+import BDU from "../../assets/BDU.png";
+import ANU from "../../assets/ANU.png";
+import JNTUK from "../../assets/JNTUK.png";
+import ClgIMG from "../../assets/Clg-IMG.jpg";
+import partnerclg from "../../assets/partnerclg.png";
 
+// Image mapping
+const imageMap = {
+  "abhi.png": abhi,
+  "abhi1.png": abhi1,
+  "abhi2.png": abhi2,
+  "OU.png": OU,
+  "BDU.png": BDU,
+  "ANU.png": ANU,
+  "JNTUK.png": JNTUK,
+  "Clg-IMG.jpg": ClgIMG,
+  "partnerclg.png": partnerclg,
+};
+
+const getCollegeImage = (imageName) => {
+  return imageMap[imageName] || partnerclg;
+};
 
 // ✅ SAME COUNTER (ANIMATION BACK)
 const Counter = ({ value }) => {
@@ -75,7 +100,7 @@ const CollegePage = () => {
         <div
           className="absolute inset-0 bg-right bg-no-repeat opacity-100"
           style={{
-            backgroundImage: `url(${heroImage})`,
+            backgroundImage: `url(${getCollegeImage(college.heroImage || college.cardImage)})`,
             backgroundSize: "contain",
           }}
         />
@@ -97,22 +122,36 @@ const CollegePage = () => {
           <div className="grid items-center gap-8 lg:grid-cols-[1.2fr_0.8fr]">
 
             <motion.div
-  initial={{ opacity: 0, x: -80 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 0.8, ease: "easeOut" }}
-  className="relative w-full pl-0 lg:-ml-10"
->
+              initial={{ opacity: 0, x: -80 }}
+              animate={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8, ease: "easeOut" }}
+              className="relative w-full pl-0 lg:-ml-10"
+            >
               <div className="inline-flex items-center gap-2 rounded-full border border-blue-100 bg-white/90 px-4 py-2 text-xs font-semibold uppercase tracking-[0.18em] text-blue-700 shadow-sm backdrop-blur-sm">
                 100 Transcripts LLP
               </div>
 
+              {/* College Logo */}
+              <motion.div
+                initial={{ opacity: 0, scale: 0.8 }}
+                animate={{ opacity: 1, scale: 1 }}
+                transition={{ delay: 0.1, duration: 0.5 }}
+                className="mt-6 w-24 h-24 rounded-2xl bg-white shadow-lg flex items-center justify-center overflow-hidden"
+              >
+                <img 
+                  src={getCollegeImage(college.cardImage || college.heroImage)} 
+                  alt={college.short}
+                  className="w-full h-full object-contain p-2"
+                />
+              </motion.div>
+
               {/* ✅ TITLE */}
               <motion.h1
-  initial={{ opacity: 0, y: 40 }}
-  animate={{ opacity: 1, y: 0 }}
-  transition={{ delay: 0.2, duration: 0.7 }}
-  className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-[#233a59] md:text-5xl xl:text-6xl"
->
+                initial={{ opacity: 0, y: 40 }}
+                animate={{ opacity: 1, y: 0 }}
+                transition={{ delay: 0.2, duration: 0.7 }}
+                className="mt-5 max-w-4xl text-4xl font-bold leading-tight text-[#233a59] md:text-5xl xl:text-6xl"
+              >
                 {college.title.split("for")[0]}
                 <span className="text-blue-700">
                   {" "}for {college.short} Students
@@ -121,33 +160,35 @@ const CollegePage = () => {
 
               {/* ✅ DESCRIPTION */}
               <motion.p
-  initial={{ opacity: 0 }}
-  animate={{ opacity: 1 }}
-  transition={{ delay: 0.4, duration: 0.8 }}
-  className="mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg"
->
+                initial={{ opacity: 0 }}
+                animate={{ opacity: 1 }}
+                className="mt-5 max-w-2xl text-base leading-8 text-slate-600 md:text-lg"
+              >
                 {college.description}
               </motion.p>
 
               {/* TAGS */}
               <div className="mt-6 flex flex-wrap gap-3">
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
+                  <FiCheckCircle className="text-blue-600" />
+                  Fast processing
+                </div>
 
-  <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
-    <FiCheckCircle className="text-blue-600" />
-    Fast processing
-  </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
+                  <FiCheckCircle className="text-blue-600" />
+                  Secure documentation
+                </div>
 
-  <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
-    <FiCheckCircle className="text-blue-600" />
-    Secure documentation
-  </div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
+                  <FiCheckCircle className="text-blue-600" />
+                  Dedicated support
+                </div>
 
-  <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
-    <FiCheckCircle className="text-blue-600" />
-    Dedicated support
-  </div>
-
-</div>
+                <div className="inline-flex items-center gap-2 rounded-full bg-white px-4 py-2 text-sm font-medium text-slate-700 shadow-sm ring-1 ring-slate-200">
+                  <FiCheckCircle className="text-blue-600" />
+                  Fast delivery
+                </div>
+              </div>
 
               {/* BUTTONS */}
               <div className="mt-8 flex gap-4">

@@ -77,9 +77,9 @@ const FAQ = () => {
             initial={{ opacity: 0, x: -40 }}
             whileInView={{ opacity: 1, x: 0 }}
             transition={{ duration: 0.6 }}
-            className="lg:col-span-1 lg:sticky lg:top-24 h-fit"
+            className="lg:col-span-1 h-fit flex items-center"
           >
-            <div className="mt-0 p-6 sm:p-8 bg-white rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition">
+            <div className="mt-0 p-6 sm:p-8 bg-white rounded-3xl shadow-xl border border-gray-100 hover:shadow-2xl transition w-full">
               <div className="w-12 h-12 sm:w-14 sm:h-14 flex items-center justify-center rounded-xl bg-blue-100 text-blue-600 mb-6">
                 <MessageCircle size={22} />
               </div>
@@ -92,7 +92,7 @@ const FAQ = () => {
                 Our support team is ready to guide you through the transcript process step by step.
               </p>
 
-              <button className="w-full flex items-center justify-center gap-2 bg-blue-600 hover:bg-blue-500 transition px-6 py-3 rounded-xl font-medium text-white min-h-[44px]">
+              <button className="w-full inline-flex items-center justify-center gap-3 px-10 py-5 bg-gradient-to-r from-blue-600 to-cyan-600 text-white text-lg font-bold rounded-full shadow-2xl hover:shadow-3xl transition-all">
                 <MessageCircle size={18} />
                 Contact Support
               </button>

@@ -14,7 +14,7 @@ import {
   FiClock,
 } from "react-icons/fi";
 import { FaWhatsapp } from "react-icons/fa";
-import heroImage from "../../assets/partnerclg.png";
+import heroImage from "../../assets/abhi.png";
 
 const Counter = ({ value }) => {
   const [count, setCount] = useState(0);

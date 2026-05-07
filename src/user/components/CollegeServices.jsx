@@ -60,7 +60,7 @@ const CollegeServices = ({
               viewport={{ once: true }}
               className="relative overflow-hidden rounded-2xl border border-slate-200 bg-white shadow-sm transition hover:-translate-y-1 hover:border-blue-200 hover:shadow-lg"
             >
-              <div className="absolute left-0 top-0 h-full w-24 overflow-hidden rounded-r-[48px] bg-gradient-to-b from-blue-50 to-sky-100 ring-1 ring-blue-100">
+              <div className="absolute left-0 top-0 h-full w-24 overflow-hidden rounded-r-[48px] bg-gradient-to-b from-blue-50 to-blue-100 ring-1 ring-blue-100">
                 <img
                   src={serviceImages[service] || transcriptImage}
                   alt={service}

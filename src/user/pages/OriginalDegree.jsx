@@ -165,41 +165,41 @@ const OriginalDegree = () => {
          
          
          {/* AGENCIES SECTION */}
-                <motion.div
-                  initial="hidden"
-                  animate="visible"
-                  variants={fadeUp}
-                  transition={{ duration: 0.6, delay: 0.4 }}
-                  className="mb-12"
-                >
-                  <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
-                    Supported Credential Evaluation Agencies
-                  </h2>
-                  <p className="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
-                    We assist applicants preparing documents for all major credential evaluation agencies worldwide.
-                  </p>
-        
-                  <div className="scroll-container py-4">
-                    <div className="scroll-content">
-                      {[...agencies, ...agencies].map((agency, index) => (
-                        <motion.div
-                          key={`${agency.short}-${index}`}
-                          initial="hidden"
-                          animate="visible"
-                          variants={fadeUp}
-                          transition={{ duration: 0.4, delay: index * 0.05 }}
-                          className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
-                          style={{ width: '120px' }}
-                        >
-                          <img
-                            src={agency.logo}
-                            alt={agency.short}
-                            className="w-16 h-16 object-contain mb-2"
-                          />
-                          <h4 className="font-semibold text-gray-900 text-xs text-center">
-                            {agency.short}
-                          </h4>
-                        </motion.div>
+               <motion.div
+                         initial="hidden"
+                         animate="visible"
+                         variants={fadeUp}
+                         transition={{ duration: 0.6, delay: 0.2 }}
+                          className="my-24">
+                       
+                         <h2 className="text-2xl font-bold text-purple-900 mb-5 text-center">
+                           Supported Credential Evaluation Agencies
+                         </h2>
+                         <p className="text-purple-600 mb-6 text-center max-w-2xl mx-auto">
+                           We assist applicants preparing documents for all major credential evaluation agencies worldwide.
+                         </p>
+               
+                         <div className="scroll-container py-4">
+                           <div className="scroll-content">
+                             {[...agencies, ...agencies].map((agency, index) => (
+                               <motion.div
+                                 key={`${agency.short}-${index}`}
+                                 initial="hidden"
+                                 animate="visible"
+                                 variants={fadeUp}
+                                 transition={{ duration: 0.4, delay: index * 0.05 }}
+                                 className="bg-white rounded-xl p-4 shadow-sm border border-purple-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
+                                 style={{ width: '120px' }}
+                               >
+                                 <img
+                                   src={agency.logo}
+                                   alt={agency.short}
+                                   className="w-16 h-16 object-contain mb-2"
+                                 />
+                                 <h4 className="font-semibold text-purple-900 text-xs text-center">
+                                   {agency.short}
+                                 </h4>
+                               </motion.div>
                       ))}
                     </div>
                   </div>

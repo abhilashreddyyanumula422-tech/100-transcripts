@@ -28,9 +28,9 @@ import OriginalDegree from "../user/pages/OriginalDegree";
 import MOICertificate from "../user/pages/MOICertificate";
 import CMM from "../user/pages/CMM";
 
-
 /* ✅ NEW DYNAMIC PAGE */
 import CollegePage from "../user/pages/CollegePage";
+import Universities from "../user/pages/Universities";
 
 /* ================= ADMIN ================= */
 import Layout from "../Admin/components/layout/Layout";
@@ -78,6 +78,7 @@ const AppRoutes = () => {
 
           {/* ✅ DYNAMIC COLLEGE ROUTE */}
           <Route path="partnered-colleges/:collegeId" element={<CollegePage />} />
+          <Route path="universities" element={<Universities />} />
 
         </Route>
 

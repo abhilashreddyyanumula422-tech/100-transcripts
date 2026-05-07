@@ -15,7 +15,7 @@ const Home = () => {
       <WhyChoose />
       <UniversitySearch />
       <Partners />
-      <Reviews />
+      <Reviews /> 
       <FAQ />
    
     </>

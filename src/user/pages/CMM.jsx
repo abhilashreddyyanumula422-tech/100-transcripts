@@ -67,7 +67,7 @@ const CMM = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12 px-4 md:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white py-12 px-4 md:px-8">
       <style>{`
         .glass-effect {
           backdrop-filter: blur(10px);
@@ -122,42 +122,42 @@ const CMM = () => {
           className="bg-white rounded-2xl shadow-lg p-8 mb-8"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <FiFileText className="text-blue-600" />
+            <FiFileText className="text-purple-600" />
             What is Consolidated Marks Memo (CMM)?
           </h2>
           <p className="text-gray-600 leading-relaxed mb-6">
             A Consolidated Marks Memo (CMM) is an official document issued by an educational institution that provides a comprehensive record of a student's academic performance throughout a course or program. It lists the grades or marks obtained in all subjects or semesters during the duration of the course.
           </p>
           
-          <div className="bg-blue-50 rounded-xl p-6 mb-6">
+          <div className="bg-purple-50 rounded-xl p-6 mb-6">
             <h3 className="font-semibold text-gray-900 mb-4">Key Points about the CMM:</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
                 <span className="text-gray-700 text-sm">It combines the results from all semesters or years into one single document.</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
                 <span className="text-gray-700 text-sm">The CMM typically shows detailed information such as the marks obtained, total marks, grades, and overall percentage or CGPA.</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
                 <span className="text-gray-700 text-sm">It is often required for applications for further studies, employment, or other official purposes.</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
                 <span className="text-gray-700 text-sm">Unlike individual semester marks memos, a CMM provides an at-a-glance summary of academic achievements over the entire course.</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
                 <span className="text-gray-700 text-sm">This document is usually issued after the completion of a program and can be used as proof of academic performance until the final degree is awarded.</span>
@@ -167,7 +167,7 @@ const CMM = () => {
 
           <button
             onClick={() => navigate("/apply")}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition inline-flex items-center gap-2"
+            className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-purple-800 transition inline-flex items-center gap-2 shadow-lg shadow-purple-500/25"
           >
             Apply Now
             <FiArrowRight />
@@ -188,40 +188,40 @@ const CMM = () => {
 
         {/* AGENCIES SECTION */}
                         <motion.div
-                          initial="hidden"
-                          animate="visible"
-                          variants={fadeUp}
-                          transition={{ duration: 0.6, delay: 0.4 }}
-                          className="mb-12"
-                        >
-                          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
-                            Supported Credential Evaluation Agencies
-                          </h2>
-                          <p className="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
-                            We assist applicants preparing documents for all major credential evaluation agencies worldwide.
-                          </p>
-                
-                          <div className="scroll-container py-4">
-                            <div className="scroll-content">
-                              {[...agencies, ...agencies].map((agency, index) => (
-                                <motion.div
-                                  key={`${agency.short}-${index}`}
-                                  initial="hidden"
-                                  animate="visible"
-                                  variants={fadeUp}
-                                  transition={{ duration: 0.4, delay: index * 0.05 }}
-                                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
-                                  style={{ width: '120px' }}
-                                >
-                                  <img
-                                    src={agency.logo}
-                                    alt={agency.short}
-                                    className="w-16 h-16 object-contain mb-2"
-                                  />
-                                  <h4 className="font-semibold text-gray-900 text-xs text-center">
-                                    {agency.short}
-                                  </h4>
-                                </motion.div>
+                                                         initial="hidden"
+                                                         animate="visible"
+                                                         variants={fadeUp}
+                                                         transition={{ duration: 0.6, delay: 0.2 }}
+                                                          className="my-24">
+                                                       
+                                                         <h2 className="text-2xl font-bold text-purple-900 mb-5 text-center">
+                                                           Supported Credential Evaluation Agencies
+                                                         </h2>
+                                                         <p className="text-purple-600 mb-6 text-center max-w-2xl mx-auto">
+                                                           We assist applicants preparing documents for all major credential evaluation agencies worldwide.
+                                                         </p>
+                                               
+                                                         <div className="scroll-container py-4">
+                                                           <div className="scroll-content">
+                                                             {[...agencies, ...agencies].map((agency, index) => (
+                                                               <motion.div
+                                                                 key={`${agency.short}-${index}`}
+                                                                 initial="hidden"
+                                                                 animate="visible"
+                                                                 variants={fadeUp}
+                                                                 transition={{ duration: 0.4, delay: index * 0.05 }}
+                                                                 className="bg-white rounded-xl p-4 shadow-sm border border-purple-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
+                                                                 style={{ width: '120px' }}
+                                                               >
+                                                                 <img
+                                                                   src={agency.logo}
+                                                                   alt={agency.short}
+                                                                   className="w-16 h-16 object-contain mb-2"
+                                                                 />
+                                                                 <h4 className="font-semibold text-purple-900 text-xs text-center">
+                                                                   {agency.short}
+                                                                 </h4>
+                                                               </motion.div>
                               ))}
                             </div>
                           </div>

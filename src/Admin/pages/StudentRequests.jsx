@@ -215,16 +215,16 @@ Please check your email for detailed information or contact us if you have any q
             {/* Desktop Table */}
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm text-left">
-                <thead className="bg-slate-50 text-slate-500 text-xs uppercase font-bold">
+                <thead className="bg-gray-100 border-b">
                   <tr>
-                    <th className="p-4">Student</th>
-                    <th className="p-4">Request ID</th>
-                    <th className="p-4">Phone</th>
-                    <th className="p-4">University</th>
-                    <th className="p-4">Request</th>
-                    <th className="p-4">Payment</th>
-                    <th className="p-4">Status</th>
-                    <th className="p-4 text-right pr-6">Actions</th>
+                    <th className="p-4 font-semibold text-gray-600">Student</th>
+                    <th className="p-4 font-semibold text-gray-600">Request ID</th>
+                    <th className="p-4 font-semibold text-gray-600">Phone</th>
+                    <th className="p-4 font-semibold text-gray-600">University</th>
+                    <th className="p-4 font-semibold text-gray-600">Request</th>
+                    <th className="p-4 font-semibold text-gray-600">Payment</th>
+                    <th className="p-4 font-semibold text-gray-600">Status</th>
+                    <th className="p-4 font-semibold text-gray-600 text-center">Actions</th>
                   </tr>
                 </thead>
                 <tbody>

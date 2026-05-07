@@ -26,7 +26,7 @@ const ECE = () => {
             href="https://100transcripts.com/wp-content/uploads/2024/12/ECE-account-creation-in-partnership-with-100-Transcripts-06-12-2024.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm group"
+            className="inline-flex items-center gap-3 bg-purple-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-purple-700 transition-all shadow-xl text-sm group"
           >
             <Download className="w-4 h-4" />
             <span>Download Guide (PDF)</span>
@@ -41,7 +41,7 @@ const ECE = () => {
       description: "Gather all necessary academic records for your ECE evaluation.",
       icon: FileText,
       content: (
-        <div className="space-y-4 mt-6 bg-blue-50 p-6 rounded-2xl border border-blue-100">
+        <div className="space-y-4 mt-6 bg-purple-50 p-6 rounded-2xl border border-purple-100">
           {[
             { label: "CMM (Consolidated Marks)", link: "https://100transcripts.com/cmm/" },
             { label: "Degree Certificate / Provisional", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
@@ -49,15 +49,15 @@ const ECE = () => {
             { label: "ECE Order Number", isText: true },
           ].map((item, index) => (
             <div key={index} className="flex items-start gap-3 group">
-              <div className="mt-1 bg-blue-100 rounded-full p-1 flex-shrink-0">
-                <Check className="w-3 h-3 text-blue-600" />
+              <div className="mt-1 bg-purple-100 rounded-full p-1 flex-shrink-0">
+                <Check className="w-3 h-3 text-purple-600" />
               </div>
               {item.link ? (
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-800 hover:text-blue-600 transition-colors text-sm font-bold leading-tight flex items-center gap-2"
+                  className="text-slate-800 hover:text-purple-600 transition-colors text-sm font-bold leading-tight flex items-center gap-2"
                 >
                   {item.label}
                   <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -80,7 +80,7 @@ const ECE = () => {
         <div className="mt-6">
           <Link
             to="/apply"
-            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm group"
+            className="inline-flex items-center gap-3 bg-purple-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-purple-700 transition-all shadow-xl text-sm group"
           >
             <Upload className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
             Start Application
@@ -98,7 +98,7 @@ const ECE = () => {
       <section className="relative pt-32 pb-20 bg-white overflow-hidden">
         <div className="absolute inset-0 opacity-[0.03]" 
              style={{ 
-               backgroundImage: `radial-gradient(circle at 2px 2px, #3b82f6 1px, transparent 0)`,
+               backgroundImage: `radial-gradient(circle at 2px 2px, #9333ea 1px, transparent 0)`,
                backgroundSize: '40px 40px' 
              }} 
         />
@@ -111,26 +111,26 @@ const ECE = () => {
               transition={{ duration: 0.8 }}
               className="lg:w-1/2 text-center lg:text-left space-y-8"
             >
-              <div className="inline-flex items-center gap-3 bg-blue-50 border border-blue-100 rounded-full px-5 py-2 shadow-sm">
-                <Building2 className="w-4 h-4 text-blue-600" />
-                <span className="text-blue-600 text-[10px] font-black uppercase tracking-[0.3em]">Official ECE Partnership</span>
+              <div className="inline-flex items-center gap-3 bg-purple-50 border border-purple-100 rounded-full px-5 py-2 shadow-sm">
+                <Building2 className="w-4 h-4 text-purple-600" />
+                <span className="text-purple-600 text-[10px] font-black uppercase tracking-[0.3em]">Official ECE Partnership</span>
               </div>
               
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-black leading-[1.1] tracking-tight">
-                100 Transcripts is partnered with <span className="text-blue-600">ECE</span>
+                100 Transcripts is partnered with <span className="text-purple-600">ECE</span>
               </h1>
               
               <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
-                Get your international credentials evaluated quickly and securely. Enjoy <span className="text-blue-600 font-bold">priority processing</span> and <span className="text-blue-600 font-bold">official verification</span>.
+                Get your international credentials evaluated quickly and securely. Enjoy <span className="text-purple-600 font-bold">priority processing</span> and <span className="text-purple-600 font-bold">official verification</span>.
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
                  <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                    <CheckCircle2 className="w-5 h-5 text-purple-600" />
                     <span className="text-black font-bold text-sm">Priority Processing</span>
                  </div>
                  <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-xl shadow-slate-200/50">
-                    <Shield className="w-5 h-5 text-blue-600" />
+                    <Shield className="w-5 h-5 text-purple-600" />
                     <span className="text-black font-bold text-sm">Official Verification</span>
                  </div>
               </div>
@@ -164,9 +164,9 @@ const ECE = () => {
             <div className="text-center mb-16">
                 <h2 className="text-4xl md:text-5xl font-black text-black mb-4">ECE Evaluation Process</h2>
                 <div className="flex items-center justify-center gap-4">
-                    <span className="h-[2px] w-12 bg-blue-200" />
-                    <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
-                    <span className="h-[2px] w-12 bg-blue-200" />
+                    <span className="h-[2px] w-12 bg-purple-200" />
+                    <p className="text-purple-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
+                    <span className="h-[2px] w-12 bg-purple-200" />
                 </div>
             </div>
 
@@ -181,17 +181,17 @@ const ECE = () => {
                       whileInView={{ opacity: 1, y: 0 }}
                       viewport={{ once: true }}
                       transition={{ delay: idx * 0.1 }}
-                      className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
+                      className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-purple-500 shadow-2xl shadow-purple-900/5 -translate-y-1' : 'border-slate-100 hover:border-purple-100 shadow-md shadow-slate-900/5'}`}
                       onMouseEnter={() => setActiveStep(step.id)}
                       onMouseLeave={() => setActiveStep(null)}
                   >
                       <div className="flex items-start gap-8">
-                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
+                        <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-purple-50 text-purple-600 border border-purple-100 shadow-sm">
                             <step.icon className="w-7 h-7" />
                         </div>
                         <div className="flex-1">
                             <div className="flex items-center gap-4 mb-3">
-                              <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
+                              <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-purple-50 text-purple-700 border border-purple-100">
                                   Step {idx + 1}
                               </span>
                             </div>
@@ -216,11 +216,11 @@ const ECE = () => {
 
                   {/* REPORT CARD - Now positioned on the LEFT below steps */}
                   <div className="bg-white p-10 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group mt-12">
-                      <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
+                      <div className="absolute top-0 right-0 w-48 h-48 bg-purple-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-purple-100" />
                       <div className="relative z-10 space-y-6 text-center lg:text-left">
                           <h3 className="text-2xl font-black text-black tracking-tight">Official ECE ECA Report</h3>
                           <p className="text-slate-600 text-base font-medium leading-relaxed">Download a sample ECE evaluation report to understand the format provided to institutions.</p>
-                          <button className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105">
+                          <button className="inline-flex items-center gap-4 bg-gradient-to-r from-purple-800 to-purple-900 text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:from-purple-900 hover:to-black transition-all hover:scale-105">
                               View Sample Report
                               <ExternalLink className="w-5 h-5" />
                           </button>
@@ -233,7 +233,7 @@ const ECE = () => {
                 <motion.div 
                   initial={{ opacity: 0, scale: 0.95 }}
                   whileInView={{ opacity: 1, scale: 1 }}
-                  className="bg-blue-50/30 backdrop-blur-sm p-6 sm:p-8 rounded-[3rem] border border-blue-100 shadow-2xl overflow-hidden group"
+                  className="bg-purple-50/30 backdrop-blur-sm p-6 sm:p-8 rounded-[3rem] border border-purple-100 shadow-2xl overflow-hidden group"
                 >
                   <div className="relative bg-white rounded-[2rem] p-4 shadow-xl border border-white overflow-hidden">
                     <img 
@@ -244,7 +244,7 @@ const ECE = () => {
                   </div>
                 </motion.div>
 
-                <div className="bg-blue-600 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-blue-500/20">
+                <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-purple-500/25">
                     <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                     <div className="relative z-10 flex items-center gap-6">
                         <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
@@ -252,7 +252,7 @@ const ECE = () => {
                         </div>
                         <div>
                             <h4 className="text-xl font-black text-white">100% Verified</h4>
-                            <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
+                            <p className="text-purple-100 font-medium text-sm">Official partnership for secure results.</p>
                         </div>
                     </div>
                 </div>

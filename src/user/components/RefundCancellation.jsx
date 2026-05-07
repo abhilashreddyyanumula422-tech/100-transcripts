@@ -75,7 +75,7 @@ const RefundCancellation = ({ open, onClose }) => {
 </p>
 
 <p>
-  Just send an email to <a href="mailto:support@100Transcripts.com" className="text-blue-600 underline">
+  Just send an email to <a href="mailto:support@100Transcripts.com" className="text-purple-600 underline">
   support@100Transcripts.com
 </a>, we’ll gladly refund you 100% of your service charge/processing fee within 24-72 hours of your refund request.
 </p>

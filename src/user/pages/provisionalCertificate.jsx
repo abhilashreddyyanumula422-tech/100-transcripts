@@ -67,7 +67,7 @@ const ProvisionalCertificate = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-blue-50 to-white py-12 px-4 md:px-8">
+    <div className="min-h-screen bg-gradient-to-br from-purple-50 to-white py-12 px-4 md:px-8">
       <style>{`
         .glass-effect {
           backdrop-filter: blur(10px);
@@ -103,10 +103,10 @@ const ProvisionalCertificate = () => {
     transition={{ duration: 0.6 }}
     className="text-center"
   >
-    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+    <h1 className="text-4xl md:text-5xl font-bold text-purple-900 mb-4">
             Provisional Certificate (PC)
           </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+          <p className="text-lg text-purple-600 max-w-2xl mx-auto">
             Get your provisional certificate for those who haven't received their final degree yet.
           </p>
   </motion.div>
@@ -121,41 +121,41 @@ const ProvisionalCertificate = () => {
           transition={{ duration: 0.6, delay: 0.2 }}
           className="bg-white rounded-2xl shadow-lg p-8 mb-8"
         >
-          <h2 className="text-2xl font-bold text-gray-900 mb-4 flex items-center gap-3">
-            <FiShield className="text-blue-600" />
+          <h2 className="text-2xl font-bold text-purple-900 mb-4 flex items-center gap-3">
+            <FiShield className="text-purple-600" />
             What is Provisional Certificate (PC)?
           </h2>
-          <p className="text-gray-600 leading-relaxed mb-6">
+          <p className="text-purple-600 leading-relaxed mb-6">
             A Provisional Certificate (PC) is a temporary document issued by an educational institution to students who have successfully completed their course or program but are waiting for the final degree or diploma certificate. It serves as proof that the student has met all the requirements for graduation, such as passing all exams and fulfilling other academic obligations.
           </p>
           
-          <div className="bg-blue-50 rounded-xl p-6 mb-6">
-            <h3 className="font-semibold text-gray-900 mb-4">Key Points about the Provisional Certificate:</h3>
+          <div className="bg-purple-50 rounded-xl p-6 mb-6">
+            <h3 className="font-semibold text-purple-900 mb-4">Key Points about the Provisional Certificate:</h3>
             <ul className="space-y-3">
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
-                <span className="text-gray-700 text-sm">It is typically valid for a limited period until the official degree is issued.</span>
+                <span className="text-purple-700 text-sm">It is typically valid for a limited period until the official degree is issued.</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
-                <span className="text-gray-700 text-sm">It can be used for various purposes, such as applying for jobs, higher studies, or professional registrations.</span>
+                <span className="text-purple-700 text-sm">It can be used for various purposes, such as applying for jobs, higher studies, or professional registrations.</span>
               </li>
               <li className="flex items-start gap-3">
-                <div className="w-6 h-6 bg-blue-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
+                <div className="w-6 h-6 bg-purple-600 rounded-full flex items-center justify-center flex-shrink-0 mt-0.5">
                   <FiCheck className="text-white text-xs" />
                 </div>
-                <span className="text-gray-700 text-sm">Once the final degree certificate is issued, the provisional certificate is no longer valid.</span>
+                <span className="text-purple-700 text-sm">Once the final degree certificate is issued, the provisional certificate is no longer valid.</span>
               </li>
             </ul>
           </div>
 
           <button
             onClick={() => navigate("/apply")}
-            className="bg-blue-600 text-white px-6 py-3 rounded-lg font-semibold hover:bg-blue-700 transition inline-flex items-center gap-2"
+            className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-6 py-3 rounded-lg font-semibold hover:from-purple-700 hover:to-purple-800 transition inline-flex items-center gap-2 shadow-lg shadow-purple-500/25"
           >
             Apply Now
             <FiArrowRight />
@@ -163,27 +163,27 @@ const ProvisionalCertificate = () => {
         </motion.div>
 
         {/* Sample Provisional Certificate Image */}
-        <div className="flex justify-center">
+        <div className="flex justify-center mb-13">
   <img
     src={certificateImg}
     alt="Sample Consolidated Marks Memo"
     className="w-64 md:w-80 lg:w-96 h-auto rounded-lg shadow-md"
   />
 </div>
-        
+
 
         {/* AGENCIES SECTION */}
         <motion.div
           initial="hidden"
           animate="visible"
           variants={fadeUp}
-          transition={{ duration: 0.6, delay: 0.4 }}
-          className="mb-12"
-        >
-          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+          transition={{ duration: 0.6, delay: 0.2 }}
+           className="my-24">
+        
+          <h2 className="text-2xl font-bold text-purple-900 mb-5 text-center">
             Supported Credential Evaluation Agencies
           </h2>
-          <p className="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
+          <p className="text-purple-600 mb-6 text-center max-w-2xl mx-auto">
             We assist applicants preparing documents for all major credential evaluation agencies worldwide.
           </p>
 
@@ -196,7 +196,7 @@ const ProvisionalCertificate = () => {
                   animate="visible"
                   variants={fadeUp}
                   transition={{ duration: 0.4, delay: index * 0.05 }}
-                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
+                  className="bg-white rounded-xl p-4 shadow-sm border border-purple-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
                   style={{ width: '120px' }}
                 >
                   <img
@@ -204,7 +204,7 @@ const ProvisionalCertificate = () => {
                     alt={agency.short}
                     className="w-16 h-16 object-contain mb-2"
                   />
-                  <h4 className="font-semibold text-gray-900 text-xs text-center">
+                  <h4 className="font-semibold text-purple-900 text-xs text-center">
                     {agency.short}
                   </h4>
                 </motion.div>
