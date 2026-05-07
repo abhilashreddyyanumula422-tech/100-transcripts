@@ -21,9 +21,11 @@ import Register from "../user/pages/Register";
 import Login from "../user/pages/login";
 import Apply from "../user/pages/Apply";
 import Logout from "../user/pages/Logout";
+import Sign from "../user/pages/Sign";
+
 
 import Transcripts from "../user/pages/Transcripts";
-import ProvisionalCertificate from "../user/pages/ProvisionalCertificate";
+import ProvisionalCertificate from "../user/pages/provisionalCertificate";
 import OriginalDegree from "../user/pages/OriginalDegree";
 import MOICertificate from "../user/pages/MOICertificate";
 import CMM from "../user/pages/CMM";
@@ -31,6 +33,7 @@ import CMM from "../user/pages/CMM";
 /* ✅ NEW DYNAMIC PAGE */
 import CollegePage from "../user/pages/CollegePage";
 import Universities from "../user/pages/Universities";
+import UniversityDetail from "../user/pages/UniversityDetail";
 
 /* ================= ADMIN ================= */
 import Layout from "../Admin/components/layout/Layout";
@@ -41,6 +44,7 @@ import DeliveryManagement from "../Admin/pages/DeliveryManagement";
 import Settings from "../Admin/pages/Settings";
 import CollegeRequests from "../Admin/pages/CollegeRequests";
 import EmailNotificationTemplate from "../Admin/pages/EmailNotificationTemplate";
+import AdminUniversities from "../Admin/pages/AdminUniversities";
 
 const AppRoutes = () => {
   return (
@@ -68,6 +72,7 @@ const AppRoutes = () => {
           <Route path="register" element={<Register />} />
           <Route path="login" element={<Login />} />
           <Route path="logout" element={<Logout />} />
+          <Route path="signin" element={<Sign />} />
 
           {/* Certificate Service Routes */}
           <Route path="services/transcripts" element={<Transcripts />} />
@@ -79,6 +84,7 @@ const AppRoutes = () => {
           {/* ✅ DYNAMIC COLLEGE ROUTE */}
           <Route path="partnered-colleges/:collegeId" element={<CollegePage />} />
           <Route path="universities" element={<Universities />} />
+          <Route path="universities/:universityId" element={<UniversityDetail />} />
 
         </Route>
 
@@ -89,6 +95,7 @@ const AppRoutes = () => {
           <Route path="student-requests" element={<StudentRequests />} />
           <Route path="college-verification" element={<CollegeVerification />} />
           <Route path="college-requests" element={<CollegeRequests />} />
+          <Route path="universities" element={<AdminUniversities />} />
           <Route path="delivery" element={<DeliveryManagement />} />
           <Route path="email-notification-template" element={<EmailNotificationTemplate />} />
           <Route path="settings" element={<Settings />} />
