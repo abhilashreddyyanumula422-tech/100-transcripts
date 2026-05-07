@@ -85,12 +85,12 @@ const SpanTran = () => {
 
   return (
     <div className="min-h-screen bg-white selection:bg-blue-100 selection:text-blue-900">
-      
+
       {/* HERO SECTION - CLEAN WHITE */}
       <section className="relative pt-32 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-16">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -100,37 +100,37 @@ const SpanTran = () => {
                 <Building2 className="w-4 h-4 text-blue-600" />
                 <span className="text-slate-600 text-[10px] font-black uppercase tracking-[0.3em]">Official SpanTran Partnership</span>
               </div>
-              
+
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-black leading-[1.1] tracking-tight">
                 100 Transcripts is partnered with <span className="text-blue-600">SpanTran</span>
               </h1>
-              
+
               <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 Get your non-U.S. transcripts evaluated at a special <span className="text-blue-600 font-bold">discounted rate</span>. Enjoy <span className="text-blue-600 font-bold">hassle-free processing</span> and <span className="text-blue-600 font-bold">official verification</span>.
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                    <span className="text-black font-bold text-sm">Discounted Rates</span>
-                 </div>
-                 <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-sm">
-                    <Shield className="w-5 h-5 text-blue-600" />
-                    <span className="text-black font-bold text-sm">Official Verification</span>
-                 </div>
+                <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                  <span className="text-black font-bold text-sm">Discounted Rates</span>
+                </div>
+                <div className="flex items-center gap-3 bg-white px-6 py-3.5 rounded-2xl border border-slate-100 shadow-sm">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                  <span className="text-black font-bold text-sm">Official Verification</span>
+                </div>
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:w-1/2 flex justify-center"
             >
               <div className="relative bg-white p-4 flex items-center justify-center">
-                <motion.img 
-                  src={Spantra1} 
-                  alt="SpanTran Partnership" 
+                <motion.img
+                  src={Spantra1}
+                  alt="SpanTran Partnership"
                   className="w-full max-w-lg h-auto object-contain"
                   initial={{ opacity: 0 }}
                   animate={{ opacity: 1 }}
@@ -145,80 +145,80 @@ const SpanTran = () => {
       {/* STEPS SECTION - FORCED WHITE */}
       <section className="bg-white pb-32 pt-12 px-6">
         <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-16">
-                <h2 className="text-4xl md:text-5xl font-black text-black mb-4">SpanTran Evaluation</h2>
-                <div className="flex items-center justify-center gap-4">
-                    <span className="h-[2px] w-12 bg-slate-100" />
-                    <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
-                    <span className="h-[2px] w-12 bg-slate-100" />
-                </div>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl md:text-5xl font-black text-black mb-4">SpanTran Evaluation</h2>
+            <div className="flex items-center justify-center gap-4">
+              <span className="h-[2px] w-12 bg-slate-100" />
+              <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
+              <span className="h-[2px] w-12 bg-slate-100" />
             </div>
+          </div>
 
-            <div className="grid lg:grid-cols-2 gap-16 items-start">
-            
+          <div className="grid lg:grid-cols-2 gap-16 items-start">
+
             <div className="space-y-6">
-                {steps.map((step, idx) => (
+              {steps.map((step, idx) => (
                 <motion.div
-                    key={step.id}
-                    className={`group bg-white p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
-                    onMouseEnter={() => setActiveStep(step.id)}
-                    onMouseLeave={() => setActiveStep(null)}
+                  key={step.id}
+                  className={`group bg-white p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
+                  onMouseEnter={() => setActiveStep(step.id)}
+                  onMouseLeave={() => setActiveStep(null)}
                 >
-                    <div className="flex items-start gap-6">
+                  <div className="flex items-start gap-6">
                     <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
-                        <step.icon className="w-6 h-6" />
+                      <step.icon className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
-                        <div className="mb-2">
-                          <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Step {idx + 1}</span>
-                        </div>
-                        <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
-                        <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
-                        <AnimatePresence>
+                      <div className="mb-2">
+                        <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Step {idx + 1}</span>
+                      </div>
+                      <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
+                      <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
+                      <AnimatePresence>
                         {activeStep === step.id && (
-                            <motion.div
+                          <motion.div
                             initial={{ opacity: 0, height: 0 }}
                             animate={{ opacity: 1, height: 'auto' }}
                             exit={{ opacity: 0, height: 0 }}
                             className="overflow-hidden"
-                            >
+                          >
                             {step.content}
-                            </motion.div>
+                          </motion.div>
                         )}
-                        </AnimatePresence>
+                      </AnimatePresence>
                     </div>
-                    </div>
+                  </div>
                 </motion.div>
-                ))}
+              ))}
             </div>
 
             <div className="lg:sticky lg:top-32 h-fit space-y-8">
-                <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-lg text-center lg:text-left">
-                    <h3 className="text-2xl font-black text-black tracking-tight mb-4">Official Support</h3>
-                    <p className="text-slate-600 text-base font-medium leading-relaxed mb-8">Our experts are here to guide you through every step of your SpanTran evaluation process.</p>
-                    <a
-                        href="https://wa.me/919941991402"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all"
-                    >
-                        Chat with an Expert
-                        <ArrowRight className="w-5 h-5" />
-                    </a>
-                </div>
+              <div className="bg-white p-10 rounded-[2.5rem] border border-slate-100 shadow-lg text-center lg:text-left">
+                <h3 className="text-2xl font-black text-black tracking-tight mb-4">Official Support</h3>
+                <p className="text-slate-600 text-base font-medium leading-relaxed mb-8">Our experts are here to guide you through every step of your SpanTran evaluation process.</p>
+                <a
+                  href="https://wa.me/919941991402"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all"
+                >
+                  Chat with an Expert
+                  <ArrowRight className="w-5 h-5" />
+                </a>
+              </div>
 
-                <div className="bg-blue-600 p-8 rounded-[2.5rem] flex items-center gap-6 shadow-xl">
-                    <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
-                        <BadgeCheck className="w-8 h-8 text-white" />
-                    </div>
-                    <div>
-                        <h4 className="text-lg font-black text-white">100% Verified</h4>
-                        <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
-                    </div>
+              <div className="bg-blue-600 p-8 rounded-[2.5rem] flex items-center gap-6 shadow-xl">
+                <div className="w-14 h-14 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
+                  <BadgeCheck className="w-8 h-8 text-white" />
                 </div>
+                <div>
+                  <h4 className="text-lg font-black text-white">100% Verified</h4>
+                  <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
+                </div>
+              </div>
             </div>
 
-            </div>
+          </div>
         </div>
       </section>
 

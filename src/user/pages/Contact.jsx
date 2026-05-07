@@ -1,15 +1,19 @@
 import React, { useState } from "react";
 import { motion } from "framer-motion";
-import { FiMail, FiPhone, FiMapPin, FiMessageSquare, FiSend } from "react-icons/fi";
-import { MessageCircle, ArrowRight, CheckCircle2, Shield } from "lucide-react";
-import { useToast } from "../../contexts/ToastContext";
-import { getErrorMessage, validateForm } from "../../utils/validation";
-import LoadingSpinner from "../../components/LoadingSpinner";
 
-const fadeUp = {
-  hidden: { opacity: 0, y: 40 },
-  visible: { opacity: 1, y: 0 },
-};
+import {
+  FiMail,
+  FiPhone,
+  FiMapPin,
+  FiSend,
+} from "react-icons/fi";
+
+import {
+  MessageCircle,
+  Sparkles,
+  ShieldCheck,
+  Clock3,
+} from "lucide-react";
 
 export default function Contact() {
 
@@ -17,323 +21,356 @@ export default function Contact() {
     name: "",
     email: "",
     subject: "Transcript Inquiry",
-    message: ""
+    message: "",
   });
 
-  const [errors, setErrors] = useState({});
-  const [touched, setTouched] = useState({});
-  const [loading, setLoading] = useState(false);
-  const { success, error } = useToast();
-
-  const validationRules = {
-    name: { required: true, label: 'Full Name', minLength: 2 },
-    email: { required: true, email: true, label: 'Email Address' },
-    subject: { required: true, label: 'Subject' },
-    message: { required: true, minLength: 10, label: 'Message' },
-  };
-
   const handleChange = (e) => {
-    const { name, value } = e.target;
-    setFormData({ ...formData, [name]: value });
-
-    if (touched[name]) {
-      const fieldError = getErrorMessage(
-        validationRules[name].label,
-        value,
-        validationRules[name]
-      );
-      setErrors({ ...errors, [name]: fieldError });
-    }
-  };
-
-  const handleBlur = (e) => {
-    const { name, value } = e.target;
-    setTouched({ ...touched, [name]: true });
-
-    const fieldError = getErrorMessage(
-      validationRules[name].label,
-      value,
-      validationRules[name]
-    );
-    setErrors({ ...errors, [name]: fieldError });
-  };
-
-  const isFormValid = () => {
-    const { errors: validationErrors, isValid } = validateForm(formData, validationRules);
-    return isValid;
+    setFormData({
+      ...formData,
+      [e.target.name]: e.target.value,
+    });
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { errors: validationErrors, isValid } = validateForm(formData, validationRules);
-    setErrors(validationErrors);
-    setTouched({ name: true, email: true, subject: true, message: true });
-
-    if (!isValid) {
-      error('Please fix the errors before submitting');
-      return;
-    }
-
-    setLoading(true);
-
     try {
-      const API_BASE = `http://192.168.1.43:8000`;
-      const res = await fetch(`${API_BASE}/api/contact/`, {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(formData),
-      });
+      const response = await fetch(
+        "http://127.0.0.1:8000/api/contact/",
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify(formData),
+        }
+      );
 
-      const data = await res.json();
+      const data = await response.json();
 
-      if (res.ok) {
-        success("Message sent successfully!");
+      if (response.ok) {
+
+        alert("Message sent successfully!");
+
         setFormData({
           name: "",
           email: "",
           subject: "Transcript Inquiry",
-          message: ""
+          message: "",
         });
-        setErrors({});
-        setTouched({});
+
       } else {
-        error(data.error || "Failed to send message");
+        alert(data.error || "Something went wrong");
       }
-    } catch (err) {
-      error("Server error. Please try again.");
-    } finally {
-      setLoading(false);
+
+    } catch (error) {
+      console.error(error);
+      alert("Server error");
     }
   };
 
   return (
-    <div className="bg-white min-h-screen">
+    <div className="min-h-screen bg-[#f4f7fb]">
 
-      {/* HEADER SECTION */}
-      <motion.section
-        className="relative pt-32 pb-20 bg-white overflow-hidden"
-        initial="hidden"
-        animate="visible"
-        variants={fadeUp}
-      >
-        <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-6">
-          <div className="inline-flex items-center gap-2 px-4 py-2 bg-purple-100 border border-purple-300 rounded-full text-purple-900 font-bold uppercase text-[10px] tracking-widest mb-4">
-            Contact Us
-          </div>
-          <h1 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-black tracking-tight leading-tight">
-            Get in <span className="text-purple-900">Touch</span>
-          </h1>
-          <p className="text-gray-600 text-lg md:text-xl max-w-2xl mx-auto leading-relaxed">
-            Have questions about your transcripts? Our team is here to help you navigate your academic journey worldwide.
-          </p>
+      {/* HERO */}
+      <section className="relative overflow-hidden">
+
+        {/* GRADIENT */}
+<div className="absolute inset-0 bg-gradient-to-r from-blue-700 via-cyan-600 to-indigo-700" />
+
+        {/* EFFECTS */}
+        <div className="absolute top-0 left-0 w-[350px] h-[350px] bg-white/10 rounded-full blur-3xl -translate-x-1/2 -translate-y-1/2" />
+
+        <div className="absolute bottom-0 right-0 w-[300px] h-[300px] bg-black/10 rounded-full blur-3xl translate-x-1/3 translate-y-1/3" />
+
+       <div className="relative max-w-7xl mx-auto px-4 sm:px-6 pt-10 pb-10">
+
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            className="max-w-3xl"
+          >
+
+            {/* BADGE */}
+            <div className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/10 border border-white/20 backdrop-blur-xl text-white text-xs font-semibold shadow-lg">
+
+              <Sparkles className="w-4 h-4" />
+
+              100 Transcripts Support
+            </div>
+
+            {/* HEADING */}
+        <h1 className="mt-4 text-3xl md:text-5xl font-black leading-[1.1]">
+              <span className="block">
+                Let’s Build Your
+              </span>
+
+              <span className="block bg-gradient-to-r from-cyan-200 via-white to-blue-200 bg-clip-text text-transparent">
+                Academic Journey
+              </span>
+
+            </h1>
+
+            {/* SUBTEXT */}
+            <p className="mt-5 text-white/80 text-sm md:text-base leading-7 max-w-2xl">
+              Connect with our team for transcript processing,
+              document verification, and worldwide university support.
+            </p>
+
+          </motion.div>
         </div>
-      </motion.section>
+      </section>
 
-      {/* MAIN CONTACT SECTION */}
-      <section className="max-w-7xl mx-auto px-6 -mt-16 pb-24 relative z-20">
-        <div className="bg-white rounded-[3rem] shadow-[0_30px_60px_rgba(10,25,41,0.15)] overflow-hidden grid grid-cols-1 lg:grid-cols-12 border border-gray-200">
+      {/* MAIN SECTION */}
+      <section className="max-w-7xl mx-auto px-4 sm:px-6 -mt-10 pb-20 relative z-10">
 
-          {/* LEFT INFO PANEL */}
-          <div className="lg:col-span-5 bg-purple-50 p-10 md:p-16 text-black space-y-12 relative overflow-hidden">
-            <div className="space-y-4 relative z-10">
-              <h2 className="text-3xl font-extrabold tracking-tight text-black">Contact Information</h2>
-              <p className="text-gray-600 text-lg">Fill out the form and our team will get back to you within 24 hours.</p>
+        <div className="grid lg:grid-cols-[0.95fr_1.2fr] gap-6">
+
+          {/* LEFT INFO */}
+          <motion.div
+            initial={{ opacity: 0, x: -30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200"
+          >
+
+            <h2 className="text-2xl font-bold text-slate-900">
+              Contact Information
+            </h2>
+
+            <p className="mt-2 text-slate-500 text-sm leading-relaxed">
+              Our support team is available to guide you through every step.
+            </p>
+
+            {/* CONTACT ITEMS */}
+            <div className="mt-8 space-y-4">
+
+              {/* PHONE */}
+              <div className="flex gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-blue-50 transition-all">
+
+                <div className="w-12 h-12 rounded-xl bg-blue-100 text-blue-600 flex items-center justify-center shrink-0">
+                  <FiPhone size={20} />
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                    Call Us
+                  </p>
+
+                  <p className="mt-1 text-slate-800 font-semibold">
+                    +91 99419 91402
+                  </p>
+                </div>
+
+              </div>
+
+              {/* WHATSAPP */}
+              <div className="flex gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-green-50 transition-all">
+
+                <div className="w-12 h-12 rounded-xl bg-green-100 text-green-600 flex items-center justify-center shrink-0">
+                  <MessageCircle size={20} />
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                    WhatsApp
+                  </p>
+
+                  <p className="mt-1 text-slate-800 font-semibold">
+                    +91 99419 91402
+                  </p>
+                </div>
+
+              </div>
+
+              {/* EMAIL */}
+              <div className="flex gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-red-50 transition-all">
+
+                <div className="w-12 h-12 rounded-xl bg-red-100 text-red-600 flex items-center justify-center shrink-0">
+                  <FiMail size={20} />
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                    Email
+                  </p>
+
+                  <p className="mt-1 text-slate-800 font-semibold break-all">
+                    support@100transcripts.com
+                  </p>
+                </div>
+
+              </div>
+
+              {/* LOCATION */}
+              <div className="flex gap-4 p-4 rounded-2xl bg-slate-50 hover:bg-orange-50 transition-all">
+
+                <div className="w-12 h-12 rounded-xl bg-orange-100 text-orange-600 flex items-center justify-center shrink-0">
+                  <FiMapPin size={20} />
+                </div>
+
+                <div>
+                  <p className="text-xs uppercase tracking-wider text-slate-400 font-semibold">
+                    Office
+                  </p>
+
+                  <p className="mt-1 text-slate-800 font-semibold">
+                    Hyderabad, India
+                  </p>
+                </div>
+
+              </div>
+
             </div>
 
-            <div className="space-y-8 relative z-10">
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 bg-purple-200 rounded-2xl flex items-center justify-center text-purple-700 group-hover:bg-purple-900 group-hover:text-white transition-all duration-300">
-                  <FiPhone size={24} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-purple-500 uppercase tracking-widest mb-1">Call Us</p>
-                  <p className="text-lg font-bold text-black">+91 99419 91402</p>
-                </div>
-              </div>
+            {/* FEATURES */}
+            <div className="mt-8 grid grid-cols-1 sm:grid-cols-3 gap-4">
 
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 bg-purple-200 rounded-2xl flex items-center justify-center text-purple-700 group-hover:bg-purple-900 group-hover:text-white transition-all duration-300">
-                  <MessageCircle size={24} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-purple-500 uppercase tracking-widest mb-1">WhatsApp Us</p>
-                  <p className="text-lg font-bold text-black">+91 99419 91402</p>
-                </div>
-              </div>
+              <div className="bg-blue-50 rounded-2xl p-4 text-center">
 
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 bg-purple-200 rounded-2xl flex items-center justify-center text-purple-700 group-hover:bg-purple-900 group-hover:text-white transition-all duration-300">
-                  <FiMail size={24} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-purple-500 uppercase tracking-widest mb-1">Email Us</p>
-                  <p className="text-lg font-bold text-black">support@100transcripts.com</p>
-                </div>
-              </div>
+                <Clock3 className="mx-auto text-blue-600 w-6 h-6" />
 
-              <div className="flex items-center gap-6 group">
-                <div className="w-14 h-14 bg-purple-200 rounded-2xl flex items-center justify-center text-purple-700 group-hover:bg-purple-900 group-hover:text-white transition-all duration-300">
-                  <FiMapPin size={24} />
-                </div>
-                <div>
-                  <p className="text-[10px] font-bold text-purple-500 uppercase tracking-widest mb-1">Visit Us</p>
-                  <p className="text-lg font-bold text-black">Hyderabad, India</p>
-                </div>
-              </div>
-            </div>
-
-            <div className="pt-10 relative z-10">
-              <div className="p-8 bg-white rounded-3xl border border-purple-200">
-                <FiMessageSquare className="text-purple-700 mb-4" size={28} />
-                <p className="text-sm font-medium text-purple-600 leading-relaxed italic">
-                  "The most efficient transcript service I've used. Highly recommended for international students."
+                <p className="mt-2 text-xs text-slate-500">
+                  Fast Processing
                 </p>
-                <p className="mt-4 text-[10px] font-bold uppercase tracking-widest text-purple-700">— Happy Student</p>
+
               </div>
-            </div>
-          </div>
 
-          {/* RIGHT FORM PANEL */}
-          <div className="lg:col-span-7 p-10 md:p-16 space-y-10">
-            <div>
-              <h3 className="text-3xl font-extrabold text-black tracking-tight mb-2">Send us a Message</h3>
-              <p className="text-gray-600 font-medium text-lg">We're excited to hear from you!</p>
+              <div className="bg-cyan-50 rounded-2xl p-4 text-center">
+
+                <ShieldCheck className="mx-auto text-cyan-600 w-6 h-6" />
+
+                <p className="mt-2 text-xs text-slate-500">
+                  Secure Handling
+                </p>
+
+              </div>
+
+              <div className="bg-indigo-50 rounded-2xl p-4 text-center">
+
+                <Sparkles className="mx-auto text-indigo-600 w-6 h-6" />
+
+                <p className="mt-2 text-xs text-slate-500">
+                  Trusted Service
+                </p>
+
+              </div>
+
+            </div>
+          </motion.div>
+
+          {/* FORM */}
+          <motion.div
+            initial={{ opacity: 0, x: 30 }}
+            whileInView={{ opacity: 1, x: 0 }}
+            viewport={{ once: true }}
+            className="bg-white rounded-3xl p-6 md:p-8 shadow-sm border border-slate-200"
+          >
+
+            <div className="mb-8">
+
+              <h2 className="text-3xl font-bold text-slate-900">
+                Send a Message
+              </h2>
+
+              <p className="mt-2 text-slate-500 text-sm">
+                Fill the form and we’ll get back to you shortly.
+              </p>
+
             </div>
 
-            <form className="space-y-6" onSubmit={handleSubmit}>
-              <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-purple-500 uppercase tracking-widest ml-1">Full Name</label>
+            <form onSubmit={handleSubmit} className="space-y-5">
+
+              {/* NAME + EMAIL */}
+              <div className="grid md:grid-cols-2 gap-5">
+
+                <div>
+
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Full Name
+                  </label>
+
                   <input
                     type="text"
                     name="name"
                     value={formData.name}
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     placeholder="John Doe"
-                    className={`w-full p-4 rounded-2xl bg-purple-50 border-2 outline-none font-bold transition-all ${errors.name && touched.name ? 'border-red-500' : 'border-purple-200 focus:border-purple-900'} focus:bg-white`}
+                    className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
                   />
-                  {errors.name && touched.name && (
-                    <p className="text-xs text-red-500 ml-1">{errors.name}</p>
-                  )}
                 </div>
-                <div className="space-y-2">
-                  <label className="text-[10px] font-bold text-purple-500 uppercase tracking-widest ml-1">Email Address</label>
+
+                <div>
+
+                  <label className="block text-sm font-medium text-slate-700 mb-2">
+                    Email Address
+                  </label>
+
                   <input
                     type="email"
                     name="email"
                     value={formData.email}
                     onChange={handleChange}
-                    onBlur={handleBlur}
                     placeholder="john@example.com"
-                    className={`w-full p-4 rounded-2xl bg-purple-50 border-2 outline-none font-bold transition-all ${errors.email && touched.email ? 'border-red-500' : 'border-purple-200 focus:border-purple-900'} focus:bg-white`}
+                    className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
                   />
-                  {errors.email && touched.email && (
-                    <p className="text-xs text-red-500 ml-1">{errors.email}</p>
-                  )}
                 </div>
+
               </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold text-purple-500 uppercase tracking-widest ml-1">Subject</label>
-                <div className="relative">
-                  <select
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleChange}
-                    onBlur={handleBlur}
-                    className={`w-full p-4 rounded-2xl bg-purple-50 border-2 outline-none font-bold transition-all appearance-none ${errors.subject && touched.subject ? 'border-red-500' : 'border-purple-200 focus:border-purple-900'} focus:bg-white`}
-                  >
-                    <option>Transcript Inquiry</option>
-                    <option>Document Verification</option>
-                    <option>Partner with Us</option>
-                    <option>Others</option>
-                  </select>
-                  <div className="absolute right-4 top-1/2 -translate-y-1/2 pointer-events-none text-purple-500">
-                     <ArrowRight className="w-4 h-4 rotate-90" />
-                  </div>
-                </div>
-                {errors.subject && touched.subject && (
-                  <p className="text-xs text-red-500 ml-1">{errors.subject}</p>
-                )}
+              {/* SUBJECT */}
+              <div>
+
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Subject
+                </label>
+
+                <select
+                  name="subject"
+                  value={formData.subject}
+                  onChange={handleChange}
+                  className="w-full h-12 px-4 rounded-xl border border-slate-200 bg-slate-50 focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
+                >
+                  <option>Transcript Inquiry</option>
+                  <option>Document Verification</option>
+                  <option>Partner with Us</option>
+                  <option>Others</option>
+                </select>
+
               </div>
 
-              <div className="space-y-2">
-                <label className="text-[10px] font-bold text-purple-500 uppercase tracking-widest ml-1">Your Message</label>
+              {/* MESSAGE */}
+              <div>
+
+                <label className="block text-sm font-medium text-slate-700 mb-2">
+                  Message
+                </label>
+
                 <textarea
+                  rows="6"
                   name="message"
                   value={formData.message}
                   onChange={handleChange}
-                  onBlur={handleBlur}
-                  rows="5"
-                  placeholder="How can we help you?"
-                  className={`w-full p-4 rounded-2xl bg-purple-50 border-2 outline-none font-bold transition-all resize-none ${errors.message && touched.message ? 'border-red-500' : 'border-purple-200 focus:border-purple-900'} focus:bg-white`}
+                  placeholder="Write your message..."
+                  className="w-full px-4 py-3 rounded-xl border border-slate-200 bg-slate-50 resize-none focus:bg-white focus:outline-none focus:ring-4 focus:ring-blue-100"
                 />
-                {errors.message && touched.message && (
-                  <p className="text-xs text-red-500 ml-1">{errors.message}</p>
-                )}
+
               </div>
 
+              {/* BUTTON */}
               <button
                 type="submit"
-                disabled={loading || !isFormValid()}
-                className="w-full bg-gradient-to-r from-purple-600 to-purple-700 text-white py-5 rounded-2xl font-bold text-lg hover:from-purple-700 hover:to-purple-800 shadow-xl transition-all active:scale-[0.98] flex items-center justify-center gap-3 disabled:opacity-50 disabled:cursor-not-allowed"
+                className="w-full h-12 rounded-xl bg-gradient-to-r from-blue-600 to-cyan-600 text-white font-semibold hover:opacity-95 transition-all flex items-center justify-center gap-2 shadow-lg shadow-blue-100"
               >
-                {loading ? (
-                  <>
-                    <LoadingSpinner size="sm" color="white" />
-                    Sending...
-                  </>
-                ) : (
-                  <>
-                    Send Message <FiSend size={20} />
-                  </>
-                )}
+                Send Message
+
+                <FiSend size={18} />
               </button>
+
             </form>
-          </div>
+          </motion.div>
         </div>
       </section>
-
-      {/* BOTTOM CTA SECTION */}
-      <section className="px-6 pb-32">
-        <motion.div
-          className="max-w-6xl mx-auto bg-white rounded-[3rem] p-12 md:p-20 text-center border border-purple-200 shadow-lg relative overflow-hidden group"
-          initial={{ opacity: 0, scale: 0.9 }}
-          whileInView={{ opacity: 1, scale: 1 }}
-          viewport={{ once: true }}
-        >
-          <div className="relative z-10 space-y-8">
-            <h2 className="text-3xl md:text-5xl font-extrabold tracking-tight leading-tight text-black">
-              Ready to Start Your <br />
-              <span className="text-purple-900">Global Journey?</span>
-            </h2>
-
-            <div className="w-24 h-1.5 bg-purple-900 mx-auto rounded-full"></div>
-
-            <p className="text-lg md:text-xl text-gray-600 max-w-2xl mx-auto font-medium leading-relaxed">
-              Join thousands of successful students who trusted 100 Transcripts for their academic documentation.
-            </p>
-
-            <div className="flex flex-wrap justify-center gap-4">
-               <div className="flex items-center gap-2 text-purple-900 font-bold">
-                  <CheckCircle2 className="w-5 h-5 text-purple-700" />
-                  <span>Verified Process</span>
-               </div>
-               <div className="flex items-center gap-2 text-purple-900 font-bold">
-                  <Shield className="w-5 h-5 text-purple-700" />
-                  <span>Secure Transfer</span>
-               </div>
-            </div>
-
-            <button className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-10 py-5 rounded-2xl font-bold text-xl hover:from-purple-700 hover:to-purple-800 transition-all flex items-center gap-3 mx-auto active:scale-95 shadow-lg">
-              📞 Get a Free Consultation
-            </button>
-          </div>
-        </motion.div>
-      </section>
-
     </div>
   );
 }

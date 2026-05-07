@@ -79,7 +79,7 @@ const EP = () => {
       <section className="relative pt-32 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               transition={{ duration: 0.8 }}
@@ -89,38 +89,38 @@ const EP = () => {
                 <Building2 className="w-4 h-4 text-blue-600" />
                 <span className="text-slate-600 text-[10px] font-black uppercase tracking-widest">Official EP Support</span>
               </div>
-              
+
               <h1 className="text-5xl lg:text-7xl font-black text-black leading-tight tracking-tight">
                 Educational <span className="text-blue-600">Perspectives</span>
               </h1>
-              
+
               <p className="text-slate-600 text-lg md:text-xl font-medium leading-relaxed">
                 Streamlined and accurate credential evaluation for your international education journey with official verification.
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                    <span className="text-black font-bold text-sm">Official Support</span>
-                 </div>
-                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
-                    <Shield className="w-5 h-5 text-blue-600" />
-                    <span className="text-black font-bold text-sm">Verified Handling</span>
-                 </div>
+                <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                  <span className="text-black font-bold text-sm">Official Support</span>
+                </div>
+                <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                  <span className="text-black font-bold text-sm">Verified Handling</span>
+                </div>
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.95 }}
               animate={{ opacity: 1, scale: 1 }}
               transition={{ duration: 0.8, delay: 0.2 }}
               className="lg:w-1/2 flex justify-center"
             >
               {/* INCREASED LOGO SIZE */}
-              <img 
-                src={eduLogo} 
-                alt="Educational Perspectives Logo" 
-                className="w-80 md:w-[480px] h-auto object-contain" 
+              <img
+                src={eduLogo}
+                alt="Educational Perspectives Logo"
+                className="w-80 md:w-[480px] h-auto object-contain"
               />
             </motion.div>
           </div>
@@ -130,62 +130,62 @@ const EP = () => {
       {/* STEPS & WORKFLOW SECTION */}
       <section className="bg-white pb-32 pt-12 px-6">
         <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-                <h2 className="text-4xl font-black text-black mb-2">Evaluation Roadmap</h2>
-                <p className="text-blue-600 font-bold uppercase tracking-widest text-xs">Official Process Guide</p>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-black text-black mb-2">Evaluation Roadmap</h2>
+            <p className="text-blue-600 font-bold uppercase tracking-widest text-xs">Official Process Guide</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+
+            {/* LEFT SIDE: STEPS */}
+            <div className="space-y-6">
+              {steps.map((step, idx) => (
+                <motion.div
+                  key={step.id}
+                  className={`bg-white p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
+                  onMouseEnter={() => setActiveStep(step.id)}
+                  onMouseLeave={() => setActiveStep(null)}
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
+                      <step.icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Step {idx + 1}</span>
+                      <h3 className="text-xl font-black text-black mb-1">{step.title}</h3>
+                      <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
+                      <AnimatePresence>
+                        {activeStep === step.id && (
+                          <motion.div
+                            initial={{ opacity: 0, height: 0 }}
+                            animate={{ opacity: 1, height: 'auto' }}
+                            exit={{ opacity: 0, height: 0 }}
+                            className="overflow-hidden"
+                          >
+                            {step.content}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-20 items-start">
-              
-              {/* LEFT SIDE: STEPS */}
-              <div className="space-y-6">
-                {steps.map((step, idx) => (
-                  <motion.div
-                    key={step.id}
-                    className={`bg-white p-8 rounded-[2rem] border transition-all duration-300 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
-                    onMouseEnter={() => setActiveStep(step.id)}
-                    onMouseLeave={() => setActiveStep(null)}
-                  >
-                    <div className="flex items-start gap-6">
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
-                        <step.icon className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1">
-                        <span className="text-[10px] font-black text-blue-600 uppercase tracking-widest">Step {idx + 1}</span>
-                        <h3 className="text-xl font-black text-black mb-1">{step.title}</h3>
-                        <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
-                        <AnimatePresence>
-                          {activeStep === step.id && (
-                            <motion.div 
-                              initial={{ opacity: 0, height: 0 }} 
-                              animate={{ opacity: 1, height: 'auto' }} 
-                              exit={{ opacity: 0, height: 0 }} 
-                              className="overflow-hidden"
-                            >
-                              {step.content}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
-              </div>
+            {/* RIGHT SIDE: WORKFLOW IMAGE */}
+            <div className="lg:sticky lg:top-32 space-y-8">
 
-              {/* RIGHT SIDE: WORKFLOW IMAGE */}
-              <div className="lg:sticky lg:top-32 space-y-8">
-                
 
-                <div className="bg-blue-600 p-6 rounded-3xl flex items-center gap-4 shadow-xl">
-                    <BadgeCheck className="w-10 h-10 text-white" />
-                    <div>
-                        <h4 className="text-lg font-black text-white leading-none">Verified Evaluation</h4>
-                        <p className="text-blue-100 text-xs font-medium">Trusted handling of academic credentials.</p>
-                    </div>
+              <div className="bg-blue-600 p-6 rounded-3xl flex items-center gap-4 shadow-xl">
+                <BadgeCheck className="w-10 h-10 text-white" />
+                <div>
+                  <h4 className="text-lg font-black text-white leading-none">Verified Evaluation</h4>
+                  <p className="text-blue-100 text-xs font-medium">Trusted handling of academic credentials.</p>
                 </div>
               </div>
-
             </div>
+
+          </div>
         </div>
       </section>
 

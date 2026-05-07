@@ -29,7 +29,7 @@ const Login = () => {
     setLoading(true);
 
     try {
-      const response = await fetch("http://192.168.1.43:8000/api/verify/", {
+      const response = await fetch("http://192.168.1.53:8000/api/verify/", {
         method: "POST",
         headers: {
           "Content-Type": "application/json"

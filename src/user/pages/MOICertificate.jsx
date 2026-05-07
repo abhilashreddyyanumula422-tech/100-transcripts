@@ -163,22 +163,22 @@ const MOICertificate = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <main className="pt-24 pb-12 px-4"> {/* pt-24 adds space for a fixed header */}
-  <motion.div
-    initial="hidden"
-    animate="visible"
-    variants={fadeUp}
-    transition={{ duration: 0.6 }}
-    className="text-center"
-  >
-    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-            MOI Certificate
-          </h1>
-          <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-            Medium of Instruction certificate proving you studied in English. Essential for UK and European universities.
-          </p>
-  </motion.div>
-</main>
-        
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              MOI Certificate
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Medium of Instruction certificate proving you studied in English. Essential for UK and European universities.
+            </p>
+          </motion.div>
+        </main>
+
 
         {/* FAQ Section */}
         <motion.div
@@ -231,38 +231,31 @@ const MOICertificate = () => {
 
         {/* Contact Info */}
         <motion.div
-  initial="hidden"
-  animate="visible"
-  variants={fadeUp}
-  transition={{ duration: 0.6, delay: 0.25 }}
-  // Changed: Better padding and gap management for mobile vs desktop
-  className="bg-blue-50 rounded-2xl p-5 sm:p-6 mb-8 flex flex-col md:flex-row items-stretch md:items-center justify-between gap-6 md:gap-4"
->
-  {/* Phone Section */}
-  <div className="flex items-center gap-4">
-    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-200">
-      <FiPhone className="text-white text-xl" />
-    </div>
-    <div>
-      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide font-semibold">Call us for queries</p>
-      <p className="font-bold text-gray-900 text-lg sm:text-base">+91 9941 9914 02</p>
-    </div>
-  </div>
-
-  {/* Mobile Divider: Only visible on small screens */}
-  <div className="h-[1px] w-full bg-blue-200 md:hidden"></div>
-
-  {/* Email Section */}
-  <div className="flex items-center gap-4">
-    <div className="flex-shrink-0 w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center shadow-lg shadow-blue-200">
-      <FiMail className="text-white text-xl" />
-    </div>
-    <div>
-      <p className="text-xs sm:text-sm text-gray-600 uppercase tracking-wide font-semibold">Email us</p>
-      <p className="font-bold text-gray-900 text-lg sm:text-base">Support@100Transcripts.com</p>
-    </div>
-  </div>
-</motion.div>
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.25 }}
+          className="bg-blue-50 rounded-2xl p-6 mb-8 flex flex-col md:flex-row items-center justify-between gap-4"
+        >
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <FiPhone className="text-white" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Call us for queries</p>
+              <p className="font-bold text-gray-900">+91 9941 9914 02</p>
+            </div>
+          </div>
+          <div className="flex items-center gap-4">
+            <div className="w-12 h-12 bg-blue-600 rounded-full flex items-center justify-center">
+              <FiMail className="text-white" />
+            </div>
+            <div>
+              <p className="text-sm text-gray-600">Email us</p>
+              <p className="font-bold text-gray-900">Support@100Transcripts.com</p>
+            </div>
+          </div>
+        </motion.div>
 
         {/* Sample MOI Certificate Images */}
         <motion.div
@@ -273,7 +266,7 @@ const MOICertificate = () => {
           className="bg-white rounded-2xl shadow-lg p-8 mb-8"
         >
           <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Sample MOI Certificates</h2>
-          
+
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-6">
             {carouselImages.map((item, index) => (
               <div
@@ -338,49 +331,49 @@ const MOICertificate = () => {
           </button>
         </motion.div>
 
-        
-        {/* AGENCIES SECTION */}
-                       <motion.div
-                                 initial="hidden"
-                                 animate="visible"
-                                 variants={fadeUp}
-                                 transition={{ duration: 0.6, delay: 0.2 }}
-                                  className="my-24">
-                               
-                                 <h2 className="text-2xl font-bold text-purple-900 mb-5 text-center">
-                                   Supported Credential Evaluation Agencies
-                                 </h2>
-                                 <p className="text-purple-600 mb-6 text-center max-w-2xl mx-auto">
-                                   We assist applicants preparing documents for all major credential evaluation agencies worldwide.
-                                 </p>
-                       
-                                 <div className="scroll-container py-4">
-                                   <div className="scroll-content">
-                                     {[...agencies, ...agencies].map((agency, index) => (
-                                       <motion.div
-                                         key={`${agency.short}-${index}`}
-                                         initial="hidden"
-                                         animate="visible"
-                                         variants={fadeUp}
-                                         transition={{ duration: 0.4, delay: index * 0.05 }}
-                                         className="bg-white rounded-xl p-4 shadow-sm border border-purple-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
-                                         style={{ width: '120px' }}
-                                       >
-                                         <img
-                                           src={agency.logo}
-                                           alt={agency.short}
-                                           className="w-16 h-16 object-contain mb-2"
-                                         />
-                                         <h4 className="font-semibold text-purple-900 text-xs text-center">
-                                           {agency.short}
-                                         </h4>
-                                       </motion.div>
-                              ))}
-                            </div>
-                          </div>
-                        </motion.div>
 
-        
+        {/* AGENCIES SECTION */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+            Supported Credential Evaluation Agencies
+          </h2>
+          <p className="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
+            We assist applicants preparing documents for all major credential evaluation agencies worldwide.
+          </p>
+
+          <div className="scroll-container py-4">
+            <div className="scroll-content">
+              {[...agencies, ...agencies].map((agency, index) => (
+                <motion.div
+                  key={`${agency.short}-${index}`}
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeUp}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
+                  style={{ width: '120px' }}
+                >
+                  <img
+                    src={agency.logo}
+                    alt={agency.short}
+                    className="w-16 h-16 object-contain mb-2"
+                  />
+                  <h4 className="font-semibold text-gray-900 text-xs text-center">
+                    {agency.short}
+                  </h4>
+                </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
+
+
       </div>
     </div>
   );

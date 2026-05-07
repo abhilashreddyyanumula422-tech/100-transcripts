@@ -67,7 +67,6 @@ const collegesData = {
     short: "JNTUH",
     logo: "https://via.placeholder.com/150?text=JNTUH",
     heroImage: "partnerclg.png",
-    cardImage: "abhi.png",
     title: "Exclusive Transcript Services for JNTUH Students",
     description:
       "Jawaharlal Nehru Technological University Hyderabad students can now apply for transcript and document services online.",
@@ -90,7 +89,6 @@ const collegesData = {
     short: "OU",
     logo: "https://via.placeholder.com/150?text=OU",
     heroImage: "partnerclg.png",
-    cardImage: "OU.png",
     title: "Exclusive Document Services for OU Students",
     description:
       "Osmania University students can now apply for their academic documents without visiting the campus.",
@@ -112,7 +110,6 @@ const collegesData = {
     short: "UoH",
     logo: "https://via.placeholder.com/150?text=UoH",
     heroImage: "partnerclg.png",
-    cardImage: "abhi1.png",
     title: "Exclusive Transcript Services for UoH Students",
     description:
       "University of Hyderabad students can now apply for transcript and evaluation services online.",
@@ -134,7 +131,6 @@ const collegesData = {
     short: "AU",
     logo: "https://via.placeholder.com/150?text=AU",
     heroImage: "partnerclg.png",
-    cardImage: "BDU.png",
     title: "Exclusive Document Services for AU Students",
     description:
       "Andhra University students can now apply for their documents without visiting the college.",
@@ -156,7 +152,6 @@ const collegesData = {
     short: "SVU",
     logo: "https://via.placeholder.com/150?text=SVU",
     heroImage: "partnerclg.png",
-    cardImage: "abhi2.png",
     title: "Exclusive Transcript Services for SVU Students",
     description:
       "Sri Venkateswara University students can now apply for transcript services online.",
@@ -178,7 +173,6 @@ const collegesData = {
     short: "KU",
     logo: "https://via.placeholder.com/150?text=KU",
     heroImage: "partnerclg.png",
-    cardImage: "Clg-IMG.jpg",
     title: "Exclusive Document Services for KU Students",
     description:
       "Kakatiya University students can now apply for their academic documents without visiting the campus.",
@@ -200,7 +194,6 @@ const collegesData = {
     short: "JNTUK",
     logo: "https://via.placeholder.com/150?text=JNTUK",
     heroImage: "partnerclg.png",
-    cardImage: "JNTUK.png",
     title: "Exclusive Transcript Services for JNTUK Students",
     description:
       "JNTU Kakinada students can now apply for transcript and document services online.",
@@ -222,8 +215,7 @@ const collegesData = {
   "jntu-anantapur": {
     short: "JNTUA",
     logo: "https://via.placeholder.com/150?text=JNTUA",
-    heroImage: "abhi.png",
-    cardImage: "abhi.png",
+    heroImage: "partnerclg.png",
     title: "Exclusive Document Services for JNTUA Students",
     description:
       "JNTU Anantapur students can now apply for their documents without visiting the college.",
@@ -241,11 +233,31 @@ const collegesData = {
     ],
   },
 
+  "sri-krishnadevaraya-university": {
+    short: "SKU",
+    logo: "https://via.placeholder.com/150?text=SKU",
+    heroImage: "partnerclg.png",
+    title: "Exclusive Transcript Services for SKU Students",
+    description:
+      "Sri Krishnadevaraya University students can now apply for transcript services online.",
+    stats: [
+      { value: "7,000+", label: "Students Served" },
+      { value: "35+", label: "Partner Universities" },
+      { value: "93%", label: "Success Rate" },
+      { value: "24/7", label: "Support" },
+    ],
+    services: [
+      "Marks Memorandum",
+      "Transcripts",
+      "Degree Certificate",
+      "Migration Certificate",
+    ],
+  },
+
   "acharya-nagarjuna-university": {
     short: "ANU",
     logo: "https://via.placeholder.com/150?text=ANU",
     heroImage: "partnerclg.png",
-    cardImage: "ANU.png",
     title: "Exclusive Document Services for ANU Students",
     description:
       "Acharya Nagarjuna University students can now apply for their academic documents without visiting the campus.",

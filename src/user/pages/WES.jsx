@@ -89,12 +89,12 @@ const WES = () => {
 
   return (
     <div className="min-h-screen bg-white">
-      
+
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 bg-white">
         <div className="max-w-7xl mx-auto px-6">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, x: -30 }}
               animate={{ opacity: 1, x: 0 }}
               className="lg:w-1/2 text-center lg:text-left space-y-6"
@@ -110,23 +110,23 @@ const WES = () => {
                 Fast-track your evaluation with priority processing and official verification.
               </p>
               <div className="flex flex-wrap justify-center lg:justify-start gap-4">
-                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                    <span className="text-black font-bold text-sm">Priority Processing</span>
-                 </div>
-                 <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
-                    <Shield className="w-5 h-5 text-blue-600" />
-                    <span className="text-black font-bold text-sm">Official Verification</span>
-                 </div>
+                <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                  <span className="text-black font-bold text-sm">Priority Processing</span>
+                </div>
+                <div className="flex items-center gap-3 bg-white px-6 py-3 rounded-xl border border-slate-100 shadow-sm">
+                  <Shield className="w-5 h-5 text-blue-600" />
+                  <span className="text-black font-bold text-sm">Official Verification</span>
+                </div>
               </div>
             </motion.div>
 
             <motion.div className="lg:w-1/2 flex justify-center">
               {/* INCREASED LOGO SIZE HERE */}
-              <img 
-                src={logo100} 
-                alt="100 Transcripts Logo" 
-                className="w-100 md:w-[600px] h-auto object-contain" 
+              <img
+                src={logo100}
+                alt="100 Transcripts Logo"
+                className="w-100 md:w-[600px] h-auto object-contain"
               />
             </motion.div>
           </div>
@@ -136,77 +136,77 @@ const WES = () => {
       {/* STEPS & WORKFLOW SECTION - STEPS LEFT, WORKFLOW RIGHT */}
       <section className="bg-white pb-32 pt-12 px-6">
         <div className="max-w-7xl mx-auto">
-            <div className="text-center mb-20">
-                <h2 className="text-4xl font-black text-black mb-2">WES Evaluation</h2>
-                <p className="text-blue-600 font-bold uppercase tracking-widest text-xs">Seamless Step-by-Step Process</p>
+          <div className="text-center mb-20">
+            <h2 className="text-4xl font-black text-black mb-2">WES Evaluation</h2>
+            <p className="text-blue-600 font-bold uppercase tracking-widest text-xs">Seamless Step-by-Step Process</p>
+          </div>
+
+          <div className="grid lg:grid-cols-2 gap-20 items-start">
+
+            {/* LEFT SIDE: STEPS */}
+            <div className="space-y-6">
+              {steps.map((step, idx) => (
+                <motion.div
+                  key={step.id}
+                  className={`bg-white p-8 rounded-[2rem] border transition-all duration-300 ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
+                  onMouseEnter={() => setActiveStep(step.id)}
+                  onMouseLeave={() => setActiveStep(null)}
+                >
+                  <div className="flex items-start gap-6">
+                    <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
+                      <step.icon className="w-6 h-6" />
+                    </div>
+                    <div className="flex-1">
+                      <span className="text-[10px] font-black text-blue-600 uppercase">Step {idx + 1}</span>
+                      <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
+                      <p className="text-slate-600 text-sm font-medium">{step.description}</p>
+                      <AnimatePresence>
+                        {activeStep === step.id && (
+                          <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
+                            {step.content}
+                          </motion.div>
+                        )}
+                      </AnimatePresence>
+                    </div>
+                  </div>
+                </motion.div>
+              ))}
             </div>
 
-            <div className="grid lg:grid-cols-2 gap-20 items-start">
-              
-              {/* LEFT SIDE: STEPS */}
-              <div className="space-y-6">
-                {steps.map((step, idx) => (
-                  <motion.div
-                    key={step.id}
-                    className={`bg-white p-8 rounded-[2rem] border transition-all duration-300 ${activeStep === step.id ? 'border-blue-500 shadow-xl' : 'border-slate-100 shadow-sm'}`}
-                    onMouseEnter={() => setActiveStep(step.id)}
-                    onMouseLeave={() => setActiveStep(null)}
-                  >
-                    <div className="flex items-start gap-6">
-                      <div className="w-12 h-12 rounded-xl flex items-center justify-center flex-shrink-0 bg-slate-50 text-blue-600 border border-slate-100">
-                        <step.icon className="w-6 h-6" />
-                      </div>
-                      <div className="flex-1">
-                        <span className="text-[10px] font-black text-blue-600 uppercase">Step {idx + 1}</span>
-                        <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
-                        <p className="text-slate-600 text-sm font-medium">{step.description}</p>
-                        <AnimatePresence>
-                          {activeStep === step.id && (
-                            <motion.div initial={{ opacity: 0, height: 0 }} animate={{ opacity: 1, height: 'auto' }} exit={{ opacity: 0, height: 0 }} className="overflow-hidden">
-                              {step.content}
-                            </motion.div>
-                          )}
-                        </AnimatePresence>
-                      </div>
-                    </div>
-                  </motion.div>
-                ))}
+            {/* RIGHT SIDE: WORKFLOW IMAGE & INFO */}
+            <div className="lg:sticky lg:top-32 space-y-8">
+              <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-lg">
+                {/* WES Workflow Image */}
+                <img
+                  src={wes1}
+                  alt="WES Partnership Workflow"
+                  className="w-100 md:w-[600px] h-auto object-contain" />
               </div>
 
-              {/* RIGHT SIDE: WORKFLOW IMAGE & INFO */}
-              <div className="lg:sticky lg:top-32 space-y-8">
-                <div className="bg-white p-4 rounded-3xl border border-slate-100 shadow-lg">
-                    {/* WES Workflow Image */}
-                    <img
-                        src={wes1}
-                        alt="WES Partnership Workflow"
-                        className="w-100 md:w-[600px] h-auto object-contain" />
-                </div>
-
-                <div className="bg-[#033074] p-10 rounded-[2.5rem] text-center lg:text-left text-white">
-                    <h3 className="text-2xl font-black tracking-tight mb-4 text-white">WES ECA Report</h3>
-                    <p className="text-slate-400 text-sm mb-8 leading-relaxed">Download a sample WES evaluation report to understand the format provided to global institutions.</p>
-                    <a
-                        href="https://100transcripts.com/wes-final-eca-report/"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="inline-flex items-center gap-4 bg-blue-600 text-white px-8 py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all w-full justify-center"
-                    >
-                        View Sample Report
-                        <ExternalLink className="w-4 h-4" />
-                    </a>
-                </div>
-
-                <div className="bg-blue-600 p-6 rounded-3xl flex items-center gap-4 shadow-xl">
-                    <BadgeCheck className="w-10 h-10 text-white" />
-                    <div>
-                        <h4 className="text-lg font-black text-white leading-none">100% Verified</h4>
-                        <p className="text-blue-100 text-xs font-medium">Official partnership for secure results.</p>
-                    </div>
-                </div>
+              <div className="bg-[#033074] p-10 rounded-[2.5rem] text-center lg:text-left text-white">
+                <h3 className="text-2xl font-black tracking-tight mb-4 text-white">WES ECA Report</h3>
+                <p className="text-slate-400 text-sm mb-8 leading-relaxed">Download a sample WES evaluation report to understand the format provided to global institutions.</p>
+                <a
+                  href="https://100transcripts.com/wes-final-eca-report/"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-flex items-center gap-4 bg-blue-600 text-white px-8 py-4 rounded-xl font-black text-sm hover:bg-blue-700 transition-all w-full justify-center"
+                >
+                  View Sample Report
+                  <ExternalLink className="w-4 h-4" />
+                </a>
               </div>
 
+              <div className="bg-blue-600 p-6 rounded-3xl flex items-center gap-4 shadow-xl">
+                <BadgeCheck className="w-10 h-10 text-white" />
+                <div>
+                  <h4 className="text-lg font-black text-white leading-none">100% Verified</h4>
+                  <p className="text-blue-100 text-xs font-medium">Official partnership for secure results.</p>
+                </div>
+              </div>
             </div>
+
+          </div>
         </div>
       </section>
 

@@ -4,34 +4,6 @@ import { motion } from "framer-motion";
 import { FiSearch } from "react-icons/fi";
 import collegesData from "../data/collegesData";
 
-// Import college images
-import abhi from "../../assets/abhi.png";
-import abhi1 from "../../assets/abhi1.png";
-import abhi2 from "../../assets/abhi2.png";
-import OU from "../../assets/OU.png";
-import BDU from "../../assets/BDU.png";
-import ANU from "../../assets/ANU.png";
-import JNTUK from "../../assets/JNTUK.png";
-import ClgIMG from "../../assets/Clg-IMG.jpg";
-import partnerclg from "../../assets/partnerclg.png";
-
-// Image mapping
-const imageMap = {
-  "abhi.png": abhi,
-  "abhi1.png": abhi1,
-  "abhi2.png": abhi2,
-  "OU.png": OU,
-  "BDU.png": BDU,
-  "ANU.png": ANU,
-  "JNTUK.png": JNTUK,
-  "Clg-IMG.jpg": ClgIMG,
-  "partnerclg.png": partnerclg,
-};
-
-const getCollegeImage = (imageName) => {
-  return imageMap[imageName] || partnerclg;
-};
-
 const universities = [
   "JNTU Hyderabad", "Osmania University", "University of Hyderabad", "JNTU Kakinada", "JNTU Anantapur",
   "Andhra University", "Sri Venkateswara University", "Kakatiya University", "SV University", "Acharya Nagarjuna University",
@@ -125,7 +97,7 @@ const Universities = () => {
   return (
     <div className="bg-white text-slate-900 min-h-screen">
       {/* HERO SECTION */}
-      <section className="relative overflow-hidden bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 pt-32 pb-20 md:pt-40 md:pb-28">
+      <section className="relative overflow-hidden bg-gradient-to-br  from-blue-600 via-cyan-500 to-sky-500 pt-32 pb-20 md:pt-40 md:pb-28">
         {/* Animated Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{
@@ -271,17 +243,15 @@ const Universities = () => {
                 >
                   <div className="relative h-full rounded-3xl border border-slate-200 bg-white p-6 shadow-lg hover:shadow-2xl transition-all duration-500 hover:-translate-y-3 overflow-hidden">
                     {/* Gradient Background on Hover */}
-                    <div className="absolute inset-0 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                    <div className="absolute inset-0 bg-gradient-to-br  from-blue-600 via-cyan-500 to-sky-500 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
                     
                     {/* Content */}
                     <div className="relative z-10">
-                      {/* College Image */}
-                      <div className="mx-auto mb-4 h-24 w-24 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-white/20 group-hover:to-white/30 transition-all duration-500 group-hover:scale-110 overflow-hidden">
-                        <img 
-                          src={getCollegeImage(college.cardImage || college.heroImage)} 
-                          alt={college.short}
-                          className="w-full h-full object-cover"
-                        />
+                      {/* College Logo */}
+                      <div className="mx-auto mb-4 h-24 w-24 rounded-2xl bg-gradient-to-br from-blue-100 to-blue-200 flex items-center justify-center group-hover:from-white/20 group-hover:to-white/30 transition-all duration-500 group-hover:scale-110">
+                        <span className="text-2xl font-black text-blue-700 group-hover:text-white transition-colors duration-500">
+                          {college.short}
+                        </span>
                       </div>
 
                       {/* College Name */}
@@ -301,7 +271,7 @@ const Universities = () => {
       </section>
 
       {/* CTA SECTION */}
-      <section className="py-20 md:py-28 bg-gradient-to-br from-blue-600 via-blue-700 to-indigo-800 relative overflow-hidden">
+      <section className="py-20 md:py-28 bg-gradient-to-br from-blue-600 via-cyan-500 to-sky-500relative overflow-hidden">
         {/* Background Pattern */}
         <div className="absolute inset-0 opacity-10">
           <div className="absolute inset-0" style={{

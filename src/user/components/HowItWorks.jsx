@@ -60,7 +60,7 @@ const HowItWorks = () => {
   };
  
   return (
-    <section className="py-16 sm:py-24 bg-gradient-to-br from-white via-purple-50 to-gray-100 overflow-hidden">
+    <section className="py-16 sm:py-24 bg-gradient-to-br from-white via-blue-50 to-gray-100 overflow-hidden">
       <div className="max-w-7xl mx-auto px-6">
  
         <motion.div
@@ -71,11 +71,11 @@ const HowItWorks = () => {
           className="mb-16 lg:mb-24 text-center"
         >
           <div className="flex items-center justify-center gap-4 mb-4">
-            <span className="h-[2px] w-8 sm:w-14 bg-purple-600" />
-            <p className="text-sm font-bold uppercase tracking-[0.2em] text-purple-600">
+            <span className="h-[2px] w-8 sm:w-14 bg-blue-600" />
+            <p className="text-sm font-bold uppercase tracking-[0.2em] text-blue-600">
               How It Works
             </p>
-            <span className="h-[2px] w-8 sm:w-14 bg-purple-600" />
+            <span className="h-[2px] w-8 sm:w-14 bg-blue-600" />
           </div>
  
           <h2 className="text-3xl sm:text-4xl md:text-5xl font-black text-[#2f4a6d] leading-tight max-w-4xl mx-auto">
@@ -112,15 +112,15 @@ const HowItWorks = () => {
                 }}
                 className={`relative z-10 flex items-center gap-6 p-6 sm:p-8 rounded-[2rem] cursor-pointer transition-all duration-500 border-2 ${
                   activeStep === index
-                    ? "bg-white border-purple-200 shadow-2xl shadow-purple-500/10"
+                    ? "bg-white border-blue-200 shadow-2xl shadow-blue-500/10"
                     : "bg-white/40 border-transparent hover:bg-white/60"
                 }`}
               >
                 <div
                   className={`w-16 h-16 sm:w-20 sm:h-20 shrink-0 rounded-2xl flex items-center justify-center transition-all duration-500 ${
                     activeStep === index
-                      ? "bg-purple-600 text-white shadow-xl shadow-purple-600/30 rotate-3"
-                      : "bg-white text-purple-600 border border-slate-100"
+                      ? "bg-blue-600 text-white shadow-xl shadow-blue-600/30 rotate-3"
+                      : "bg-white text-blue-600 border border-slate-100"
                   }`}
                 >
                   <img 
@@ -131,7 +131,7 @@ const HowItWorks = () => {
                 </div>
 
                 <div className="flex-1">
-                  <div className={`text-xs font-black uppercase tracking-widest mb-1 ${activeStep === index ? "text-purple-600" : "text-slate-400"}`}>
+                  <div className={`text-xs font-black uppercase tracking-widest mb-1 ${activeStep === index ? "text-blue-600" : "text-slate-400"}`}>
                     Step {index + 1}
                   </div>
                   <h4 className={`text-lg sm:text-xl font-black ${activeStep === index ? "text-[#2f4a6d]" : "text-slate-500"}`}>
@@ -142,7 +142,7 @@ const HowItWorks = () => {
                 {activeStep === index && (
                   <motion.div 
                     layoutId="activePointer"
-                    className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rotate-45 border-r-2 border-t-2 border-purple-200"
+                    className="hidden lg:block absolute -right-4 top-1/2 -translate-y-1/2 w-8 h-8 bg-white rotate-45 border-r-2 border-t-2 border-blue-200"
                   />
                 )}
               </motion.div>
@@ -151,7 +151,7 @@ const HowItWorks = () => {
  
           {/* RIGHT SIDE - CONTENT */}
           <div className="lg:col-span-7 sticky top-32">
-            <div className="bg-white p-8 sm:p-12 rounded-[3rem] shadow-2xl shadow-purple-900/5 border border-slate-100 min-h-[500px] flex items-center justify-center">
+            <div className="bg-white p-8 sm:p-12 rounded-[3rem] shadow-2xl shadow-blue-900/5 border border-slate-100 min-h-[500px] flex items-center justify-center">
               <AnimatePresence mode="wait">
                 <motion.div
                   key={activeStep}
@@ -162,7 +162,7 @@ const HowItWorks = () => {
                   className="text-center w-full"
                 >
                   <div className="relative mb-10 group">
-                    <div className="absolute inset-0 bg-purple-400/10 blur-[80px] rounded-full scale-0 group-hover:scale-100 transition-transform duration-1000" />
+                    <div className="absolute inset-0 bg-blue-400/10 blur-[80px] rounded-full scale-0 group-hover:scale-100 transition-transform duration-1000" />
                     <motion.img
                       src={steps[activeStep].rightImage}
                       className="relative w-full h-[250px] sm:h-[350px] object-contain mx-auto"

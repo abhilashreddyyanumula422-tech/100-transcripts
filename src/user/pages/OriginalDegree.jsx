@@ -12,7 +12,7 @@ import iqasLogo from "../../assets/IQAS.png";
 import nasabLogo from "../../assets/NASAB.png";
 import pebcLogo from "../../assets/PEBC.png";
 import spantraLogo from "../../assets/Spantra.png";
-import wesLogo from "../../assets/WES.png"; 
+import wesLogo from "../../assets/WES.png";
 
 
 const fadeUp = {
@@ -75,21 +75,21 @@ const OriginalDegree = () => {
       <div className="max-w-6xl mx-auto">
         {/* Header */}
         <main className="pt-24 pb-12 px-4"> {/* pt-24 adds space for a fixed header */}
-  <motion.div
-    initial="hidden"
-    animate="visible"
-    variants={fadeUp}
-    transition={{ duration: 0.6 }}
-    className="text-center"
-  >
-    <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
-      Original Degree (OD)
-    </h1>
-    <p className="text-lg text-gray-600 max-w-2xl mx-auto">
-      Lost your degree or need a new copy? We handle the university paperwork to get it for you.
-    </p>
-  </motion.div>
-</main>
+          <motion.div
+            initial="hidden"
+            animate="visible"
+            variants={fadeUp}
+            transition={{ duration: 0.6 }}
+            className="text-center"
+          >
+            <h1 className="text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+              Original Degree (OD)
+            </h1>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              Lost your degree or need a new copy? We handle the university paperwork to get it for you.
+            </p>
+          </motion.div>
+        </main>
 
         {/* What is OD */}
         <motion.div
@@ -106,7 +106,7 @@ const OriginalDegree = () => {
           <p className="text-gray-600 leading-relaxed mb-6">
             An Original Degree (OD) is the formal, official document awarded by an educational institution to a student upon the successful completion of their academic program. It certifies that the student has fulfilled all academic requirements for a specific course and has officially graduated.
           </p>
-          
+
           <div className="bg-blue-50 rounded-xl p-6 mb-6">
             <h3 className="font-semibold text-gray-900 mb-4">Key Points about the Original Degree (OD):</h3>
             <ul className="space-y-3">
@@ -154,58 +154,58 @@ const OriginalDegree = () => {
 
         {/* Sample Original Degree Image */}
         <div className="flex justify-center">
-  <img
-    src={certificateImg}
-    alt="Sample Consolidated Marks Memo"
-    className="w-64 md:w-80 lg:w-96 h-auto rounded-lg shadow-md"
-  />
-</div>
-        
+          <img
+            src={certificateImg}
+            alt="Sample Consolidated Marks Memo"
+            className="w-64 md:w-80 lg:w-96 h-auto rounded-lg shadow-md"
+          />
+        </div>
 
-         
-         
-         {/* AGENCIES SECTION */}
-               <motion.div
-                         initial="hidden"
-                         animate="visible"
-                         variants={fadeUp}
-                         transition={{ duration: 0.6, delay: 0.2 }}
-                          className="my-24">
-                       
-                         <h2 className="text-2xl font-bold text-purple-900 mb-5 text-center">
-                           Supported Credential Evaluation Agencies
-                         </h2>
-                         <p className="text-purple-600 mb-6 text-center max-w-2xl mx-auto">
-                           We assist applicants preparing documents for all major credential evaluation agencies worldwide.
-                         </p>
-               
-                         <div className="scroll-container py-4">
-                           <div className="scroll-content">
-                             {[...agencies, ...agencies].map((agency, index) => (
-                               <motion.div
-                                 key={`${agency.short}-${index}`}
-                                 initial="hidden"
-                                 animate="visible"
-                                 variants={fadeUp}
-                                 transition={{ duration: 0.4, delay: index * 0.05 }}
-                                 className="bg-white rounded-xl p-4 shadow-sm border border-purple-200 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
-                                 style={{ width: '120px' }}
-                               >
-                                 <img
-                                   src={agency.logo}
-                                   alt={agency.short}
-                                   className="w-16 h-16 object-contain mb-2"
-                                 />
-                                 <h4 className="font-semibold text-purple-900 text-xs text-center">
-                                   {agency.short}
-                                 </h4>
-                               </motion.div>
-                      ))}
-                    </div>
-                  </div>
+
+
+
+        {/* AGENCIES SECTION */}
+        <motion.div
+          initial="hidden"
+          animate="visible"
+          variants={fadeUp}
+          transition={{ duration: 0.6, delay: 0.4 }}
+          className="mb-12"
+        >
+          <h2 className="text-2xl font-bold text-gray-900 mb-3 text-center">
+            Supported Credential Evaluation Agencies
+          </h2>
+          <p className="text-gray-600 mb-6 text-center max-w-2xl mx-auto">
+            We assist applicants preparing documents for all major credential evaluation agencies worldwide.
+          </p>
+
+          <div className="scroll-container py-4">
+            <div className="scroll-content">
+              {[...agencies, ...agencies].map((agency, index) => (
+                <motion.div
+                  key={`${agency.short}-${index}`}
+                  initial="hidden"
+                  animate="visible"
+                  variants={fadeUp}
+                  transition={{ duration: 0.4, delay: index * 0.05 }}
+                  className="bg-white rounded-xl p-4 shadow-sm border border-gray-100 hover:shadow-md transition-shadow duration-300 flex flex-col items-center mx-3 flex-shrink-0"
+                  style={{ width: '120px' }}
+                >
+                  <img
+                    src={agency.logo}
+                    alt={agency.short}
+                    className="w-16 h-16 object-contain mb-2"
+                  />
+                  <h4 className="font-semibold text-gray-900 text-xs text-center">
+                    {agency.short}
+                  </h4>
                 </motion.div>
+              ))}
+            </div>
+          </div>
+        </motion.div>
 
-        
+
       </div>
     </div>
   );

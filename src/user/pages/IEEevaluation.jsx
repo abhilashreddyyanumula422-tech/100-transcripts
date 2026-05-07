@@ -25,17 +25,17 @@ const IEEevaluation = () => {
             href="https://100transcripts.com/wp-content/uploads/2025/09/IEE-account-creation-in-partnership-with-100-Transcripts-1.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-purple-600 text-white px-6 py-4 rounded-2xl font-black hover:bg-purple-700 transition-all shadow-xl text-sm flex-1 group"
+            className="flex items-center justify-center gap-2 bg-blue-600 text-white px-6 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm flex-1 group"
           >
             <span>Discounted Price</span>
             <ExternalLink className="w-4 h-4 group-hover:translate-x-1 group-hover:-translate-y-1 transition-transform" />
           </a>
-          <div className="flex items-center justify-center text-purple-600 font-black px-2 text-xs">OR</div>
+          <div className="flex items-center justify-center text-blue-600 font-black px-2 text-xs">OR</div>
           <a
             href="https://100transcripts.com/wp-content/uploads/2024/12/How-to-create-IEE-account-1.pdf"
             target="_blank"
             rel="noopener noreferrer"
-            className="flex items-center justify-center gap-2 bg-white border-2 border-purple-100 text-purple-600 px-6 py-4 rounded-2xl font-black hover:border-purple-300 hover:bg-purple-50 transition-all text-sm flex-1 group"
+            className="flex items-center justify-center gap-2 bg-white border-2 border-blue-100 text-blue-600 px-6 py-4 rounded-2xl font-black hover:border-blue-300 hover:bg-blue-50 transition-all text-sm flex-1 group"
           >
             <span>Regular Process</span>
             <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -50,7 +50,7 @@ const IEEevaluation = () => {
       icon: FileText,
       color: "blue",
       content: (
-        <div className="space-y-4 mt-6 bg-purple-50 p-6 rounded-2xl border border-purple-100">
+        <div className="space-y-4 mt-6 bg-blue-50 p-6 rounded-2xl border border-blue-100">
           {[
             { label: "CMM (Consolidated Marks)", link: "https://100transcripts.com/cmm/" },
             { label: "Degree Certificate / Provisional", link: "https://100transcripts.com/provisional-degree-certificate-pc/" },
@@ -58,15 +58,15 @@ const IEEevaluation = () => {
             { label: "IEE Order Number", isText: true },
           ].map((item) => (
             <div key={item.label} className="flex items-start gap-3 group">
-              <div className="mt-1 bg-purple-100 rounded-full p-1 flex-shrink-0">
-                <Check className="w-3 h-3 text-purple-600" />
+              <div className="mt-1 bg-blue-100 rounded-full p-1 flex-shrink-0">
+                <Check className="w-3 h-3 text-blue-600" />
               </div>
               {item.link ? (
                 <a
                   href={item.link}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="text-slate-800 hover:text-purple-600 transition-colors text-sm font-bold leading-tight flex items-center gap-2"
+                  className="text-slate-800 hover:text-blue-600 transition-colors text-sm font-bold leading-tight flex items-center gap-2"
                 >
                   {item.label}
                   <ExternalLink className="w-3 h-3 opacity-0 group-hover:opacity-100 transition-opacity" />
@@ -76,9 +76,9 @@ const IEEevaluation = () => {
               )}
             </div>
           ))}
-          <div className="flex items-start gap-2 pt-2 border-t border-purple-200 mt-2">
-            <Info className="w-4 h-4 text-purple-400 flex-shrink-0 mt-0.5" />
-            <p className="text-[11px] text-purple-600 font-medium leading-relaxed">
+          <div className="flex items-start gap-2 pt-2 border-t border-blue-200 mt-2">
+            <Info className="w-4 h-4 text-blue-400 flex-shrink-0 mt-0.5" />
+            <p className="text-[11px] text-blue-600 font-medium leading-relaxed">
               Note: Documentation may vary based on university requirements. Consult our experts for specifics.
             </p>
           </div>
@@ -95,7 +95,7 @@ const IEEevaluation = () => {
         <div className="mt-6">
           <Link
             to="/apply"
-            className="inline-flex items-center gap-3 bg-purple-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-purple-700 transition-all shadow-xl text-sm group"
+            className="inline-flex items-center gap-3 bg-blue-600 text-white px-8 py-4 rounded-2xl font-black hover:bg-blue-700 transition-all shadow-xl text-sm group"
           >
             <Upload className="w-4 h-4 group-hover:-translate-y-1 transition-transform" />
             Start Application
@@ -107,12 +107,12 @@ const IEEevaluation = () => {
   ];
 
   return (
-    <div className="min-h-screen bg-white overflow-x-hidden">
+    <div className="min-h-screen bg-white">
 
       {/* HERO SECTION - CLEAN DESIGN LIKE UPLOADED IMAGE */}
-      <section className="relative pt-32 pb-20 bg-white overflow-hidden">
-        <div className="max-w-7xl mx-auto px-6 relative z-10">
-          <div className="flex flex-col lg:flex-row items-center gap-16">
+      <section className="relative pt-16 pb-20 bg-white overflow-hidden">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="flex flex-col lg:flex-row items-center gap-12 lg:gap-16">
             {/* LEFT SIDE - CONTENT */}
             <motion.div
               initial={{ opacity: 0, x: -30 }}
@@ -124,28 +124,28 @@ const IEEevaluation = () => {
                 initial={{ opacity: 0, y: -20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.6 }}
-                className="inline-flex items-center gap-2 bg-purple-50 border border-purple-200 rounded-full px-4 py-2"
+                className="inline-flex items-center gap-2 bg-blue-50 border border-blue-200 rounded-full px-4 py-2"
               >
-                <Building2 className="w- h-4 text-purple-600" />
-                <span className="text-purple-700 text-xs font-semibold uppercase tracking-wider">Official IEE Partnership</span>
+                <Building2 className="w-4 h-4 text-blue-600" />
+                <span className="text-blue-700 text-xs font-semibold uppercase tracking-wider">Official IEE Partnership</span>
               </motion.div>
 
               <motion.h1
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.2 }}
-                className="text-3xl md:text-4xl lg:text-5xl font-bold text-purple-900 leading-tight"
+                className="text-3xl md:text-4xl lg:text-5xl font-bold text-gray-900 leading-tight"
               >
-                100 Transcripts is partnered with <span className="text-purple-600">IEE</span>
+                100 Transcripts is partnered with <span className="text-blue-600">IEE</span>
               </motion.h1>
 
               <motion.p
                 initial={{ opacity: 0, y: 20 }}
                 animate={{ opacity: 1, y: 0 }}
                 transition={{ duration: 0.8, delay: 0.3 }}
-                className="text-purple-600 text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed"
+                className="text-gray-600 text-lg max-w-2xl mx-auto lg:mx-0 leading-relaxed"
               >
-                Get your international credentials evaluated quickly and securely through our official partnership. Enjoy <span className="text-purple-600 font-semibold">priority processing</span> and <span className="text-purple-600 font-semibold">expert guidance</span>.
+                Get your international credentials evaluated quickly and securely through our official partnership. Enjoy <span className="text-blue-600 font-semibold">priority processing</span> and <span className="text-blue-600 font-semibold">expert guidance</span>.
               </motion.p>
 
               <motion.div
@@ -157,14 +157,14 @@ const IEEevaluation = () => {
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="bg-gradient-to-r from-purple-600 to-purple-700 text-white px-8 py-3 rounded-full font-semibold hover:from-purple-700 hover:to-purple-800 transition-all shadow-lg shadow-purple-500/25"
+                  className="bg-blue-600 text-white px-8 py-3 rounded-full font-semibold hover:bg-blue-700 transition-colors shadow-lg"
                 >
                   Get Started
                 </motion.button>
                 <motion.button
                   whileHover={{ scale: 1.05 }}
                   whileTap={{ scale: 0.95 }}
-                  className="border-2 border-purple-600 text-purple-600 px-8 py-3 rounded-full font-semibold hover:bg-purple-50 transition-colors"
+                  className="border-2 border-blue-600 text-blue-600 px-8 py-3 rounded-full font-semibold hover:bg-blue-50 transition-colors"
                 >
                   Learn More
                 </motion.button>
@@ -199,7 +199,7 @@ const IEEevaluation = () => {
         </div>
       </section>
 
-      
+
       {/* WORKFLOW SECTION - LEFT STEPS, RIGHT IMAGE */}
       <section className="py-20 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -209,14 +209,14 @@ const IEEevaluation = () => {
             transition={{ duration: 0.8 }}
             className="text-center mb-16"
           >
-            <h2 className="text-3xl md:text-4xl font-bold text-purple-900 mb-4">
+            <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
               Our Evaluation Process
             </h2>
-            <p className="text-purple-600 text-lg max-w-2xl mx-auto">
+            <p className="text-gray-600 text-lg max-w-2xl mx-auto">
               Simple steps to get your credentials evaluated
             </p>
           </motion.div>
-          
+
           <div className="grid lg:grid-cols-2 gap-12 lg:gap-16 items-center">
             {/* LEFT SIDE - STEPS/CONTENT */}
             <div className="space-y-6">
@@ -240,7 +240,7 @@ const IEEevaluation = () => {
                   title: "Upload & Submit",
                   description: "Submit your documents securely through our platform for IEE verification and evaluation.",
                   icon: "⬆️",
-                  color: "purple"
+                  color: "blue"
                 },
                 {
                   step: 4,
@@ -255,35 +255,35 @@ const IEEevaluation = () => {
                   initial={{ opacity: 0, x: -50 }}
                   animate={{ opacity: 1, x: 0 }}
                   transition={{ duration: 0.6, delay: index * 0.15 }}
-                  whileHover={{ 
+                  whileHover={{
                     scale: 1.02,
                     x: 10,
                     boxShadow: "0 10px 25px -5px rgba(0, 0, 0, 0.1)"
                   }}
-                  className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-purple-200 shadow-lg hover:shadow-xl transition-all duration-300"
+                  className="flex items-start gap-4 p-6 bg-white rounded-2xl border border-gray-200 shadow-lg hover:shadow-xl transition-all duration-300"
                 >
                   <motion.div
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.1, 1],
                       rotate: [0, 5, -5, 0]
                     }}
-                    transition={{ 
-                      duration: 3, 
-                      repeat: Infinity, 
-                      delay: index * 0.5 
+                    transition={{
+                      duration: 3,
+                      repeat: Infinity,
+                      delay: index * 0.5
                     }}
-                    className={`w-12 h-12 rounded-full ${item.color === 'blue' ? 'bg-purple-100' : item.color === 'green' ? 'bg-green-100' : item.color === 'purple' ? 'bg-purple-100' : item.color === 'orange' ? 'bg-orange-100' : 'bg-gray-100'} flex items-center justify-center text-2xl flex-shrink-0`}
+                    className={`w-12 h-12 rounded-full ${item.color === 'blue' ? 'bg-blue-100' : item.color === 'green' ? 'bg-green-100' : item.color === 'blue' ? 'bg-blue-100' : item.color === 'orange' ? 'bg-orange-100' : 'bg-gray-100'} flex items-center justify-center text-2xl flex-shrink-0`}
                   >
                     {item.icon}
                   </motion.div>
                   <div className="flex-1">
                     <div className="flex items-center gap-3 mb-2">
-                      <div className={`w-8 h-8 rounded-full ${item.color === 'blue' ? 'bg-purple-600' : item.color === 'green' ? 'bg-green-600' : item.color === 'purple' ? 'bg-purple-600' : item.color === 'orange' ? 'bg-orange-600' : 'bg-gray-600'} text-white flex items-center justify-center text-sm font-bold`}>
+                      <div className={`w-8 h-8 rounded-full ${item.color === 'blue' ? 'bg-blue-600' : item.color === 'green' ? 'bg-green-600' : item.color === 'blue' ? 'bg-blue-600' : item.color === 'orange' ? 'bg-orange-600' : 'bg-gray-600'} text-white flex items-center justify-center text-sm font-bold`}>
                         {item.step}
                       </div>
-                      <h3 className="text-lg font-bold text-purple-900">{item.title}</h3>
+                      <h3 className="text-lg font-bold text-gray-900">{item.title}</h3>
                     </div>
-                    <p className="text-purple-600 text-sm leading-relaxed">{item.description}</p>
+                    <p className="text-gray-600 text-sm leading-relaxed">{item.description}</p>
                   </div>
                 </motion.div>
               ))}
@@ -303,27 +303,27 @@ const IEEevaluation = () => {
               >
                 {/* Glow Background */}
                 <motion.div
-                  animate={{ 
+                  animate={{
                     boxShadow: ["0 0 30px rgba(59, 130, 246, 0.3)", "0 0 50px rgba(139, 92, 246, 0.5)", "0 0 30px rgba(59, 130, 246, 0.3)"]
                   }}
                   transition={{ duration: 3, repeat: Infinity }}
-                  className="absolute inset-0 bg-gradient-to-r from-purple-500/20 to-purple-500/20 rounded-3xl blur-2xl"
+                  className="absolute inset-0 bg-gradient-to-r from-blue-500/20 to-blue-500/20 rounded-3xl blur-2xl"
                 />
-                
+
                 {/* Main Image Container */}
-                <div className="relative bg-gradient-to-br from-purple-50 to-white p-8 rounded-3xl border border-purple-200 shadow-2xl">
+                <div className="relative bg-gradient-to-br from-gray-50 to-white p-8 rounded-3xl border border-gray-200 shadow-2xl">
                   <motion.div
                     animate={{ rotate: [0, 360] }}
                     transition={{ duration: 25, repeat: Infinity, ease: "linear" }}
-                    className="absolute top-4 right-4 w-8 h-8 bg-purple-500/20 rounded-full"
+                    className="absolute top-4 right-4 w-8 h-8 bg-blue-500/20 rounded-full"
                   />
                   <motion.div
                     animate={{ rotate: [360, 0] }}
                     transition={{ duration: 20, repeat: Infinity, ease: "linear" }}
-                    className="absolute bottom-4 left-4 w-6 h-6 bg-purple-500/20 rounded-full"
+                    className="absolute bottom-4 left-4 w-6 h-6 bg-blue-500/20 rounded-full"
                   />
-                  
-                  <div className="relative bg-white rounded-2xl p-6 shadow-xl border border-purple-100">
+
+                  <div className="relative bg-white rounded-2xl p-6 shadow-xl border border-gray-100">
                     <motion.img
                       src={workflowImg}
                       alt="IEE Evaluation Workflow"
@@ -332,21 +332,21 @@ const IEEevaluation = () => {
                       transition={{ duration: 0.3 }}
                     />
                   </div>
-                  
+
                   {/* Floating Badge */}
                   <motion.div
-                    animate={{ 
+                    animate={{
                       scale: [1, 1.1, 1],
                       rotate: [0, 5, -5, 0]
                     }}
                     transition={{ duration: 3, repeat: Infinity }}
-                    className="absolute -top-6 -right-6 bg-gradient-to-r from-purple-600 to-purple-700 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl"
+                    className="absolute -top-6 -right-6 bg-gradient-to-r from-blue-600 to-blue-600 text-white rounded-full w-16 h-16 flex items-center justify-center shadow-xl"
                   >
                     <span className="text-2xl">📋</span>
                   </motion.div>
                 </div>
               </motion.div>
-              
+
               {/* Feature Pills */}
               <motion.div
                 initial={{ opacity: 0, y: 30 }}
@@ -358,18 +358,18 @@ const IEEevaluation = () => {
                   { icon: "⚡", label: "Fast", color: "yellow" },
                   { icon: "🔒", label: "Secure", color: "green" },
                   { icon: "🌍", label: "Global", color: "blue" },
-                  { icon: "✅", label: "Verified", color: "purple" }
+                  { icon: "✅", label: "Verified", color: "blue" }
                 ].map((feature, index) => (
                   <motion.div
                     key={feature.label}
                     initial={{ opacity: 0, scale: 0.8 }}
                     animate={{ opacity: 1, scale: 1 }}
                     transition={{ duration: 0.5, delay: 0.8 + (index * 0.1) }}
-                    whileHover={{ 
-                      scale: 1.05, 
+                    whileHover={{
+                      scale: 1.05,
                       y: -3
                     }}
-                    className={`${feature.color === 'yellow' ? 'bg-yellow-50 border-yellow-200' : feature.color === 'green' ? 'bg-green-50 border-green-200' : feature.color === 'blue' ? 'bg-purple-50 border-purple-200' : feature.color === 'purple' ? 'bg-purple-50 border-purple-200' : 'bg-gray-50 border-gray-200'} rounded-full px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all`}
+                    className={`${feature.color === 'yellow' ? 'bg-yellow-50 border-yellow-200' : feature.color === 'green' ? 'bg-green-50 border-green-200' : feature.color === 'blue' ? 'bg-blue-50 border-blue-200' : feature.color === 'blue' ? 'bg-blue-50 border-blue-200' : 'bg-gray-50 border-gray-200'} rounded-full px-4 py-2 flex items-center gap-2 shadow-md hover:shadow-lg transition-all`}
                   >
                     <span className="text-lg">{feature.icon}</span>
                     <span className="text-sm font-semibold text-gray-800">{feature.label}</span>
@@ -387,9 +387,9 @@ const IEEevaluation = () => {
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-black text-black mb-4">IEE Evaluation</h2>
             <div className="flex items-center justify-center gap-4">
-              <span className="h-[2px] w-12 bg-purple-200" />
-              <p className="text-purple-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
-              <span className="h-[2px] w-12 bg-purple-200" />
+              <span className="h-[2px] w-12 bg-blue-200" />
+              <p className="text-blue-600 font-bold uppercase tracking-widest text-sm">Step by Step Guide</p>
+              <span className="h-[2px] w-12 bg-blue-200" />
             </div>
           </div>
 
@@ -403,22 +403,22 @@ const IEEevaluation = () => {
                   whileInView={{ opacity: 1, y: 0 }}
                   viewport={{ once: true }}
                   transition={{ delay: idx * 0.1 }}
-                  className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-purple-500 shadow-2xl shadow-purple-900/5 -translate-y-1' : 'border-slate-100 hover:border-purple-100 shadow-md shadow-slate-900/5'}`}
+                  className={`group bg-white p-8 sm:p-10 rounded-[2.5rem] border transition-all duration-500 cursor-pointer ${activeStep === step.id ? 'border-blue-500 shadow-2xl shadow-blue-900/5 -translate-y-1' : 'border-slate-100 hover:border-blue-100 shadow-md shadow-slate-900/5'}`}
                   onMouseEnter={() => setActiveStep(step.id)}
                   onMouseLeave={() => setActiveStep(null)}
                 >
                   <div className="flex items-start gap-8">
-                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-purple-50 text-purple-600 border border-purple-100 shadow-sm">
+                    <div className="w-14 h-14 rounded-2xl flex items-center justify-center flex-shrink-0 transition-transform group-hover:scale-110 bg-blue-50 text-blue-600 border border-blue-100 shadow-sm">
                       <step.icon className="w-7 h-7" />
                     </div>
                     <div className="flex-1">
                       <div className="flex items-center gap-4 mb-3">
-                        <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-purple-50 text-purple-700 border border-purple-100">
+                        <span className="text-[10px] font-black px-4 py-1.5 rounded-full uppercase tracking-[0.2em] bg-blue-50 text-blue-700 border border-blue-100">
                           Step {idx + 1}
                         </span>
                       </div>
-                      <h3 className="text-xl font-black text-purple-900 mb-2">{step.title}</h3>
-                      <p className="text-purple-600 text-sm font-medium leading-relaxed">{step.description}</p>
+                      <h3 className="text-xl font-black text-black mb-2">{step.title}</h3>
+                      <p className="text-slate-600 text-sm font-medium leading-relaxed">{step.description}</p>
                       <AnimatePresence>
                         {activeStep === step.id && (
                           <motion.div
@@ -439,15 +439,15 @@ const IEEevaluation = () => {
 
             <div className="lg:sticky lg:top-32 h-fit space-y-8">
               <div className="bg-white p-10 sm:p-12 rounded-[3rem] border border-slate-100 shadow-2xl shadow-slate-200/50 relative overflow-hidden group">
-                <div className="absolute top-0 right-0 w-48 h-48 bg-purple-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-purple-100" />
+                <div className="absolute top-0 right-0 w-48 h-48 bg-blue-50 rounded-full blur-3xl -mr-24 -mt-24 transition-colors group-hover:bg-blue-100" />
                 <div className="relative z-10 space-y-6 text-center lg:text-left">
-                  <h3 className="text-2xl font-black text-purple-900 tracking-tight">Official IEE ECA Report</h3>
-                  <p className="text-purple-600 text-base font-medium leading-relaxed">Download a sample IEE evaluation report to understand the format and details provided to institutions.</p>
+                  <h3 className="text-2xl font-black text-black tracking-tight">Official IEE ECA Report</h3>
+                  <p className="text-slate-600 text-base font-medium leading-relaxed">Download a sample IEE evaluation report to understand the format and details provided to institutions.</p>
                   <a
                     href="https://100transcripts.com/wp-content/uploads/2026/01/IEE-ECA-Report.pdf"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex items-center gap-4 bg-gradient-to-r from-purple-800 to-purple-900 text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:from-purple-900 hover:to-black transition-all hover:scale-105"
+                    className="inline-flex items-center gap-4 bg-black text-white px-10 py-5 rounded-2xl font-black text-sm shadow-xl hover:bg-blue-600 transition-all hover:scale-105"
                   >
                     View Sample Report
                     <ExternalLink className="w-5 h-5" />
@@ -455,7 +455,7 @@ const IEEevaluation = () => {
                 </div>
               </div>
 
-              <div className="bg-gradient-to-r from-purple-600 to-purple-700 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-purple-500/25">
+              <div className="bg-blue-600 p-10 rounded-[3rem] relative overflow-hidden group shadow-xl shadow-blue-500/20">
                 <div className="absolute inset-0 bg-white/5 opacity-0 group-hover:opacity-100 transition-opacity" />
                 <div className="relative z-10 flex items-center gap-6">
                   <div className="w-16 h-16 bg-white/20 backdrop-blur-md rounded-2xl flex items-center justify-center">
@@ -463,7 +463,7 @@ const IEEevaluation = () => {
                   </div>
                   <div>
                     <h4 className="text-xl font-black text-white">100% Verified</h4>
-                    <p className="text-purple-100 font-medium text-sm">Official partnership for secure results.</p>
+                    <p className="text-blue-100 font-medium text-sm">Official partnership for secure results.</p>
                   </div>
                 </div>
               </div>

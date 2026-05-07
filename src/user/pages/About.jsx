@@ -26,10 +26,10 @@ export default function About() {
   const networkImages = [clgImg, ieeImg, indiaMap, isoImg, starImg, startupImg];
 
   return (
-    <div className="bg-[#f8fafc] min-h-screen pt-20">
+    <div className="bg-white min-h-screen pt-20">
       
       {/* HERO SECTION */}
-      <section style={{ backgroundColor: PRIMARY }} className="relative text-white py-20 px-6 overflow-hidden">
+      <section className="relative text-white py-20 px-6 overflow-hidden bg-gradient-to-r from-white-600 to-cyan-600">
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[120px] -mr-40 -mt-40" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-white/5 rounded-full blur-[100px] -ml-20 -mb-20" />
         
@@ -41,21 +41,20 @@ export default function About() {
           >
             <div className="inline-flex items-center gap-2 bg-white/10 backdrop-blur-md border border-white/20 rounded-full px-4 py-1.5 shadow-sm">
               <Shield className="w-4 h-4 text-blue-300" />
-              <span className="text-blue-100 text-[10px] font-bold uppercase tracking-[0.2em]">ISO Certified Firm</span>
             </div>
             
             <h1 className="text-4xl md:text-5xl lg:text-7xl font-black leading-tight">
-              About <span className="text-blue-300">100 Transcripts</span>
+              About <span className="text-sky-600">100 Transcripts</span>
             </h1>
 
-            <p className="text-blue-100 text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
+            <p className="text-black text-lg md:text-xl max-w-xl mx-auto lg:mx-0 leading-relaxed font-medium">
               A specialized ISO-certified firm dedicated to securing educational documents and transcripts from universities across India since 2016.
             </p>
 
             <div className="flex flex-wrap justify-center lg:justify-start gap-4">
               <button
                 onClick={() => navigate("/apply")}
-                className="bg-white text-[#3B5575] px-8 py-4 rounded-2xl font-black shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
+                className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-8 py-4 rounded-2xl font-black shadow-xl hover:scale-105 transition-all flex items-center gap-2 group"
               >
                 Apply Now
                 <ArrowRight className="w-4 h-4 group-hover:translate-x-1 transition-transform" />
@@ -127,18 +126,18 @@ export default function About() {
               <div className="w-14 h-14 bg-blue-50 rounded-2xl flex items-center justify-center mx-auto text-blue-600">
                 <stat.icon className="w-7 h-7" />
               </div>
-              <h2 className="text-4xl font-black text-slate-800">{stat.value}</h2>
-              <h3 className="text-lg font-bold text-slate-700">{stat.label}</h3>
-              <p className="text-slate-500 text-sm font-medium">{stat.sub}</p>
+              <h2 className="text-4xl font-black text-black">{stat.value}</h2>
+              <h3 className="text-lg font-bold text-black">{stat.label}</h3>
+              <p className="text-black text-sm font-medium">{stat.sub}</p>
             </motion.div>
           ))}
         </div>
       </section>
 
       {/* RECOGNITIONS */}
-      <section className="py-24 bg-slate-100/50">
+      <section className="py-24 bg-white">
         <div className="max-w-7xl mx-auto px-6">
-          <h2 className="text-3xl md:text-4xl font-black text-center text-slate-800 mb-16">Our Recognitions & Certifications</h2>
+          <h2 className="text-3xl md:text-4xl font-black text-center text-black mb-16">Our Recognitions & Certifications</h2>
           
           <div className="grid md:grid-cols-3 gap-8">
             {[
@@ -154,7 +153,7 @@ export default function About() {
                 transition={{ delay: index * 0.1 }}
                 className="bg-white p-6 rounded-[2.5rem] shadow-xl border border-slate-200 group"
               >
-                <h3 className="text-center font-black text-slate-700 mb-6 group-hover:text-blue-600 transition-colors">{item.title}</h3>
+                <h3 className="text-center font-black text-black mb-6 group-hover:text-blue-600 transition-colors">{item.title}</h3>
                 <div className="aspect-[3/4] overflow-hidden rounded-2xl bg-slate-50 flex items-center justify-center">
                   <img
                     src={item.img}
@@ -188,8 +187,7 @@ export default function About() {
       {/* CTA SECTION */}
       <section className="py-24 px-6 max-w-5xl mx-auto">
         <motion.div
-          style={{ backgroundColor: PRIMARY }}
-          className="rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden shadow-2xl"
+          className="rounded-[3rem] p-10 md:p-16 text-center text-white relative overflow-hidden shadow-2xl bg-gradient-to-r from-blue-600 to-cyan-600"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
@@ -203,7 +201,7 @@ export default function About() {
           </p>
           <button
             onClick={() => navigate("/apply")}
-            className="bg-white text-[#3B5575] px-10 py-5 rounded-2xl font-black text-lg shadow-xl hover:scale-105 transition-all relative z-10 group"
+            className="bg-gradient-to-r from-blue-600 to-cyan-600 text-white px-10 py-5 rounded-2xl font-black text-lg shadow-xl hover:scale-105 transition-all relative z-10 group"
           >
             Get Started Now
             <ArrowRight className="w-5 h-5 inline-block ml-2 group-hover:translate-x-1 transition-transform" />

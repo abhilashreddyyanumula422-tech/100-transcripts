@@ -88,15 +88,15 @@ const EducationEva = () => {
 
   return (
     <div className="min-h-screen bg-[#f8fafc]">
-      
+
       {/* HERO SECTION */}
       <section className="relative pt-32 pb-20 bg-gradient-to-br from-[#f1f5f9] via-[#e2e8f0] to-[#cbd5e1] overflow-hidden">
         <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-blue-400/10 rounded-full blur-[120px] -mr-40 -mt-40" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] -ml-20 -mb-20" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10">
           <div className="flex flex-col lg:flex-row items-center gap-12">
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, y: 20 }}
               animate={{ opacity: 1, y: 0 }}
               className="lg:w-2/3 text-center lg:text-left space-y-8"
@@ -105,28 +105,28 @@ const EducationEva = () => {
                 <Building2 className="w-4 h-4 text-blue-600" />
                 <span className="text-slate-600 text-[10px] font-bold uppercase tracking-[0.2em]">Official AZICE Partnership</span>
               </div>
-              
+
               <h1 className="text-4xl md:text-5xl lg:text-7xl font-black text-slate-800 leading-tight">
                 Arizona International <span className="text-blue-600">Credential</span> Evaluators
               </h1>
-              
+
               <p className="text-slate-600 text-lg md:text-xl max-w-2xl mx-auto lg:mx-0 leading-relaxed font-medium">
                 Trusted evaluation services for immigration, employment, and education in partnership with AZICE.
               </p>
 
               <div className="flex flex-wrap justify-center lg:justify-start gap-4 pt-4">
-                 <div className="flex items-center gap-3 bg-white/90 px-5 py-3 rounded-2xl border border-blue-100 shadow-sm">
-                    <CheckCircle2 className="w-5 h-5 text-blue-600" />
-                    <span className="text-slate-700 font-bold text-sm">Priority Processing</span>
-                 </div>
-                 <div className="flex items-center gap-3 bg-white/90 px-5 py-3 rounded-2xl border border-blue-100 shadow-sm">
-                    <Shield className="w-5 h-5 text-blue-400" />
-                    <span className="text-slate-700 font-bold text-sm">Official Verification</span>
-                 </div>
+                <div className="flex items-center gap-3 bg-white/90 px-5 py-3 rounded-2xl border border-blue-100 shadow-sm">
+                  <CheckCircle2 className="w-5 h-5 text-blue-600" />
+                  <span className="text-slate-700 font-bold text-sm">Priority Processing</span>
+                </div>
+                <div className="flex items-center gap-3 bg-white/90 px-5 py-3 rounded-2xl border border-blue-100 shadow-sm">
+                  <Shield className="w-5 h-5 text-blue-400" />
+                  <span className="text-slate-700 font-bold text-sm">Official Verification</span>
+                </div>
               </div>
             </motion.div>
 
-            <motion.div 
+            <motion.div
               initial={{ opacity: 0, scale: 0.9 }}
               animate={{ opacity: 1, scale: 1 }}
               className="lg:w-1/3 flex justify-center"
@@ -147,7 +147,7 @@ const EducationEva = () => {
       {/* PROCESS SECTION */}
       <section className="py-24 px-6 max-w-7xl mx-auto">
         <div className="grid lg:grid-cols-2 gap-16">
-          
+
           <div className="space-y-8">
             <div className="space-y-4">
               <h2 className="text-3xl md:text-4xl font-black text-slate-800">Your AZICE Journey Made Simple</h2>

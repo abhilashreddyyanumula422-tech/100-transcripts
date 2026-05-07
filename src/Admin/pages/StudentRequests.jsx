@@ -21,7 +21,7 @@ const StudentRequests = () => {
   const companyName = "100 Transcripts";
 
   // ✅ Dynamic API Base
-  const API_BASE = `http://192.168.1.43:8000`;
+  const API_BASE = `http://192.168.1.53:8000`;
 
   // ✅ FETCH API
   const fetchRequests = async () => {
@@ -215,16 +215,16 @@ Please check your email for detailed information or contact us if you have any q
             {/* Desktop Table */}
             <div className="hidden md:block overflow-x-auto">
               <table className="w-full text-sm text-left">
-                <thead className="bg-gray-100 border-b">
+                <thead className="bg-slate-50 text-slate-500 text-xs uppercase font-bold">
                   <tr>
-                    <th className="p-4 font-semibold text-gray-600">Student</th>
-                    <th className="p-4 font-semibold text-gray-600">Request ID</th>
-                    <th className="p-4 font-semibold text-gray-600">Phone</th>
-                    <th className="p-4 font-semibold text-gray-600">University</th>
-                    <th className="p-4 font-semibold text-gray-600">Request</th>
-                    <th className="p-4 font-semibold text-gray-600">Payment</th>
-                    <th className="p-4 font-semibold text-gray-600">Status</th>
-                    <th className="p-4 font-semibold text-gray-600 text-center">Actions</th>
+                    <th className="p-4">Student</th>
+                    <th className="p-4">Request ID</th>
+                    <th className="p-4">Phone</th>
+                    <th className="p-4">University</th>
+                    <th className="p-4">Request</th>
+                    <th className="p-4">Payment</th>
+                    <th className="p-4">Status</th>
+                    <th className="p-4 text-right pr-6">Actions</th>
                   </tr>
                 </thead>
                 <tbody>
@@ -444,7 +444,7 @@ Please check your email for detailed information or contact us if you have any q
                           </button>
                           <button
                             onClick={() => {
-                              window.open(`http://192.168.1.43:8000/api/download/${doc.id}/`);
+                              window.open(`http://192.168.1.53:8000/api/download/${doc.id}/`);
                             }}
                             className="px-3 py-1.5 bg-slate-100 text-slate-600 rounded-lg text-xs font-bold hover:bg-slate-200 transition"
                           >

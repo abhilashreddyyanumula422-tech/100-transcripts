@@ -19,7 +19,7 @@ const CollegeVerification = () => {
   const [loading, setLoading] = useState(true);
 
   // ✅ Dynamic API Base
-  const API_BASE = `http://192.168.1.43:8000`;
+  const API_BASE = `http://192.168.1.53:8000`;
 
   const fetchVerifications = async () => {
     try {

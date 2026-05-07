@@ -9,6 +9,7 @@ import {
   LogOut,
   MailWarning, // Added for Email Template
   Building2,   // Added for College Requests
+  GraduationCap, // Added for Universities
   X,
 } from "lucide-react";
 
@@ -29,6 +30,7 @@ const menuItems = [
   { name: "Student Requests", path: "/admin/student-requests", icon: <Users size={20} /> },
   { name: "College Verification", path: "/admin/college-verification", icon: <ShieldCheck size={20} /> },
   { name: "College Requests", path: "/admin/college-requests", icon: <Building2 size={20} /> },
+  { name: "Universities", path: "/admin/universities", icon: <GraduationCap size={20} /> },
   { name: "Delivery", path: "/admin/delivery", icon: <Truck size={20} /> },
   // { 
   //   name: "Email Notification", 

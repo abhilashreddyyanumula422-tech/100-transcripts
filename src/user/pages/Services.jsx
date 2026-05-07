@@ -68,7 +68,7 @@ const Services = () => {
       >
         <div className="absolute top-0 right-0 w-[600px] h-[600px] bg-blue-400/10 rounded-full blur-[120px] -mr-40 -mt-40" />
         <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-blue-600/5 rounded-full blur-[100px] -ml-20 -mb-20" />
-        
+
         <div className="max-w-7xl mx-auto px-6 relative z-10 text-center space-y-8">
           <div className="inline-flex items-center gap-2 px-4 py-1.5 bg-white/80 backdrop-blur-md border border-[#e2e8f0] rounded-full text-blue-600 font-black uppercase text-[10px] tracking-[0.2em] mb-4">
             Our Services
@@ -83,7 +83,7 @@ const Services = () => {
       </motion.section>
 
       <div className="max-w-7xl mx-auto px-6 py-24">
-        
+
         {/* SERVICES GRID */}
         <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 md:gap-10">
           {services.map((service, i) => (
@@ -104,15 +104,15 @@ const Services = () => {
                   {service.category}
                 </span>
               </div>
-              
+
               <h3 className="text-2xl font-black text-slate-800 tracking-tight mb-4 group-hover:text-blue-600 transition-colors">
                 {service.title}
               </h3>
               <p className="text-slate-600 text-base leading-relaxed mb-8 font-medium">
                 {service.desc}
               </p>
-              
-              <motion.button 
+
+              <motion.button
                 onClick={() => navigate(service.path)}
                 whileHover={{ gap: '1rem' }}
                 className="flex items-center gap-2 text-slate-800 font-black text-sm uppercase tracking-wider group/btn"
@@ -124,14 +124,14 @@ const Services = () => {
         </div>
 
         {/* BOTTOM CTA SECTION */}
-        <motion.div 
+        <motion.div
           className="mt-32 bg-slate-800 rounded-[3rem] p-10 lg:p-24 text-center text-white relative overflow-hidden group shadow-2xl"
           initial={{ opacity: 0, scale: 0.95 }}
           whileInView={{ opacity: 1, scale: 1 }}
           viewport={{ once: true }}
         >
           <div className="absolute top-0 left-0 w-full h-full bg-blue-500 opacity-0 group-hover:opacity-10 transition-opacity duration-700 blur-[100px]"></div>
-          
+
           <div className="relative z-10 space-y-10">
             <h2 className="text-3xl md:text-5xl lg:text-6xl font-black tracking-tight leading-tight text-white">
               Not sure which service <br />
@@ -141,7 +141,7 @@ const Services = () => {
               Talk to our document experts for a free consultation and get the right guidance for your university papers.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center items-center">
-              <button 
+              <button
                 onClick={() => navigate("/contact")}
                 className="w-full sm:w-auto bg-blue-600 text-white px-10 py-5 rounded-2xl font-black text-lg hover:bg-blue-500 transition-all shadow-xl shadow-blue-600/20 active:scale-95"
               >
